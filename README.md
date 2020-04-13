@@ -77,3 +77,37 @@ tags
 #> [3] "ubuntugis_stable"             "default_repos_buildbook"     
 #> [5] "ubuntugis_unstable_buildbook" "ubuntugis_stable_buildbook"
 ```
+
+We could write code to auto-generate Dockerfiles, as demonstrated in
+[rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
+
+For now, to start the project going, we will manually edit the files,
+which can be created as follows:
+
+``` r
+new_dockerfiles = paste0("Dockerfile_", tags)
+lapply(new_dockerfiles, file.copy, from = "rockerdev-ubuntugis-bookbuild/Dockerfile", TRUE)
+#> [[1]]
+#> [1] TRUE
+#> 
+#> [[2]]
+#> [1] TRUE
+#> 
+#> [[3]]
+#> [1] TRUE
+#> 
+#> [[4]]
+#> [1] TRUE
+#> 
+#> [[5]]
+#> [1] TRUE
+#> 
+#> [[6]]
+#> [1] TRUE
+```
+
+Edit these files as appropriate:
+
+``` r
+file.edit("Dockerfile_ubuntugis_unstable")
+```

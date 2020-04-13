@@ -73,3 +73,18 @@ tags = gsub(pattern = "__|^_|_$", replacement = "", tag_df$tag)
 tags
 ```
 
+We could write code to auto-generate Dockerfiles, as demonstrated in [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
+
+For now, to start the project going, we will manually edit the files, which can be created as follows:
+
+```{r}
+new_dockerfiles = paste0("Dockerfile_", tags)
+lapply(new_dockerfiles, file.copy, from = "rockerdev-ubuntugis-bookbuild/Dockerfile", TRUE)
+```
+
+Edit these files as appropriate:
+
+```{r, eval=FALSE}
+file.edit("Dockerfile_ubuntugis_unstable")
+```
+
