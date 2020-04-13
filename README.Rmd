@@ -77,14 +77,32 @@ We could write code to auto-generate Dockerfiles, as demonstrated in [rocker-org
 
 For now, to start the project going, we will manually edit the files, which can be created as follows:
 
-```{r}
-new_dockerfiles = paste0("Dockerfile_", tags)
+```{r, eval=FALSE}
+new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags)
+new_dockerfiles
 lapply(new_dockerfiles, file.copy, from = "rockerdev-ubuntugis-bookbuild/Dockerfile", TRUE)
 ```
 
 Edit these files as appropriate:
 
 ```{r, eval=FALSE}
-file.edit("Dockerfile_ubuntugis_unstable")
+file.edit("dockerfiles/Dockerfile_ubuntugis_unstable")
 ```
 
+Create a folder for each Dockerfile:
+
+```{r, eval=FALSE}
+lapply(tags, dir.create)
+lapply(tags, function(x) {
+  file.copy(
+    from = paste0("dockerfiles/Dockerfile_", x),
+    , to = paste0(x, "/Dockerfile"),
+    overwrite = TRUE)
+})
+```
+
+Test the build in a terminal, e.g. with the following command
+
+```bash
+docker build ubuntugis_unstable
+```

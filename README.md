@@ -85,29 +85,31 @@ For now, to start the project going, we will manually edit the files,
 which can be created as follows:
 
 ``` r
-new_dockerfiles = paste0("Dockerfile_", tags)
+new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags)
+new_dockerfiles
 lapply(new_dockerfiles, file.copy, from = "rockerdev-ubuntugis-bookbuild/Dockerfile", TRUE)
-#> [[1]]
-#> [1] TRUE
-#> 
-#> [[2]]
-#> [1] TRUE
-#> 
-#> [[3]]
-#> [1] TRUE
-#> 
-#> [[4]]
-#> [1] TRUE
-#> 
-#> [[5]]
-#> [1] TRUE
-#> 
-#> [[6]]
-#> [1] TRUE
 ```
 
 Edit these files as appropriate:
 
 ``` r
-file.edit("Dockerfile_ubuntugis_unstable")
+file.edit("dockerfiles/Dockerfile_ubuntugis_unstable")
+```
+
+Create a folder for each Dockerfile:
+
+``` r
+lapply(tags, dir.create)
+lapply(tags, function(x) {
+  file.copy(
+    from = paste0("dockerfiles/Dockerfile_", x),
+    , to = paste0(x, "/Dockerfile"),
+    overwrite = TRUE)
+})
+```
+
+Test the build in a terminal, e.g. with the following command
+
+``` bash
+docker build ubuntugis_unstable
 ```
