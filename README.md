@@ -45,7 +45,7 @@ shown below:
 | [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                        | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
 | [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
 | [geocompr:rstudio\_preview](https://hub.docker.com/r/geocompr/geocompr)    | UbuntuGIS Unstable repos and RStudio Preview | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)    |
-| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and RStudio Preview | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
+| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and R devel         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
 
 Add :tagname to geocompr/geocompr to get the tag you’re interested in.
 
