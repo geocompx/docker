@@ -18,14 +18,21 @@ Docker](https://docs.docker.com/get-docker/), try running the following
 command:
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
 ```
 
 Then open a browser at <http://localhost:8786/> and you should see
 something like this:
 
 ![](https://user-images.githubusercontent.com/1825120/79639334-33eb9f00-8183-11ea-8358-588fe17afe25.png)
-If so congratulations 🎉
+If so congratulations 🎉 you can proceed to open the `geocompr.Rproj`
+project or other files in the `geocompr` folder, which contains a
+complete copy of the source code and example data needed to build the
+html version of the book. Use this resource to play with the examples,
+develop new answers to the questions at the end of each page, or even to
+generate reproducible examples to illustrate
+[issues](https://github.com/Robinlovelace/geocompr/issues) with the
+books contents.
 
 If not, see documentation on using Docker at websites such as
 [docker.com](https://docs.docker.com/get-started/) and
