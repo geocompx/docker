@@ -1,14 +1,69 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# docker
+# Geocomputation with R in Docker
 
 <!-- badges: start -->
 
+[![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
 <!-- badges: end -->
 
 This repo provides docker images on which to run code in *Geocomputation
-with R*.
+with R*. Docker can save time by removing pain and reducing time
+associated with setting-up your operating system to work with the latest
+geographic packages.
+
+To get started, after you [install
+Docker](https://docs.docker.com/get-docker/), try running the following
+command:
+
+``` bash
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
+```
+
+Then open a browser at <http://localhost:8786/> and you should see
+something like this:
+
+![](https://user-images.githubusercontent.com/1825120/79639334-33eb9f00-8183-11ea-8358-588fe17afe25.png)
+If so congratulations 🎉
+
+If not, see documentation on using Docker at websites such as
+[docker.com](https://docs.docker.com/get-started/) and
+<https://www.rocker-project.org/>.
+
+## Versions
+
+Building on the
+[rocker-org](https://github.com/rocker-org/rocker-versioned/blob/master/README.md)
+project, we provide various versions for testing and development, as
+shown below:
+
+| image                                                                      | description                                  | size                                                                               |
+| -------------------------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [geocompr](https://hub.docker.com/r/geocompr/geocompr)                     | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr?sort=date)          |
+| [geocompr:default\_repos](https://hub.docker.com/r/geocompr/geocompr)      | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)      |
+| [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                        | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
+| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| [geocompr:rstudio\_preview](https://hub.docker.com/r/geocompr/geocompr)    | UbuntuGIS Unstable repos and RStudio Preview | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)    |
+| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and RStudio Preview | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
+
+Add :tagname to geocompr/geocompr to get the tag you’re interested in.
+
+To run the `rstudio_preview` version, for example, run the following
+command (with port and password set to a port of your preference):
+
+``` bash
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
+```
+
+Adding `_buildbook` to a tag will give you an image with the pre-built
+book (added by default in the `rstudio_` versions), e.g.:
+
+``` bash
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable_buildbook
+```
+
+## Details
 
 The base image is `rockerdev/geospatial:3.6.3` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2/blob/master/dockerfiles/Dockerfile_geospatial_3.6.3).
