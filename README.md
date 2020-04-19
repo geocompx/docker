@@ -4,7 +4,6 @@
 # Geocomputation with R in Docker
 
 <!-- badges: start -->
-
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
 <!-- badges: end -->
 

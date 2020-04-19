@@ -14,7 +14,6 @@ RUN apt-get update \
 # install the r-spatial stack linking to new OSGeo pkgs
 RUN R -e "install.packages(c('sf', 'lwgeom', 'rgdal', 'sp', 'stars'))"
 RUN R -e "remotes::install_github('geocompr/geocompkg')"
-RUN chown -Rv rstudio /home/rstudio/geocompr 
 # other options (illustrative)
 # RUN apt-get update && \
 # set repos to CRAN to allow package updates
