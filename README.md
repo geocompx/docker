@@ -4,13 +4,18 @@
 # Geocomputation with R in Docker
 
 <!-- badges: start -->
+
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
 <!-- badges: end -->
 
-This repo provides docker images on which to run code in *Geocomputation
-with R*. Docker can save time by removing pain and reducing time
-associated with setting-up your operating system to work with the latest
-geographic packages.
+This repo documents Docker images for geographic research and
+reproducing code in the book *Geocomputation with R*. The Dockerfiles
+build on work done for the [Rocker
+Project](https://www.rocker-project.org/) by Carl Boettiger, Dirk
+Eddelbuettel and Noam Ross. As documented on the Rocker Project website,
+Docker can save time by removing pain and reducing time associated with
+setting-up your operating system to work with the latest geographic
+packages.
 
 To get started, after you [install
 Docker](https://docs.docker.com/get-docker/), try running one of the
