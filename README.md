@@ -14,11 +14,14 @@ associated with setting-up your operating system to work with the latest
 geographic packages.
 
 To get started, after you [install
-Docker](https://docs.docker.com/get-docker/), try running the following
-command:
+Docker](https://docs.docker.com/get-docker/), try running one of the
+following commands:
 
 ``` bash
+# RStudio preview:
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
+# Development version of R (and preview version of RStudio):
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_devel
 ```
 
 Then open a browser at <http://localhost:8786/> and you should see
@@ -40,14 +43,14 @@ If not, see documentation on using Docker at websites such as
 
 ## Sharing folders with Docker
 
-To share files on your computer with the Docker container you will need
-to share volumes. You can do this using the `-v` argument as shown
-below, which shares your current working directory with the Docker
-container. If you run these commands in a terminal that has access to
-Docker, like `bash` or Windows `PowerShell` you should get a local copy
-of *Geocomputation with R* on your computer that you can use for testing
-and development purposes, e.g. to test changes before submitting a Pull
-Request to improve the book:
+To use these Docker images for your own work you will need to share
+files with Docker. That means sharing ‘volumes’. You can do this using
+the `-v` argument as shown below, which shares your current working
+directory with the Docker container. If you run these commands in a
+terminal that has access to Docker, like `bash` or Windows `PowerShell`
+you should get a local copy of *Geocomputation with R* on your computer
+that you can use for testing and development purposes, e.g. to test
+changes before submitting a Pull Request to improve the book:
 
 ``` bash
 # download repo with Windows Powershell or a Unix terminal
@@ -87,14 +90,13 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                      | description                                  | size                                                                               |
-| -------------------------------------------------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [geocompr](https://hub.docker.com/r/geocompr/geocompr)                     | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr?sort=date)          |
-| [geocompr:default\_repos](https://hub.docker.com/r/geocompr/geocompr)      | Default repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)      |
-| [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                        | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
-| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu           | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
-| [geocompr:rstudio\_preview](https://hub.docker.com/r/geocompr/geocompr)    | UbuntuGIS Unstable repos and RStudio Preview | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)    |
-| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and R devel         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
+| image                                                                      | description                                         | size                                                                               |
+| -------------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [geocompr:rstudio\_preview](https://hub.docker.com/r/geocompr/geocompr)    | UbuntuGIS Unstable repos and RStudio Preview + book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)    |
+| [geocompr:default\_repos](https://hub.docker.com/r/geocompr/geocompr)      | Default repos on Ubuntu                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)      |
+| [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
+| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and R devel                | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
 
 Add :tagname to geocompr/geocompr to get the tag you’re interested in.
 
