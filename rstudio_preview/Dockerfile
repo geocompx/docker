@@ -1,4 +1,4 @@
-FROM rockerdev/geospatial:3.6.3
+FROM rockerdev/geospatial:4.0.0
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
 		software-properties-common \
