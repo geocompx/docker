@@ -100,7 +100,8 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:default\_repos](https://hub.docker.com/r/geocompr/geocompr)      | Default repos on Ubuntu                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)      |
 | [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
 | [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
-| [geocompr:rstudio\_devel](https://hub.docker.com/r/geocompr/geocompr)      | UbuntuGIS Unstable repos and R devel                | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel)      |
+
+<!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
 Add :tagname to geocompr/geocompr to get the tag you’re interested in.
 
@@ -120,106 +121,125 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable
 
 ## Details
 
-The base image is `rockerdev/geospatial:3.6.3` from
-[github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2/blob/master/dockerfiles/Dockerfile_geospatial_3.6.3).
+The base image is `rocker/geospatial:latest` from
+[github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-To build on different system configurations we provide tags that
-correspond to the following categories:
+<!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 
-`baseimage-ubuntugis-setup-rpackages-buildbook`
+<!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 
-The default base image is `rockerdev/geospatial:3.6.3`. More images may
-be added in the future.
+<!-- ```{r} -->
 
-``` r
-baseimage = c(
-  rockerdev_geospatial_3.6.3 = ""
-)
-```
+<!-- baseimage = c( -->
 
-Ubuntugis options include using the `ubuntugis-unstable` and
-`ubuntugis-stable` repos.
+<!--   rocker_geospatial_latest = "" -->
 
-``` r
-ubuntugis = c(
-  no_ubuntugis = "default_repos",
-  ubuntugis_unstable = "ubuntugis_unstable",
-  ubuntugis_stable = "ubuntugis_stable"
-)
-```
+<!-- ) -->
 
-Setup options can include RStudio settings (yet to be added).
+<!-- ``` -->
 
-R package options relate to which R packages are installed on the image
-(yet to be added).
+<!-- Ubuntugis options include using the `ubuntugis-unstable` and `ubuntugis-stable` repos. -->
 
-Buildbook options report whether or not the book is built:
+<!-- ```{r} -->
 
-``` r
-buildbook = c(
-  no = "",
-  yes = "buildbook"
-)
-```
+<!-- ubuntugis = c( -->
 
-We will create a ‘build matrix’ covering all combinations of these
-options (excluding the base image for now):
+<!--   no_ubuntugis = "default_repos", -->
 
-``` r
-g = expand.grid(ubuntugis, buildbook, stringsAsFactors = FALSE)
-g
-#>                 Var1      Var2
-#> 1      default_repos          
-#> 2 ubuntugis_unstable          
-#> 3   ubuntugis_stable          
-#> 4      default_repos buildbook
-#> 5 ubuntugis_unstable buildbook
-#> 6   ubuntugis_stable buildbook
-```
+<!--   ubuntugis_unstable = "ubuntugis_unstable", -->
 
-These can be converted into tags as follows:
+<!--   ubuntugis_stable = "ubuntugis_stable" -->
 
-``` r
-tag_df = tidyr::unite(g, tag)
-tags = gsub(pattern = "__|^_|_$", replacement = "", tag_df$tag)
-tags
-#> [1] "default_repos"                "ubuntugis_unstable"          
-#> [3] "ubuntugis_stable"             "default_repos_buildbook"     
-#> [5] "ubuntugis_unstable_buildbook" "ubuntugis_stable_buildbook"
-```
+<!-- ) -->
 
-We could write code to auto-generate Dockerfiles, as demonstrated in
-[rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
+<!-- ``` -->
 
-For now, to start the project going, we will manually edit the files,
-which can be created as follows:
+<!-- Setup options can include RStudio settings (yet to be added). -->
 
-``` r
-new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags)
-new_dockerfiles
-lapply(new_dockerfiles, file.copy, from = "rockerdev-ubuntugis-bookbuild/Dockerfile", TRUE)
-```
+<!-- R package options relate to which R packages are installed on the image (yet to be added). -->
 
-Edit these files as appropriate:
+<!-- Buildbook options report whether or not the book is built: -->
 
-``` r
-file.edit("dockerfiles/Dockerfile_ubuntugis_unstable")
-```
+<!-- ```{r} -->
 
-Create a folder for each Dockerfile:
+<!-- buildbook = c( -->
 
-``` r
-lapply(tags, dir.create)
-lapply(tags, function(x) {
-  file.copy(
-    from = paste0("dockerfiles/Dockerfile_", x),
-    , to = paste0(x, "/Dockerfile"),
-    overwrite = TRUE)
-})
-```
+<!--   no = "", -->
 
-Test the build in a terminal, e.g. with the following command
+<!--   yes = "buildbook" -->
 
-``` bash
-docker build ubuntugis_unstable
-```
+<!-- ) -->
+
+<!-- ``` -->
+
+<!-- We will create a 'build matrix' covering all combinations of these options (excluding the base image for now): -->
+
+<!-- ```{r} -->
+
+<!-- g = expand.grid(ubuntugis, buildbook, stringsAsFactors = FALSE) -->
+
+<!-- g -->
+
+<!-- ``` -->
+
+<!-- These can be converted into tags as follows: -->
+
+<!-- ```{r} -->
+
+<!-- tag_df = tidyr::unite(g, tag) -->
+
+<!-- tags = gsub(pattern = "__|^_|_$", replacement = "", tag_df$tag) -->
+
+<!-- tags -->
+
+<!-- ``` -->
+
+<!-- We could write code to auto-generate Dockerfiles, as demonstrated in [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2). -->
+
+<!-- For now, to start the project going, we will manually edit the files, which can be created as follows: -->
+
+<!-- ```{r, eval=FALSE} -->
+
+<!-- new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags) -->
+
+<!-- new_dockerfiles -->
+
+<!-- lapply(new_dockerfiles, file.copy, from = "rocker-ubuntugis-bookbuild/Dockerfile", TRUE) -->
+
+<!-- ``` -->
+
+<!-- Edit these files as appropriate: -->
+
+<!-- ```{r, eval=FALSE} -->
+
+<!-- file.edit("dockerfiles/Dockerfile_ubuntugis_unstable") -->
+
+<!-- ``` -->
+
+<!-- Create a folder for each Dockerfile: -->
+
+<!-- ```{r, eval=FALSE} -->
+
+<!-- lapply(tags, dir.create) -->
+
+<!-- lapply(tags, function(x) { -->
+
+<!--   file.copy( -->
+
+<!--     from = paste0("dockerfiles/Dockerfile_", x), -->
+
+<!--     , to = paste0(x, "/Dockerfile"), -->
+
+<!--     overwrite = TRUE) -->
+
+<!-- }) -->
+
+<!-- ``` -->
+
+<!-- Test the build in a terminal, e.g. with the following command -->
+
+<!-- ```bash -->
+
+<!-- docker build ubuntugis_unstable -->
+
+<!-- ``` -->

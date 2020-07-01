@@ -1,4 +1,4 @@
-FROM rockerdev/binder:devel
+FROM rocker/binder:latest
 LABEL maintainer='Robin Lovelace, Jakub Nowosad, Jannes Muenchow'
 USER root
 # RUN mkdir /var/lib/apt/lists/partial

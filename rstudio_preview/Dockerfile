@@ -1,18 +1,4 @@
-FROM rockerdev/geospatial:3.6.3
-RUN apt-get update \
-	&& apt-get install -y --no-install-recommends \
-		software-properties-common \
-		vim \
-		wget \
-		ca-certificates \
-  && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
-	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5" \ 
-	&& add-apt-repository --enable-source --yes "ppa:ubuntugis/ubuntugis-unstable" 
-RUN apt-get update \
-  && apt-get install -y --no-install-recommends \
- 	  libudunits2-dev libgdal-dev libgeos-dev libproj-dev liblwgeom-dev
-# install the r-spatial stack linking to new OSGeo pkgs
-RUN R -e "install.packages(c('sf', 'lwgeom', 'rgdal', 'sp', 'stars'))"
+FROM rocker/geospatial:latest
 RUN R -e "remotes::install_github('geocompr/geocompkg')"
 RUN su rstudio && \
   cd /home/rstudio && \
@@ -26,7 +12,7 @@ RUN wget https://github.com/rocker-org/rocker-versioned2/archive/master.zip
 # RUN unzip master.zip \
 #   && cp -Rv rocker-versioned2-master/scripts /rocker_scripts
 # RUN /rocker_scripts/install_rstudio.sh RSTUDIO_VERSION=preview
-RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.938-amd64.deb
+RUN wget https://s3.amazonaws.com/rstudio-ide-build/server/bionic/amd64/rstudio-server-1.3.1054-amd64.deb 
 RUN dpkg -i rstudio-server-*-amd64.deb
 RUN rm rstudio-server-*-amd64.deb
 RUN echo '{' >> /etc/rstudio/rstudio-prefs.json

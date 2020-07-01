@@ -1,12 +1,6 @@
-FROM rockerdev/geospatial:3.6.3
+FROM rocker/geospatial:latest
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
-		software-properties-common \
-		vim \
-		wget \
-		ca-certificates \
-  && add-apt-repository --enable-source --yes "ppa:marutter/rrutter3.5" \
-	&& add-apt-repository --enable-source --yes "ppa:marutter/c2d4u3.5" \ 
 	&& add-apt-repository --enable-source --yes "ppa:ubuntugis/ppa"
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
