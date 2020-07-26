@@ -109,7 +109,7 @@ The base image is `rocker/geospatial:latest` from [github.com/rocker-org/rocker-
 
 <!-- ```{r} -->
 <!-- baseimage = c( -->
-<!--   rocker_geospatial_latest = "" -->
+<!--   default_repos = "" -->
 <!-- ) -->
 <!-- ``` -->
 
