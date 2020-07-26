@@ -119,12 +119,12 @@ book (added by default in the `rstudio_` versions), e.g.:
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable_buildbook
 ```
 
-<!-- ## Details -->
+## Details
 
 The base image is `rocker/geospatial:latest` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-README last updated 2020-07-26 22:54:01
+README last updated 2020-07-26 23:19:27
 
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 
@@ -134,7 +134,7 @@ README last updated 2020-07-26 22:54:01
 
 <!-- baseimage = c( -->
 
-<!--   default_repos = "" -->
+<!--   base = "base" -->
 
 <!-- ) -->
 
@@ -238,10 +238,8 @@ README last updated 2020-07-26 22:54:01
 
 <!-- ``` -->
 
-<!-- Test the build in a terminal, e.g. with the following command -->
+Build Docker files in this repo with the following command
 
-<!-- ```bash -->
-
-<!-- docker build ubuntugis_unstable -->
-
-<!-- ``` -->
+``` bash
+docker build ubuntugis_unstable
+```
