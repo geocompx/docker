@@ -124,7 +124,7 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable
 The base image is `rocker/geospatial:latest` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-README last updated 2020-07-26
+README last updated 2020-07-26 22:54:01
 
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 
