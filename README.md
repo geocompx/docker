@@ -22,10 +22,10 @@ Docker](https://docs.docker.com/get-docker/), try running one of the
 following commands:
 
 ``` bash
-# RStudio preview:
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
-# Development version of R (and preview version of RStudio):
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_devel
+# The latest version of rocker/geospatial + geocompr dependencies
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
+# With up-to-date OSGeo packages (runs on Ubuntu 18.04):
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis-unstable
 ```
 
 Then open a browser at <http://localhost:8786/> and you should see
@@ -82,8 +82,8 @@ and knit `index.Rmd` with the little `knit` button above the the RStudio
 script panel (`Ctl+Shift+B` should do the same job).
 
 There are various versions of the `geocompr` Docker image available. The
-default is `rstudio_preview`, but you can get other images, as outlined
-below.
+default is the `latest` tag, representing the `Dockerfile` in the root
+of this repo, but you can get other images, as outlined below.
 
 ## Versions
 
@@ -94,29 +94,21 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                      | description                                         | size                                                                               |
-| -------------------------------------------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [geocompr:rstudio\_preview](https://hub.docker.com/r/geocompr/geocompr)    | UbuntuGIS Unstable repos and RStudio Preview + book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)    |
-| [geocompr:default\_repos](https://hub.docker.com/r/geocompr/geocompr)      | Default repos on Ubuntu                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)      |
-| [geocompr:ubuntugis\_stable](https://hub.docker.com/r/geocompr/geocompr)   | UbuntuGIS stable repo                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)   |
-| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| image                                                                      | description                                             | size                                                                               |
+| -------------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
+| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
 
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
 Add :tagname to geocompr/geocompr to get the tag you’re interested in.
 
-To run the `rstudio_preview` version, for example, run the following
-command (with port and password set to a port of your preference):
+To run the `buildbook` version, for example, run the following command
+(with port and password set to a port of your preference):
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
-```
-
-Adding `_buildbook` to a tag will give you an image with the pre-built
-book (added by default in the `rstudio_` versions), e.g.:
-
-``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable_buildbook
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 ```
 
 ## Details
@@ -124,7 +116,7 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable
 The base image is `rocker/geospatial:latest` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-README last updated 2020-07-26 23:19:27
+README last updated 2020-09-20 01:25:19
 
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 
@@ -238,8 +230,10 @@ README last updated 2020-07-26 23:19:27
 
 <!-- ``` -->
 
-Build Docker files in this repo with the following command
+<!-- Build Docker files in this repo with the following command -->
 
-``` bash
-docker build ubuntugis_unstable
-```
+<!-- ```bash -->
+
+<!-- docker build ubuntugis_unstable -->
+
+<!-- ``` -->

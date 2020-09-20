@@ -25,10 +25,10 @@ As documented on the Rocker Project website, Docker can save time by removing pa
 To get started, after you [install Docker](https://docs.docker.com/get-docker/), try running one of the following commands:
 
 ```{r, engine='bash', eval=FALSE}
-# RStudio preview:
+# The latest version of rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
-# Development version of R (and preview version of RStudio):
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_devel
+# With up-to-date OSGeo packages (runs on Ubuntu 18.04):
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis-unstable
 ```
 
 Then open a browser at http://localhost:8786/ and you should see something like this:
@@ -67,7 +67,7 @@ See [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-
 From this point to *build* the book you can open projects in the `geocompr` directory from the project box in the top-right hand corner, and  knit `index.Rmd` with the little `knit` button above the the RStudio script panel (`Ctl+Shift+B` should do the same job).
 
 There are various versions of the `geocompr` Docker image available.
-The default is `rstudio_preview`, but you can get other images, as outlined below.
+The default is the `latest` tag, representing the `Dockerfile` in the root of this repo, but you can get other images, as outlined below.
 
 
 ## Versions
@@ -78,24 +78,17 @@ Building on the [rocker-org](https://github.com/rocker-org/rocker-versioned/blob
 
 image            | description                               | size   
 ---------------- | ----------------------------------------- | ------ 
-[geocompr:rstudio_preview](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and RStudio Preview + book  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_preview)
-[geocompr:default_repos](https://hub.docker.com/r/geocompr/geocompr)            |  Default repos on Ubuntu  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/default_repos)
-[geocompr:ubuntugis_stable](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS stable repo  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_stable)
+[geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest base image  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)
+[geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest with built version of the book  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)
 [geocompr:ubuntugis_unstable](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS unstable repos on Ubuntu  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable)
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
 Add :tagname to geocompr/geocompr to get the tag you're interested in.
 
-To run the `rstudio_preview` version, for example, run the following command (with port and password set to a port of your preference):
+To run the `buildbook` version, for example, run the following command (with port and password set to a port of your preference):
 
 ```{r, engine='bash', eval=FALSE}
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
-```
-
-Adding `_buildbook` to a tag will give you an image with the pre-built book (added by default in the `rstudio_` versions), e.g.:
-
-```{r, engine='bash', eval=FALSE}
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis_unstable_buildbook
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 ```
 
 ## Details
@@ -181,8 +174,8 @@ README last updated `r Sys.time()`
 <!-- }) -->
 <!-- ``` -->
 
-Build Docker files in this repo with the following command
+<!-- Build Docker files in this repo with the following command -->
 
-```bash
-docker build ubuntugis_unstable
-```
+<!-- ```bash -->
+<!-- docker build ubuntugis_unstable -->
+<!-- ``` -->
