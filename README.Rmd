@@ -26,7 +26,7 @@ To get started, after you [install Docker](https://docs.docker.com/get-docker/),
 
 ```{r, engine='bash', eval=FALSE}
 # RStudio preview:
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_preview
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
 # Development version of R (and preview version of RStudio):
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:rstudio_devel
 ```
