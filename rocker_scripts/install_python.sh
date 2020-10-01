@@ -17,7 +17,8 @@ python3 -m pip --no-cache-dir install --upgrade \
   pip \
   setuptools \
   virtualenv \
-  geopandas
+  geopandas \
+  movingpandas
 
 # Some TF tools expect a "python" binary
 if [ ! -e /usr/local/bin/python ]; then
