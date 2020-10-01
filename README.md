@@ -35,9 +35,15 @@ something like this:
 If so congratulations 🎉 you can proceed to open the `geocompr.Rproj`
 project or other files in the `geocompr` folder, which contains a
 complete copy of the source code and example data needed to build the
-html version of the book. Use this resource to play with the examples,
-develop new answers to the questions at the end of each page, or even to
-generate reproducible examples to illustrate
+html version of the book.
+
+To run a container without RStudio, try the following.
+
+    docker run -e PASSWORD=pw --rm -ti geocompr/geocompr /bin/bash
+
+Use this resource to play with the examples, develop new answers to the
+questions at the end of each page, or even to generate reproducible
+examples to illustrate
 [issues](https://github.com/Robinlovelace/geocompr/issues) with the
 books contents.
 
@@ -116,7 +122,7 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 The base image is `rocker/geospatial:latest` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-README last updated 2020-09-20 01:25:19
+README last updated 2020-10-01 23:35:44
 
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 
