@@ -16,7 +16,8 @@ apt-get update && apt-get install -y --no-install-recommends \
 python3 -m pip --no-cache-dir install --upgrade \
   pip \
   setuptools \
-  virtualenv
+  virtualenv \
+  geopandas
 
 # Some TF tools expect a "python" binary
 if [ ! -e /usr/local/bin/python ]; then
