@@ -105,8 +105,14 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
 | [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
 | [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with Python                           | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)             |
+| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)                | geocompr/geocompr with QGIS                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)               |
+| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with dev version of QGIS              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)           |
 
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
+
+The base image is `rocker/geospatial:latest` from
+[github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
 Add :tagname to geocompr/geocompr to get the tag you’re interested in.
 
@@ -117,12 +123,26 @@ To run the `buildbook` version, for example, run the following command
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 ```
 
-## Details
+## Examples
 
-The base image is `rocker/geospatial:latest` from
-[github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
+The Python tag contains Python geospatial packages:
 
-README last updated 2020-10-01 23:35:44
+``` bash
+docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:python /bin/bash
+
+python
+import pandas as pd
+import geopandas as gpd
+import movingpandas as mpd
+```
+
+To run QGIS from the command line, you can run:
+
+    docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:qgis /bin/bash
+    qgis --version
+    # qgis_process
+
+<!-- README last updated 2020-10-02 22:54:39 -->
 
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 

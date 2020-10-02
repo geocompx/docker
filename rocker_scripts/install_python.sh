@@ -1,4 +1,5 @@
 #!/bin/bash
+# from https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh
 set -e
 
 WORKON_HOME=${WORKON_HOME:-/opt/venv}
@@ -13,12 +14,13 @@ apt-get update && apt-get install -y --no-install-recommends \
         python3-venv && \
     rm -rf /var/lib/apt/lists/*
 
-python3 -m pip --no-cache-dir install --upgrade \
-  pip \
-  setuptools \
-  virtualenv \
-  geopandas \
-  movingpandas
+# The following lines error with:
+#   Installing collected packages: pip, setuptools, distlib, virtualenv
+#   Attempting uninstall: pip
+# python3 -m pip --no-cache-dir install --upgrade \
+#   pip \
+#   setuptools \
+#   virtualenv
 
 # Some TF tools expect a "python" binary
 if [ ! -e /usr/local/bin/python ]; then
@@ -55,3 +57,4 @@ chown -R :staff ${WORKON_HOME}
 chmod g+wx ${WORKON_HOME}
 chown :staff ${PYTHON_VENV_PATH}
 
+Rscript -e 'reticulate::py_install("geopandas")'
