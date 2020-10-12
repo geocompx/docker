@@ -1,7 +1,5 @@
 FROM geocompr/geocompr:qgis
 
-# run the subsequent line if you are behind a proxy (usually the case when inside OC)
-RUN echo 'Acquire::http::Proxy "http://dcea-ifwebgw01.gfk.com:3128";' >> /etc/apt/apt.conf
 RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests --allow-unauthenticated -y \
     qgis-plugin-grass \
