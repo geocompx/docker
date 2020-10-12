@@ -1,5 +1,6 @@
 FROM geocompr/geocompr:qgis
 
+RUN R -e "remotes::install_github('paleolimbot/qgisprocess')"
 RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests --allow-unauthenticated -y \
     qgis-plugin-grass \
@@ -14,4 +15,3 @@ RUN qgis_process &&\
     RUN echo "[PythonPlugins]\nprocessing=true" >> ~/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini
 WORKDIR /home/rstudio/geocompr
 USER root
-# RUN R -e "remotes::install_github('paleolimbot/qgisprocess')"
