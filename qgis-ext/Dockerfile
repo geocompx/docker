@@ -12,7 +12,6 @@ RUN qgis_process && \
 # ... and now do the same for the rstudio user
 USER rstudio
 ENV QT_QPA_PLATFORM='offscreen' 
-RUN qgis_process &&\
-    RUN echo "[PythonPlugins]\nprocessing=true" >> ~/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini
-WORKDIR /home/rstudio/geocompr
+RUN qgis_process && \
+    echo "[PythonPlugins]\nprocessing=true" >> ~/.local/share/QGIS/QGIS3/profiles/default/QGIS/QGIS3.ini
 USER root
