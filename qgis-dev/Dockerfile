@@ -1,9 +1,5 @@
 FROM geocompr/geocompr
 
-RUN /rocker_scripts/install_python.sh
-
-
-
 RUN apt-get update \
     && apt-get install --no-install-recommends --no-install-suggests --allow-unauthenticated -y \
         gnupg \
