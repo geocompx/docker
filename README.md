@@ -78,7 +78,7 @@ docker run -d -p 8786:8787 -v ${pwd}:/home/rstudio/data -e DISABLE_AUTH=TRUE rob
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
 
 If you see something like this after following the steps above,
-congratulations: it worked\! See
+congratulations: it worked! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
 
@@ -100,14 +100,15 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                      | description                                             | size                                                                               |
-| -------------------------------------------------------------------------- | ------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
-| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
-| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with Python                           | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)             |
-| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)                | geocompr/geocompr with QGIS                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)               |
-| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with dev version of QGIS              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)           |
+| image                                                                      | description                                                          | size                                                                               |
+|----------------------------------------------------------------------------|----------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
+| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu                                   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with Python                                        | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)             |
+| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)                | geocompr/geocompr with QGIS                                          | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)               |
+| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with dev version of QGIS                           | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)           |
+| [geocompr:qgis-ext](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with QGIS, GRASS, SAGA & R package **qgisprocess** | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-ext)           |
 
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
@@ -142,124 +143,64 @@ To run QGIS from the command line, you can run:
     qgis --version
     # qgis_process
 
-<!-- README last updated 2020-10-02 22:54:39 -->
-
+<!-- README last updated 2020-12-19 14:02:43 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
-
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
-
 <!-- ```{r} -->
-
 <!-- baseimage = c( -->
-
 <!--   base = "base" -->
-
 <!-- ) -->
-
 <!-- ``` -->
-
 <!-- Ubuntugis options include using the `ubuntugis-unstable` and `ubuntugis-stable` repos. -->
-
 <!-- ```{r} -->
-
 <!-- ubuntugis = c( -->
-
 <!--   no_ubuntugis = "default_repos", -->
-
 <!--   ubuntugis_unstable = "ubuntugis_unstable", -->
-
 <!--   ubuntugis_stable = "ubuntugis_stable" -->
-
 <!-- ) -->
-
 <!-- ``` -->
-
 <!-- Setup options can include RStudio settings (yet to be added). -->
-
 <!-- R package options relate to which R packages are installed on the image (yet to be added). -->
-
 <!-- Buildbook options report whether or not the book is built: -->
-
 <!-- ```{r} -->
-
 <!-- buildbook = c( -->
-
 <!--   no = "", -->
-
 <!--   yes = "buildbook" -->
-
 <!-- ) -->
-
 <!-- ``` -->
-
 <!-- We will create a 'build matrix' covering all combinations of these options (excluding the base image for now): -->
-
 <!-- ```{r} -->
-
 <!-- g = expand.grid(ubuntugis, buildbook, stringsAsFactors = FALSE) -->
-
 <!-- g -->
-
 <!-- ``` -->
-
 <!-- These can be converted into tags as follows: -->
-
 <!-- ```{r} -->
-
 <!-- tag_df = tidyr::unite(g, tag) -->
-
 <!-- tags = gsub(pattern = "__|^_|_$", replacement = "", tag_df$tag) -->
-
 <!-- tags -->
-
 <!-- ``` -->
-
 <!-- We could write code to auto-generate Dockerfiles, as demonstrated in [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2). -->
-
 <!-- For now, to start the project going, we will manually edit the files, which can be created as follows: -->
-
 <!-- ```{r, eval=FALSE} -->
-
 <!-- new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags) -->
-
 <!-- new_dockerfiles -->
-
 <!-- lapply(new_dockerfiles, file.copy, from = "rocker-ubuntugis-bookbuild/Dockerfile", TRUE) -->
-
 <!-- ``` -->
-
 <!-- Edit these files as appropriate: -->
-
 <!-- ```{r, eval=FALSE} -->
-
 <!-- file.edit("dockerfiles/Dockerfile_ubuntugis_unstable") -->
-
 <!-- ``` -->
-
 <!-- Create a folder for each Dockerfile: -->
-
 <!-- ```{r, eval=FALSE} -->
-
 <!-- lapply(tags, dir.create) -->
-
 <!-- lapply(tags, function(x) { -->
-
 <!--   file.copy( -->
-
 <!--     from = paste0("dockerfiles/Dockerfile_", x), -->
-
 <!--     , to = paste0(x, "/Dockerfile"), -->
-
 <!--     overwrite = TRUE) -->
-
 <!-- }) -->
-
 <!-- ``` -->
-
 <!-- Build Docker files in this repo with the following command -->
-
 <!-- ```bash -->
-
 <!-- docker build ubuntugis_unstable -->
-
 <!-- ``` -->
