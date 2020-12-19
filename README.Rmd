@@ -91,6 +91,7 @@ image            | description                               | size
 [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr with Python  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)
 [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr with QGIS  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)
 [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr with dev version of QGIS  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)
+[geocompr:qgis-ext](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr with QGIS, GRASS, SAGA & R package **qgisprocess**  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-ext)
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
 The base image is `rocker/geospatial:latest` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
