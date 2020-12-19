@@ -110,7 +110,7 @@ The Python tag contains Python geospatial packages:
 ```bash
 docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:python /bin/bash
 
-python
+python3
 import pandas as pd
 import geopandas as gpd
 import movingpandas as mpd
