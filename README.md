@@ -126,16 +126,20 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 
 ## Examples
 
+### Python
+
 The Python tag contains Python geospatial packages:
 
 ``` bash
 docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:python /bin/bash
 
-python
+python3
 import pandas as pd
 import geopandas as gpd
 import movingpandas as mpd
 ```
+
+### QGIS
 
 To run QGIS from the command line, you can run:
 
@@ -143,7 +147,58 @@ To run QGIS from the command line, you can run:
     qgis --version
     # qgis_process
 
-<!-- README last updated 2020-12-19 14:02:43 -->
+You can also run QGIS algorithms via the `qgisprocess` package as
+follows:
+
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis
+
+Then open a browser and the local url such as
+<http://192.168.0.99:8786/> or <http://localhost:8786>, enter RStudio
+server, and you should be able to access QGIS as follows in the R
+console:
+
+``` r
+system("qgis --version")
+## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
+remotes::install_github("paleolimbot/qgisprocess") # install the latest version of the package
+qgis_algs = qgisprocess::qgis_algorithms()
+nrow(qgis_algs)
+## [1] 303
+table(qgis_algs$provider)
+##    3d   gdal native   qgis 
+##     1     55    196     51 
+```
+
+### QGIS extensions
+
+You can access algorithms from other GIS programs through QGIS but they
+need to be installed. These can be accessed from the
+`geocompr/geocompr:qgis-ext` image as follows:
+
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis-ext
+
+Again, open the browser, e.g. at <http://localhost:8786>, and find the
+new algorithms as follows:
+
+``` r
+system("qgis --version")
+QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
+## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
+remotes::install_github("paleolimbot/qgisprocess") # install the latest version of the package
+## Skipping install of 'qgisprocess' from a github remote, the SHA1 (6e378511) has not changed since last install.
+qgis_algs = qgisprocess::qgis_algorithms()
+nrow(qgis_algs)
+## [1] 970
+table(qgis_algs$provider)
+
+##    3d   gdal grass7 native   qgis   saga 
+##     1     55    301    196     51    366 
+```
+
+Congratulations, you now have nearly 1000 QGIS algorithms at your
+disposal from the R command line 🎉
+
+<!-- README last updated 2020-12-19 21:27:35 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 <!-- ```{r} -->
