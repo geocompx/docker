@@ -24,8 +24,8 @@ following commands:
 ``` bash
 # The latest version of rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
-# With up-to-date OSGeo packages (runs on Ubuntu 18.04):
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:ubuntugis-unstable
+# With up-to-date OSGeo packages and qgisprocess:
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:qgis-ext
 ```
 
 Then open a browser at <http://localhost:8786/> and you should see
@@ -100,17 +100,17 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                      | description                                                                              | size                                                                               |
-|----------------------------------------------------------------------------|------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
-| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                                                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book                                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
-| [geocompr:dev-osgeo](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:dev-osgeo base image, with development versions of GDAL, PROJ and GEOS | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo)          |
-| [geocompr:dev-osgeo-b](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:dev-osgeo base image                                                   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo-b)        |
-| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu 18.04                                                 | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
-| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with Python                                                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)             |
-| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)                | geocompr/geocompr with QGIS                                                              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)               |
-| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with dev version of QGIS                                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)           |
-| [geocompr:qgis-ext](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with QGIS, GRASS, SAGA & R package **qgisprocess**                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-ext)           |
+| image                                                                      | description                                                                         | size                                                                               |
+|----------------------------------------------------------------------------|-------------------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)              | rocker/geospatial:latest base image                                                 | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)             |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:latest with built version of the book                             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)          |
+| [geocompr:dev-osgeo](https://hub.docker.com/r/geocompr/geocompr)           | rocker/geospatial:dev-osgeo base image, with recent versions of GDAL, PROJ and GEOS | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo)          |
+| [geocompr:dev-osgeo-b](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:dev-osgeo base image                                              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo-b)        |
+| [geocompr:ubuntugis\_unstable](https://hub.docker.com/r/geocompr/geocompr) | UbuntuGIS unstable repos on Ubuntu 18.04                                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/ubuntugis_unstable) |
+| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with Python                                                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)             |
+| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)                | geocompr/geocompr with QGIS                                                         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)               |
+| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with dev version of QGIS                                          | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)           |
+| [geocompr:qgis-ext](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with QGIS, GRASS, SAGA & R package **qgisprocess**                | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-ext)           |
 
 <!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
@@ -201,7 +201,14 @@ table(qgis_algs$provider)
 Congratulations, you now have nearly 1000 QGIS algorithms at your
 disposal from the R command line 🎉
 
-<!-- README last updated 2020-12-19 21:36:29 -->
+## Building the images locally
+
+You can build the images locally, e.g. as follows:
+
+    docker build qgis-ext -t test
+    docker run -p 8888:8888 test-binder
+
+<!-- README last updated 2021-04-19 22:20:36 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 <!-- ```{r} -->
