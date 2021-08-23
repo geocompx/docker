@@ -1,6 +1,6 @@
 FROM rocker/geospatial:dev-osgeo
 # install the r-spatial stack linking to new OSGeo pkgs
-RUN R -e "remotes::install_github('geocompr/geocompkg')"
+RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE)"
 RUN R -e "remotes::install_github('r-spatial/sf')"
 RUN su rstudio && \
   cd /home/rstudio && \
