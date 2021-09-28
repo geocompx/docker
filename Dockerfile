@@ -1,9 +1,9 @@
-FROM geocompr/geocompr:latest
+FROM geocompr/geocompr:minimal
 RUN su rstudio && \ # todo: change above image to minimal...
   cd /home/rstudio && \
   wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
   unzip main.zip && \
-  mv geocompr-main /home/rstudio/geocompr
+  mv geocompr-main /home/rstudio/geocompr && \
   rm main.zip
 RUN chown -Rv rstudio /home/rstudio/geocompr
 
