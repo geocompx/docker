@@ -64,7 +64,7 @@ changes before submitting a Pull Request to improve the book:
 ``` bash
 # download repo with Windows Powershell or a Unix terminal
 git clone https://github.com/Robinlovelace/geocompr.git 
-# or download manually from https://github.com/Robinlovelace/geocompr/archive/master.zip
+# or download manually from https://github.com/Robinlovelace/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw geocompr/geocompr
