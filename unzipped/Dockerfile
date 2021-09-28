@@ -4,7 +4,7 @@ RUN su rstudio && \
   wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
   unzip main.zip && \
   mv geocompr-main /home/rstudio/geocompr
-  mv main.zip
+  rm main.zip
 RUN chown -Rv rstudio /home/rstudio/geocompr
 
 # Set RStudio preferences
