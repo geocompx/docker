@@ -1,4 +1,4 @@
-name: qgis-ext
+name: qgis-min
 
 on:
   schedule:
@@ -38,8 +38,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: qgis-ext
+          contmin: qgis-min
           push: true
           tags: |
-            geocompr/geocompr:qgis-ext
-            ghcr.io/geocompr/geocompr:qgis-ext
+            geocompr/geocompr:qgis-min
+            ghcr.io/geocompr/geocompr:qgis-min
