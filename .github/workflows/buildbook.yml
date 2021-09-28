@@ -35,8 +35,8 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
+          context: buildbook
           push: true
           tags: |
-            geocompr/geocompr:latest
-            ghcr.io/geocompr/geocompr:latest
+            geocompr/geocompr:buildbook
+            ghcr.io/geocompr/geocompr:buildbook
