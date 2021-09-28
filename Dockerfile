@@ -1,5 +1,5 @@
 FROM geocompr/geocompr:minimal
-RUN su rstudio && \ # todo: change above image to minimal...
+RUN su rstudio && \
   cd /home/rstudio && \
   wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
   unzip main.zip && \
