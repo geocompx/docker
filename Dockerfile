@@ -1,5 +1,11 @@
-FROM rocker/geospatial:latest
-RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE)"
+FROM geocompr/geocompr:latest
+RUN su rstudio && \ # todo: change above image to minimal...
+  cd /home/rstudio && \
+  wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
+  unzip main.zip && \
+  mv geocompr-main /home/rstudio/geocompr
+  rm main.zip
+RUN chown -Rv rstudio /home/rstudio/geocompr
 
 # Set RStudio preferences
 # No inline code:

@@ -1,4 +1,4 @@
-FROM geocompr/geocompr:latest
+FROM geocompr/geocompr:minimal
 RUN su rstudio && \
   cd /home/rstudio && \
   wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
