@@ -134,7 +134,8 @@ import movingpandas as mpd
 To run QGIS from the command line, you can run:
 
 ```
-docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:qgis /bin/bash
+docker pull geocompr/geocompr:qgis-dev
+docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:qgis-dev /bin/bash
 qgis --version
 # qgis_process
 ```
