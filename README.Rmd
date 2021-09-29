@@ -27,7 +27,7 @@ To get started, after you [install Docker](https://docs.docker.com/get-docker/),
 # The latest version of rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
 # With up-to-date OSGeo packages and qgisprocess:
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:qgis-ext
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:dev-osgeo
 ```
 
 Then open a browser at http://localhost:8786/ and you should see something like this:
@@ -76,23 +76,20 @@ You can also pull and run the same images from ghcr.io, e.g. as follow:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompr/geocompr:minimal
 ```
 
-
 From this point to *build* the book you can open projects in the `geocompr` directory from the project box in the top-right hand corner, and  knit `index.Rmd` with the little `knit` button above the the RStudio script panel (`Ctl+Shift+B` should do the same job).
 
 There are various versions of the `geocompr` Docker image available.
 The default is the `latest` tag, representing the `Dockerfile` in the root of this repo, but you can get other images, as outlined below.
 
-
 ## Versions
 
 Building on the [rocker-org](https://github.com/rocker-org/rocker-versioned/blob/master/README.md)  project, we provide various versions for testing and development, including builds that use more up-to-date versions of OSGeo packages such as GDAL provided by the [UbuntuGIS software repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-
-
 image            | description                               | size   
 ---------------- | ----------------------------------------- | ------ 
-[geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest base image plus unzipped book files  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)
-[geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)            |  rocker/geospatial:latest with geocompr software  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)
+[geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest base image, a copy of the book in the geocompr folder for testing plus minimal set of R packages to reproduce the code in the book  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)
+[geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)            |  rocker/geospatial:latest with geocompr software plus minimal geocompr packages (Imports in the geocompkg package) to reproduce the code in the book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)
+[geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests)            |  rocker/geospatial:latest with additional packages mentioned in the book (Suggests)  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)
 [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest with book contents  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)
 [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:latest with built version of the book  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)
 [geocompr:dev-osgeo](https://hub.docker.com/r/geocompr/geocompr)            |  rocker/geospatial:dev-osgeo base image, with recent versions of GDAL, PROJ and GEOS  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo)
