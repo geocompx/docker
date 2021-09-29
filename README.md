@@ -68,11 +68,11 @@ git clone https://github.com/Robinlovelace/geocompr.git
 # or download manually from https://github.com/Robinlovelace/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw geocompr/geocompr
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw geocompr/geocompr:minimal
 # on linux and mac without password:
-docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  geocompr/geocompr
+docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  geocompr/geocompr:minimal
 # on windows without a password:
-docker run -d -p 8786:8787 -v ${pwd}:/home/rstudio/data -e DISABLE_AUTH=TRUE robinlovelace/geocompr
+docker run -d -p 8786:8787 -v ${pwd}:/home/rstudio/data -e DISABLE_AUTH=TRUE robinlovelace/geocompr:minimal
 ```
 
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
@@ -81,6 +81,15 @@ If you see something like this after following the steps above,
 congratulations: it worked! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
+
+You can also pull and run the same images from ghcr.io, e.g. as follow:
+
+``` bash
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompr/geocompr:minimal
+
+# Or for an image with Dev version of QGIS installed:
+docker run -d -p 8785:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompr/geocompr:qgis-dev
+```
 
 From this point to *build* the book you can open projects in the
 `geocompr` directory from the project box in the top-right hand corner,
@@ -178,9 +187,9 @@ table(qgis_algs$provider)
 
 You can access algorithms from other GIS programs through QGIS but they
 need to be installed. These can be accessed from the
-`geocompr/geocompr:qgis-ext` image as follows:
+`geocompr/geocompr:qgis` image as follows:
 
-    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis-ext
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis
 
 Again, open the browser, e.g. at <http://localhost:8786>, and find the
 new algorithms as follows:
@@ -210,7 +219,7 @@ You can build the images locally, e.g. as follows:
     docker build qgis-ext -t test
     docker run -p 8888:8888 test-binder
 
-<!-- README last updated 2021-09-28 23:55:59 -->
+<!-- README last updated 2021-09-29 01:12:00 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 <!-- ```{r} -->

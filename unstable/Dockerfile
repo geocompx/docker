@@ -1,4 +1,4 @@
-FROM rocker/geospatial:4.0.0-ubuntu18.04-unstable
+FROM rocker/geospatial
 # install the r-spatial stack linking to new OSGeo pkgs
 RUN apt-get update \
 	&& apt-get install -y --no-install-recommends \
@@ -9,9 +9,8 @@ RUN apt-get update \
   && add-apt-repository --enable-source --yes "ppa:ubuntugis/ubuntugis-unstable" 
 RUN apt-get update \
   && apt-get install -y --no-install-recommends \
- 	  libudunits2-dev libgdal-dev libgeos-dev libproj-dev liblwgeom-dev
+ 	  libudunits2-dev libgdal-dev libgeos-dev libproj-dev
 # install the r-spatial stack linking to new OSGeo pkgs
-RUN R -e "install.packages(c('sf', 'lwgeom', 'rgdal', 'sp', 'stars', 'raster'))"
 RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE)"
 RUN su rstudio && \
   cd /home/rstudio && \
