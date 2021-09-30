@@ -6,5 +6,5 @@ FROM geocompr/geocompr
 RUN wget https://github.com/rocker-org/rocker-versioned2/raw/master/scripts/install_python.sh
 RUN bash install_python.sh
 RUN pip3 install geopandas movingpandas
-
-RUN install2.r --skipinstalled --error reticulate 
+RUN install2.r --skipinstalled --error reticulate
+RUN Rscript -e "library(reticulate); import('geopandas')" # test pkg installed and loads

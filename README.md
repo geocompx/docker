@@ -151,6 +151,36 @@ import geopandas as gpd
 import movingpandas as mpd
 ```
 
+You can run an interactive session via Reticulate in RStudio as follows:
+
+``` bash
+docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:python
+```
+
+And then in the resulting RStudio session you can enter something along
+the lines of:
+
+``` r
+library(sf)
+f = file.path(system.file("shape/nc.shp", package="sf"))
+nc_sf = read_sf(f)
+library(reticulate)
+system("pip3 install descartes")
+gp = import("geopandas")
+nc_gp = gp$read_file(f)
+class(nc_gp)
+plot(nc_gp$AREA, nc_gp$PERIMETER)
+gp = import("geopandas", convert = FALSE)
+nc_gp = gp$read_file(f)
+nc_gp
+plt = import("matplotlib.pyplot", convert = FALSE)
+nc_gp$plot()
+plt$savefig("test.png")
+```
+
+To plot from Python packages (work in
+[progress](https://github.com/geocompr/docker/issues/12)).
+
 ### QGIS
 
 To run QGIS from the command line, you can run:
@@ -197,7 +227,6 @@ new algorithms as follows:
 
 ``` r
 system("qgis --version")
-QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
 ## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
 remotes::install_github("paleolimbot/qgisprocess") # install the latest version of the package
 ## Skipping install of 'qgisprocess' from a github remote, the SHA1 (6e378511) has not changed since last install.
@@ -220,7 +249,7 @@ You can build the images locally, e.g. as follows:
     docker build qgis-ext -t test
     docker run -p 8888:8888 test-binder
 
-<!-- README last updated 2021-09-30 00:18:00 -->
+<!-- README last updated 2021-10-01 00:26:36 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 <!-- ```{r} -->
