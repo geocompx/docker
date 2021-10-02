@@ -41,5 +41,5 @@ jobs:
           context: suggests
           
           
-            geocompr/geocompr:suggests
-            ghcr.io/geocompr/geocompr:suggests
+
+

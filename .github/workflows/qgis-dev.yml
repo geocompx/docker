@@ -41,5 +41,5 @@ jobs:
           context: qgis-dev
           
           
-            geocompr/geocompr:qgis-dev
-            ghcr.io/geocompr/geocompr:qgis-dev
+
+

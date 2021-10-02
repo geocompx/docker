@@ -41,5 +41,5 @@ jobs:
           context: unzipped
           
           
-            geocompr/geocompr:unzipped
-            ghcr.io/geocompr/geocompr:unzipped
+
+

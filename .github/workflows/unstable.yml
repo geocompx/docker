@@ -41,5 +41,5 @@ jobs:
           context: unstable
           
           
-            geocompr/geocompr:unstable
-            ghcr.io/geocompr/geocompr:unstable
+
+

@@ -41,5 +41,5 @@ jobs:
           context: buildbook
           
           
-            geocompr/geocompr:buildbook
-            ghcr.io/geocompr/geocompr:buildbook
+
+

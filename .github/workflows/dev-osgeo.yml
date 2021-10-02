@@ -41,5 +41,5 @@ jobs:
           context: dev-osgeo
           
           
-            geocompr/geocompr:dev-osgeo
-            ghcr.io/geocompr/geocompr:dev-osgeo
+
+

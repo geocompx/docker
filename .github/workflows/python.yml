@@ -41,5 +41,5 @@ jobs:
           context: python
           
           
-            geocompr/geocompr:python
-            ghcr.io/geocompr/geocompr:python
+
+

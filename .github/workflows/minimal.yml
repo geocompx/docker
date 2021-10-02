@@ -55,5 +55,5 @@ jobs:
           context: minimal
           
           
-            geocompr/geocompr:minimal
-            ghcr.io/geocompr/geocompr:minimal
+
+

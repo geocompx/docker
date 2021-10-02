@@ -41,5 +41,5 @@ jobs:
           contmin: qgis-min
           
           
-            geocompr/geocompr:qgis-min
-            ghcr.io/geocompr/geocompr:qgis-min
+
+
