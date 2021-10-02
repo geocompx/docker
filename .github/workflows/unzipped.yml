@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: unzipped
-          push: true
+          push: test
           tags: |
             geocompr/geocompr:unzipped
             ghcr.io/geocompr/geocompr:unzipped

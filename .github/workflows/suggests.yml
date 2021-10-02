@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: suggests
-          push: true
+          push: test
           tags: |
             geocompr/geocompr:suggests
             ghcr.io/geocompr/geocompr:suggests

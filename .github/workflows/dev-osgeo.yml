@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: dev-osgeo
-          push: true
+          push: test
           tags: |
             geocompr/geocompr:dev-osgeo
             ghcr.io/geocompr/geocompr:dev-osgeo
