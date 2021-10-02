@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: unstable
-          push: test
+          
           tags: |
             geocompr/geocompr:unstable
             ghcr.io/geocompr/geocompr:unstable

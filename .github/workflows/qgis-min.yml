@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           contmin: qgis-min
-          push: test
+          
           tags: |
             geocompr/geocompr:qgis-min
             ghcr.io/geocompr/geocompr:qgis-min

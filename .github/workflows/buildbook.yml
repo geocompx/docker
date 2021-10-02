@@ -39,7 +39,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: buildbook
-          push: test
+          
           tags: |
             geocompr/geocompr:buildbook
             ghcr.io/geocompr/geocompr:buildbook
