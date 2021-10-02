@@ -1,5 +1,5 @@
 FROM rocker/geospatial:latest
-RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE)"
+RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, force = TRUE)"
 
 # Set RStudio preferences
 # No inline code:

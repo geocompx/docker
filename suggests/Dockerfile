@@ -1,5 +1,5 @@
 FROM geocompr/geocompr:minimal
-RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, dependencies = TRUE)"
+RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
 
 # Set RStudio preferences
 # No inline code:
