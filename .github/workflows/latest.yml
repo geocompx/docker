@@ -16,6 +16,20 @@ jobs:
         name: Checkout
         uses: actions/checkout@v2
       -
+        name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            geocompr/geocompr
+            ghcr.io/geocompr/geocompr
+          # generate Docker tags based on the following events/attributes
+          tags: |
+            type=raw,value=latest
+            type=sha,prefix=latest_
+            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=latest_
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
@@ -39,7 +53,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          push: true
-          tags: |
-            geocompr/geocompr:latest
-            ghcr.io/geocompr/geocompr:latest
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
