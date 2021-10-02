@@ -40,6 +40,6 @@ jobs:
         with:
           context: dev-osgeo
           
-          tags: |
+          
             geocompr/geocompr:dev-osgeo
             ghcr.io/geocompr/geocompr:dev-osgeo

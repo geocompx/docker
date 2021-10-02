@@ -25,7 +25,7 @@ jobs:
             geocompr/geocompr
             ghcr.io/geocompr/geocompr
           # generate Docker tags based on the following events/attributes
-          tags: |
+          
             type=raw,value=latest
             type=sha,prefix=latest_
             type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=latest_
@@ -54,5 +54,5 @@ jobs:
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

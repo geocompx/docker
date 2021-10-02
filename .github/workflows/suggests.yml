@@ -40,6 +40,6 @@ jobs:
         with:
           context: suggests
           
-          tags: |
+          
             geocompr/geocompr:suggests
             ghcr.io/geocompr/geocompr:suggests

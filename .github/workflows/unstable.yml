@@ -40,6 +40,6 @@ jobs:
         with:
           context: unstable
           
-          tags: |
+          
             geocompr/geocompr:unstable
             ghcr.io/geocompr/geocompr:unstable

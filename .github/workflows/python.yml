@@ -40,6 +40,6 @@ jobs:
         with:
           context: python
           
-          tags: |
+          
             geocompr/geocompr:python
             ghcr.io/geocompr/geocompr:python

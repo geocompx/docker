@@ -25,7 +25,7 @@ jobs:
             geocompr/geocompr
             ghcr.io/geocompr/geocompr
           # generate Docker tags based on the following events/attributes
-          tags: |
+          
             type=raw,value=minimal
             type=sha,prefix=minimal_
             type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=minimal_
@@ -54,6 +54,6 @@ jobs:
         with:
           context: minimal
           
-          tags: |
+          
             geocompr/geocompr:minimal
             ghcr.io/geocompr/geocompr:minimal

@@ -40,6 +40,6 @@ jobs:
         with:
           context: buildbook
           
-          tags: |
+          
             geocompr/geocompr:buildbook
             ghcr.io/geocompr/geocompr:buildbook

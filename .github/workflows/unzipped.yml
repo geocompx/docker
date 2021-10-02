@@ -40,6 +40,6 @@ jobs:
         with:
           context: unzipped
           
-          tags: |
+          
             geocompr/geocompr:unzipped
             ghcr.io/geocompr/geocompr:unzipped

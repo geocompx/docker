@@ -40,6 +40,6 @@ jobs:
         with:
           context: qgis
           
-          tags: |
+          
             geocompr/geocompr:qgis
             ghcr.io/geocompr/geocompr:qgis
