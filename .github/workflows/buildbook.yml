@@ -28,7 +28,8 @@ jobs:
           tags: |
             type=raw,value=buildbook
             type=sha,prefix=buildbook_
-            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=buildbook_      -
+            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=buildbook_
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -

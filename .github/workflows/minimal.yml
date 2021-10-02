@@ -25,7 +25,6 @@ jobs:
             geocompr/geocompr
             ghcr.io/geocompr/geocompr
           # generate Docker tags based on the following events/attributes
-          
             type=raw,value=minimal
             type=sha,prefix=minimal_
             type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=minimal_
@@ -53,15 +52,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: minimal
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
-          push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

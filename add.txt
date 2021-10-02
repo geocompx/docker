@@ -9,6 +9,6 @@
             ghcr.io/geocompr/geocompr
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=buildbook
-            type=sha,prefix=buildbook_
-            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=buildbook_
+            type=raw,value=unzipped
+            type=sha,prefix=unzipped_
+            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=unzipped_
