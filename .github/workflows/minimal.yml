@@ -2,7 +2,7 @@ name: minimal
 
 on:
   schedule:
-    - cron: '0 22 * * *' # everyday at 10pm
+    - cron: '0 01 * * 4' # every thusday at 1 am
   push:
     branches:
       - 'master'

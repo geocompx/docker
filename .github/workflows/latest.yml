@@ -2,7 +2,7 @@ name: latest
 
 on:
   schedule:
-    - cron: '0 01 * * 7* * *' # everyday at 1am
+    - cron: '0 01 * * 5' # every friday at 1am
   push:
     branches:
       - 'master'
