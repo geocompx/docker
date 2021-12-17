@@ -92,14 +92,10 @@ image            | description                               | size
 [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests) |  rocker/geospatial plus all packages from geocompkgs (Suggests) | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)
 [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)          |  rocker/geospatial:latest with book contents  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)
 [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         |  rocker/geospatial:latest that builds the book  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook)
-[geocompr:dev-osgeo](https://hub.docker.com/r/geocompr/geocompr)         |  rocker/geospatial:dev-osgeo base image | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo)
-[geocompr:dev-osgeo-b](https://hub.docker.com/r/geocompr/geocompr)       |  rocker/geospatial:dev-osgeo base image + build book | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/dev-osgeo-b)
-[geocompr:unstable](https://hub.docker.com/r/geocompr/geocompr)          |  UbuntuGIS 'unstable' repo versions of OSGeo libs  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unstable)
 [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr with Python  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)
 [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)              |  geocompr/geocompr with QGIS  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)
 [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          |  geocompr/geocompr with dev version of QGIS  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)
 [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          |  geocompr/geocompr with just QGIS + **qgisprocess**  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)
-<!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
