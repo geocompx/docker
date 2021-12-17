@@ -2,7 +2,7 @@ name: unzipped
 
 on:
   schedule:
-    - cron: '0 01 * * 7' # every Sunday at 1am
+    - cron: '0  21 * * 6'
   push:
     branches:
       - 'master'
