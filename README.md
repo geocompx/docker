@@ -118,16 +118,12 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with dev version of QGIS                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)  |
 | [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with just QGIS + **qgisprocess**             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)  |
 
-<!-- [geocompr:rstudio_devel](https://hub.docker.com/r/geocompr/geocompr)            |  UbuntuGIS Unstable repos and R devel  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/rstudio_devel) -->
-
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname to geocompr/geocompr to get the tag you’re interested in.
+Add :tagname to geocompr/geocompr to get the image you want.
 
-To run the `buildbook` version (represented by the extension `-b` for
-most tags), for example, run the following command (with port and
-password set to a port of your preference):
+<!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
 ``` bash
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
@@ -246,7 +242,7 @@ You can build the images locally, e.g. as follows:
     docker build qgis-ext -t test
     docker run -p 8888:8888 test-binder
 
-<!-- README last updated 2021-12-17 22:31:15 -->
+<!-- README last updated 2021-12-18 00:34:19 -->
 <!-- To build on different system configurations we provide tags that correspond to the following categories: -->
 <!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
 <!-- ```{r} -->

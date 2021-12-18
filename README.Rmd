@@ -99,9 +99,9 @@ image            | description                               | size
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname to geocompr/geocompr to get the tag you're interested in.
+Add :tagname to geocompr/geocompr to get the image you want.
 
-To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference):
+<!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
 ```{r, engine='bash', eval=FALSE}
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
