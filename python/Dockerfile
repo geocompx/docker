@@ -17,7 +17,7 @@ RUN quarto --version
 # Install pip 
 RUN /usr/bin/python3 -m pip install --upgrade pip
 RUN python3 -m pip install jupyter matplotlib
-RUN quarto render
-RUN ls docs
-RUN install2.r --skipinstalled --error reticulate
+# RUN quarto render
+# RUN ls docs
+RUN install2.r --skipinstalled --error reticulate quarto
 RUN Rscript -e "library(reticulate); import('geopandas')" # test pkg installed and loads
