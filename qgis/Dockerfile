@@ -8,6 +8,13 @@ RUN chmod a+r /etc/apt/trusted.gpg.d/qgis-archive.gpg
 RUN add-apt-repository "deb https://qgis.org/ubuntu $(lsb_release -c -s) main"
 RUN # Update your repository information to reflect also the just added QGIS one:
 RUN apt update
-RUN # Now, install QGIS:
+RUN # Now, install QGIS, GRASS and SAGA:
 RUN apt -y install qgis qgis-plugin-grass saga
+# run QGIS in a headless state
+ENV QT_QPA_PLATFORM=offscreen
+# enable GRASS provider
+RUN qgis_process plugins enable grassprovider
+# enable SAGA provider
+RUN qgis_process plugins enable sagaprovider
+# install R package qgisprocess from Github
 RUN R -e "remotes::install_github('paleolimbot/qgisprocess')"
