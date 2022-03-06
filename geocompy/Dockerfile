@@ -6,11 +6,11 @@ FROM rocker/geospatial:dev-osgeo
 RUN wget https://github.com/rocker-org/rocker-versioned2/raw/master/scripts/install_python.sh
 RUN bash install_python.sh
 # Install Python packages for vector data:
-RUN pip3 install geopandas # movingpandas see #22 on why this is commented
+RUN pip3 install geopandas movingpandas 
 # Install Python packages for raster data:
 RUN pip3 install rasterio rioxarray netcdf4 h5netcdf
 # Install Python packages for visualisation
-RUN pip3 install jupyter matplotlib hvplot # geoviews
+RUN pip3 install jupyter matplotlib hvplot geoviews
 # Install quarto
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
