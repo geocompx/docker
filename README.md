@@ -4,6 +4,7 @@
 # Geocomputation with R in Docker
 
 <!-- badges: start -->
+
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
 <!-- badges: end -->
 
@@ -105,17 +106,19 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                    | description                                                    | size                                                                      |
-|--------------------------------------------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------|
-| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr:minimal image + book files                   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)    |
-| [geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)   | rocker/geospatial plus core packages from geocompkg (Imports)  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)   |
-| [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests) | rocker/geospatial plus all packages from geocompkgs (Suggests) | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
-| [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:latest with book contents                    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:latest that builds the book                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
-| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr with Python                                  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)    |
-| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with QGIS                                    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
-| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with dev version of QGIS                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)  |
-| [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with just QGIS + **qgisprocess**             | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)  |
+| image                                                                    | description                                                      | size                                                                      |
+|--------------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------------|
+| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr:minimal image + book files                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)    |
+| [geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)   | rocker/geospatial plus core packages from geocompkg (Imports)    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)   |
+| [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests) | rocker/geospatial plus all packages from geocompkgs (Suggests)   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
+| [geocompr:osgeo](https://hub.docker.com/r/geocompr/geocompr)             | geocompr/geocompr:minimal running on rocker/geospatial:dev-osgeo | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/osgeo)     |
+| [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:latest with book contents                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:latest that builds the book                    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
+| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with QGIS                                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
+| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with dev version of QGIS                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)  |
+| [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with just QGIS + **qgisprocess**               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)  |
+| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr:osgeo with Python                              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)    |
+| [geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:dev-osgeo with Python packages                 | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/geocompy)  |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
@@ -129,6 +132,17 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
 ```
 
 ## Examples
+
+### osgeo
+
+To test your code or package against recent versions of OSGeo libraries
+(GDAL, GEOS, PROJ), you can run the following command from inside root
+directory of the folder containing the code:
+
+``` bash
+# on linux and mac with password:
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw
+```
 
 ### Python
 
@@ -238,67 +252,5 @@ disposal from the R command line 🎉
 
 You can build the images locally, e.g. as follows:
 
-    docker build qgis-ext -t test
-    docker run -p 8888:8888 test-binder
-
-<!-- README last updated 2021-12-18 00:34:19 -->
-<!-- To build on different system configurations we provide tags that correspond to the following categories: -->
-<!-- `baseimage-ubuntugis-setup-rpackages-buildbook` -->
-<!-- ```{r} -->
-<!-- baseimage = c( -->
-<!--   base = "base" -->
-<!-- ) -->
-<!-- ``` -->
-<!-- Ubuntugis options include using the `ubuntugis-unstable` and `ubuntugis-stable` repos. -->
-<!-- ```{r} -->
-<!-- ubuntugis = c( -->
-<!--   no_ubuntugis = "default_repos", -->
-<!--   unstable = "unstable", -->
-<!--   ubuntugis_stable = "ubuntugis_stable" -->
-<!-- ) -->
-<!-- ``` -->
-<!-- Setup options can include RStudio settings (yet to be added). -->
-<!-- R package options relate to which R packages are installed on the image (yet to be added). -->
-<!-- Buildbook options report whether or not the book is built: -->
-<!-- ```{r} -->
-<!-- buildbook = c( -->
-<!--   no = "", -->
-<!--   yes = "buildbook" -->
-<!-- ) -->
-<!-- ``` -->
-<!-- We will create a 'build matrix' covering all combinations of these options (excluding the base image for now): -->
-<!-- ```{r} -->
-<!-- g = expand.grid(ubuntugis, buildbook, stringsAsFactors = FALSE) -->
-<!-- g -->
-<!-- ``` -->
-<!-- These can be converted into tags as follows: -->
-<!-- ```{r} -->
-<!-- tag_df = tidyr::unite(g, tag) -->
-<!-- tags = gsub(pattern = "__|^_|_$", replacement = "", tag_df$tag) -->
-<!-- tags -->
-<!-- ``` -->
-<!-- We could write code to auto-generate Dockerfiles, as demonstrated in [rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2). -->
-<!-- For now, to start the project going, we will manually edit the files, which can be created as follows: -->
-<!-- ```{r, eval=FALSE} -->
-<!-- new_dockerfiles = paste0("dockerfiles/Dockerfile_", tags) -->
-<!-- new_dockerfiles -->
-<!-- lapply(new_dockerfiles, file.copy, from = "rocker-ubuntugis-bookbuild/Dockerfile", TRUE) -->
-<!-- ``` -->
-<!-- Edit these files as appropriate: -->
-<!-- ```{r, eval=FALSE} -->
-<!-- file.edit("dockerfiles/Dockerfile_unstable") -->
-<!-- ``` -->
-<!-- Create a folder for each Dockerfile: -->
-<!-- ```{r, eval=FALSE} -->
-<!-- lapply(tags, dir.create) -->
-<!-- lapply(tags, function(x) { -->
-<!--   file.copy( -->
-<!--     from = paste0("dockerfiles/Dockerfile_", x), -->
-<!--     , to = paste0(x, "/Dockerfile"), -->
-<!--     overwrite = TRUE) -->
-<!-- }) -->
-<!-- ``` -->
-<!-- Build Docker files in this repo with the following command -->
-<!-- ```bash -->
-<!-- docker build unstable -->
-<!-- ``` -->
+    docker build qgis -t test
+    docker run -p 8888:8888 test
