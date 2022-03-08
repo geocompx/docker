@@ -141,7 +141,8 @@ directory of the folder containing the code:
 
 ``` bash
 # on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
+  -e USERID=$UID -e PASSWORD=pw geocompr/geocompr:osgeo
 ```
 
 ### Python
