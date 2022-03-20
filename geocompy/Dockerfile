@@ -6,7 +6,7 @@ FROM rocker/geospatial:dev-osgeo
 RUN wget https://github.com/rocker-org/rocker-versioned2/raw/master/scripts/install_python.sh
 RUN bash install_python.sh
 # Install Python packages for vector data:
-RUN pip3 install geopandas movingpandas pykdtree scipy
+RUN pip3 install geopandas movingpandas pykdtree scipy topojson
 # Install Python packages for raster data:
 RUN pip3 install rasterio rioxarray netcdf4 h5netcdf
 # Install Python packages for visualisation
