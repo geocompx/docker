@@ -5,17 +5,15 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr)
+[![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
 <!-- badges: end -->
 
 This repo documents Docker images for geographic research and
 reproducing code in the book *Geocomputation with R*. The Dockerfiles
 build on work done for the [Rocker
-Project](https://www.rocker-project.org/) by Carl Boettiger, Dirk
-Eddelbuettel and Noam Ross. As documented on the Rocker Project website,
-Docker can save time by removing pain and reducing time associated with
-setting-up your operating system to work with the latest geographic
-packages.
+Project](https://www.rocker-project.org/). As documented on the Rocker
+Project website, Docker can save time and increase reproducibility by
+providing an environment with up-to-date and stable software.
 
 To get started, after you [install
 Docker](https://docs.docker.com/get-docker/), try running one of the
@@ -113,7 +111,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests) | rocker/geospatial plus all packages from geocompkgs (Suggests)   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
 | [geocompr:osgeo](https://hub.docker.com/r/geocompr/geocompr)             | geocompr/geocompr:minimal running on rocker/geospatial:dev-osgeo | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/osgeo)     |
 | [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:latest with book contents                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:latest that builds the book                    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:suggests that runs the book code               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
 | [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with QGIS                                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
 | [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with dev version of QGIS                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)  |
 | [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with just QGIS + **qgisprocess**               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)  |
