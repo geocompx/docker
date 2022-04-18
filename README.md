@@ -5,7 +5,7 @@
 
 <!-- badges: start -->
 
-[![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr:)
+[![](https://img.shields.io/docker/pulls/geocompr/geocompr.svg)](https://hub.docker.com/r/geocompr/geocompr)
 <!-- badges: end -->
 
 This repo documents Docker images for geographic research and
@@ -30,6 +30,7 @@ Then open a browser at <http://localhost:8786/> and you should see
 something like this:
 
 ![](https://user-images.githubusercontent.com/1825120/79639334-33eb9f00-8183-11ea-8358-588fe17afe25.png)
+
 If so congratulations 🎉 you can proceed to open the `geocompr.Rproj`
 project or other files in the `geocompr` folder, which contains a
 complete copy of the source code and example data needed to build the
