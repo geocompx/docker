@@ -8,7 +8,7 @@ RUN bash install_python.sh
 # Install Python packages for vector data:
 RUN pip3 install geopandas movingpandas pykdtree scipy topojson
 # Install Python packages for raster data:
-RUN pip3 install rasterio rioxarray netcdf4 h5netcdf
+RUN pip3 install rasterio rioxarray netcdf4 h5netcdf rasterstats
 # Install Python packages for visualisation
 RUN pip3 install jupyter matplotlib hvplot geoviews # pyviz # seems to fail
 # Install quarto
