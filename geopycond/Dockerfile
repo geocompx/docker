@@ -4,7 +4,12 @@ FROM continuumio/miniconda3
 # RUN environment.yml .
 RUN wget https://github.com/geocompr/py/raw/main/environment.yml
 
-RUN conda env create -f environment.yml
+RUN conda env create -f environment.yml && \
+    conda init bash && \
+    conda activate geocompy
+
+RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
+RUN dpkg -i quarto*
 
 # ENTRYPOINT ["conda", "run", "-n", "geocompy", \
 #             "python", "-c", \
