@@ -1,4 +1,4 @@
-FROM continuumio/miniconda3
+FROM mambaorg/micromamba
 
 # See https://pythonspeed.com/articles/conda-docker-image-size/
 # RUN environment.yml .
@@ -6,10 +6,9 @@ RUN wget https://github.com/geocompr/py/raw/main/environment.yml
 
 # https://stackoverflow.com/questions/60855061/
 RUN . /root/.bashrc && \
-    conda env create -f environment.yml && \
-    conda init bash && \
-    conda activate geocompy
-RUN echo "conda activate geocompy" >> ~/.bashrc
+    micromamba create -f environment.yml && \
+    micromamba activate geocompy
+RUN echo "micromamba activate geocompy" >> ~/.bashrc
 
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
 RUN dpkg -i quarto*
