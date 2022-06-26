@@ -4,7 +4,9 @@ FROM continuumio/miniconda3
 # RUN environment.yml .
 RUN wget https://github.com/geocompr/py/raw/main/environment.yml
 
-RUN conda env create -f environment.yml && \
+# https://stackoverflow.com/questions/60855061/
+RUN . /root/.bashrc && \
+    conda env create -f environment.yml && \
     conda init bash && \
     conda activate geocompy
 
