@@ -10,7 +10,7 @@ RUN pip3 install geopandas movingpandas pykdtree scipy topojson
 # Install Python packages for raster data:
 RUN pip3 install rasterio rioxarray netcdf4 h5netcdf rasterstats
 # Install Python packages for visualisation
-RUN pip3 install jupyter matplotlib hvplot geoviews # pyviz # seems to fail
+RUN pip3 install jupyter matplotlib # hvplot geoviews and # # pyviz # seems to fail
 # Install quarto
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | sudo dd of=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
