@@ -1,22 +1,18 @@
-FROM mambaorg/micromamba
+FROM mambaorg/micromamba:focal
 
-# See https://pythonspeed.com/articles/conda-docker-image-size/
-# RUN environment.yml .
-RUN wget https://github.com/geocompr/py/raw/main/environment.yml
+RUN micromamba install --yes --name base --channel conda-forge \
+      requests \
+      pathlib && \
+    micromamba clean --all --yes
 
-# https://stackoverflow.com/questions/60855061/
-RUN . /root/.bashrc && \
-    micromamba create -f environment.yml && \
-    micromamba activate geocompy
-RUN echo "micromamba activate geocompy" >> ~/.bashrc
+# Source: https://hub.docker.com/r/mambaorg/micromamba
+COPY --chown=$MAMBA_USER:$MAMBA_USER environment.yml /tmp/env.yaml
+RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
 
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
-RUN dpkg -i quarto*
-
-# RUN wget https://github.com/geocompr/py/archive/refs/heads/main.zip
-# RUN unzip main.zip
-RUN wget https://raw.githubusercontent.com/geocompr/py/main/unzip.py
-RUN python unzip.py
+# RUN sudo apt install wget
+# RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
+# RUN dpkg -i quarto*
 
 
 # ENTRYPOINT ["conda", "run", "-n", "geocompy", \

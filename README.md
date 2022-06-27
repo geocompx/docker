@@ -251,5 +251,6 @@ You can build the images locally, e.g. as follows:
 
     docker build qgis -t test
     docker run -p 8888:8888 test
-    docker build geopycond -t geocompy
+    docker build conda -t geocompy
     docker run -it geocompy /bin/bash
+    docker build mamba -t geocompy
