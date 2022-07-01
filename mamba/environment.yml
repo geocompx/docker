@@ -25,4 +25,3 @@ dependencies:
   - topojson
   - mapclassify
   - rasterstats
-  - quarto
