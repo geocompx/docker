@@ -9,7 +9,12 @@ RUN . /root/.bashrc && \
     conda env create -f environment.yml && \
     conda init bash && \
     conda activate geocompy
+
+
+# https://pythonspeed.com/articles/activate-conda-dockerfile/
+# Make RUN commands use the new environment:
 RUN echo "conda activate geocompy" >> ~/.bashrc
+SHELL ["/bin/bash", "--login", "-c"]
 
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
 RUN dpkg -i quarto*
@@ -18,6 +23,10 @@ RUN dpkg -i quarto*
 # RUN unzip main.zip
 RUN wget https://raw.githubusercontent.com/geocompr/py/main/unzip.py
 RUN python unzip.py
+
+# Demonstrate the environment is activated:
+RUN echo "Make geopandas is installed:"
+RUN python -c "import geopandas"
 
 
 # ENTRYPOINT ["conda", "run", "-n", "geocompy", \
