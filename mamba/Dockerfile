@@ -7,7 +7,12 @@ RUN micromamba install --yes --name base --channel conda-forge \
 
 # Source: https://hub.docker.com/r/mambaorg/micromamba
 COPY --chown=$MAMBA_USER:$MAMBA_USER environment.yml /tmp/env.yaml
+COPY --chown=$MAMBA_USER:$MAMBA_USER unzip.py unzip.py
 RUN micromamba install -y -n base -f /tmp/env.yaml && \
+    micromamba clean --all --yes
+ARG MAMBA_DOCKERFILE_ACTIVATE=1  # (otherwise python will not be found)
+RUN python unzip.py
+RUN micromamba install -y -n base -f py-main/environment.yml && \
     micromamba clean --all --yes
 
 # RUN sudo apt install wget
