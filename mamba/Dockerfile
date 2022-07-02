@@ -16,7 +16,7 @@ RUN micromamba install -y -n base -f py-main/environment.yml && \
     micromamba clean --all --yes
 
 # RUN sudo apt install wget
-# RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.622/quarto-0.9.622-linux-amd64.deb
+# RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.637/quarto-0.9.637-linux-amd64.deb
 # RUN dpkg -i quarto*
 
 

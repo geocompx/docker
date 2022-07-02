@@ -16,7 +16,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | s
 RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/trusted.gpg.d/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" | sudo tee /etc/apt/sources.list.d/github-cli.list > /dev/null
 RUN apt update
 RUN apt install gh
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.56/quarto-0.9.56-linux-amd64.deb
+RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.637/quarto-0.9.637-linux-amd64.deb
 RUN dpkg -i quarto*
 RUN quarto --version
 # Install pip is that needed? seems to duplicate pip commands above (RL 2022-03)
