@@ -21,7 +21,7 @@ RUN dpkg -i quarto*
 
 # RUN wget https://github.com/geocompr/py/archive/refs/heads/main.zip
 # RUN unzip main.zip
-RUN wget https://raw.githubusercontent.com/geocompr/py/main/unzip.py
+RUN wget https://raw.githubusercontent.com/geocompr/py/main/code/unzip.py
 RUN python unzip.py
 
 # Demonstrate the environment is activated:
