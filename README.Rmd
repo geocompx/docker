@@ -97,6 +97,8 @@ image            | description                               | size
 [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          |  geocompr/geocompr with just QGIS + **qgisprocess**  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)
 [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            |  geocompr/geocompr:osgeo with Python  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/python)
 [geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)          |  rocker/geospatial:dev-osgeo with Python packages  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/geocompy)
+[geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)          |  rocker/geospatial:conda with Python packages installed with Miniconda  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/conda)
+[geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)          |  rocker/geospatial:mamba with Python packages installed with MicroMamba  | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/mamba)
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
