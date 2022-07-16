@@ -5,6 +5,7 @@
 
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://hub.docker.com/r/geocompr/geocompr)
 
+
 This repo documents Docker images for geographic research and
 reproducing code in the book *Geocomputation with R*. The Dockerfiles
 build on work done for the [Rocker
