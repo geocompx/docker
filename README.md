@@ -23,7 +23,11 @@ docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
 docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:dev-osgeo
 ```
 
-Then open a browser at <http://localhost:8786/> and you should see
+If you are asked for a username and password, then you should use
+`rstudio` as your username and the password you set with the above code
+(e.g., `pw`).
+
+Then open a browser at <http://localhost:8786/>, and you should see
 something like this:
 
 ![](https://user-images.githubusercontent.com/1825120/79639334-33eb9f00-8183-11ea-8358-588fe17afe25.png)
