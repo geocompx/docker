@@ -1,6 +1,7 @@
 FROM geocompr/geocompr:latest
 RUN --mount=type=secret,id=GITHUB_PAT \
   cat /run/secrets/GITHUB_PAT
+RUN echo GITHUB_PAT=/run/secrets/GITHUB_PAT >> ~/.Renviron
 RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
 RUN su rstudio && \
   cd /home/rstudio && \
