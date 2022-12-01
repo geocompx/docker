@@ -255,8 +255,17 @@ disposal from the R command line 🎉
 
 You can build the images locally, e.g. as follows:
 
-    docker build qgis -t test
-    docker run -p 8888:8888 test
-    docker build conda -t geocompy
-    docker run -it geocompy /bin/bash
-    docker build mamba -t geocompy
+``` bash
+docker build qgis -t test
+docker run -p 8888:8888 test
+docker build conda -t geocompy
+docker run -it geocompy /bin/bash
+docker build mamba -t mamba
+```
+
+You should then be able to run commands in the newly created images,
+e.g. with:
+
+``` bash
+docker run -it mamba /bin/bash
+```

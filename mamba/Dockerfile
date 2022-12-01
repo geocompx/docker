@@ -1,7 +1,8 @@
-FROM mambaorg/micromamba:focal
+FROM mambaorg/micromamba:jammy
 
 RUN micromamba install --yes --name base --channel conda-forge \
       requests \
+      quarto \
       pathlib && \
     micromamba clean --all --yes
 
