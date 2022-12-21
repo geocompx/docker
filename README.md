@@ -3,6 +3,7 @@
 
 # Geocomputation with R in Docker
 
+
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://hub.docker.com/r/geocompr/geocompr)
 
 This repo documents Docker images for geographic research and
