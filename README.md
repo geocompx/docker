@@ -3,7 +3,6 @@
 
 # Geocomputation with R in Docker
 
-
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://hub.docker.com/r/geocompr/geocompr)
 
 This repo documents Docker images for geographic research and
@@ -19,9 +18,9 @@ following commands:
 
 ``` bash
 # The latest version of rocker/geospatial + geocompr dependencies
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker
 # With up-to-date OSGeo packages and qgisprocess:
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:dev-osgeo
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:dev-osgeo
 ```
 
 If you are asked for a username and password, then you should use
@@ -40,7 +39,7 @@ html version of the book.
 
 To run a container without RStudio, try the following.
 
-    docker run -e PASSWORD=pw --rm -ti geocompr/geocompr /bin/bash
+    docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/docker /bin/bash
 
 Use this resource to play with the examples, develop new answers to the
 questions at the end of each page, or even to generate reproducible
@@ -69,9 +68,9 @@ git clone https://github.com/Robinlovelace/geocompr.git
 # or download manually from https://github.com/Robinlovelace/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw geocompr/geocompr:minimal
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:minimal
 # on linux and mac without password:
-docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  geocompr/geocompr:minimal
+docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  ghcr.io/geocompx/docker:minimal
 # on windows without a password:
 docker run -d -p 8786:8787 -v ${pwd}:/home/rstudio/data -e DISABLE_AUTH=TRUE robinlovelace/geocompr:minimal
 ```
@@ -86,7 +85,7 @@ for more info.
 You can also pull and run the same images from ghcr.io, e.g. as follow:
 
 ``` bash
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompr/geocompr:minimal
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/docker:minimal
 ```
 
 From this point to *build* the book you can open projects in the
@@ -126,12 +125,12 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname to geocompr/geocompr to get the image you want.
+Add :tagname to ghcr.io/geocompx/docker to get the image you want.
 
 <!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:buildbook
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:buildbook
 ```
 
 ## Examples
@@ -145,7 +144,7 @@ directory of the folder containing the code:
 ``` bash
 # on linux and mac with password:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
-  -e USERID=$UID -e PASSWORD=pw geocompr/geocompr:osgeo
+  -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:osgeo
 ```
 
 ### Python
@@ -153,7 +152,7 @@ docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
 The Python tag contains Python geospatial packages:
 
 ``` bash
-docker run -e PASSWORD=pw --rm -ti geocompr/geocompr:python /bin/bash
+docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/docker:python /bin/bash
 
 python3
 import pandas as pd
@@ -164,7 +163,7 @@ import movingpandas as mpd
 You can run an interactive session via Reticulate in RStudio as follows:
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 geocompr/geocompr:python
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:python
 ```
 
 And then in the resulting RStudio session you can enter something along
@@ -196,8 +195,8 @@ To plot from Python packages (work in
 To run QGIS from the command line, you can run:
 
 ``` bash
-docker pull geocompr/geocompr:qgis
-docker run --rm -ti geocompr/geocompr:qgis /bin/bash
+docker pull ghcr.io/geocompx/docker:qgis
+docker run --rm -ti ghcr.io/geocompx/docker:qgis /bin/bash
 qgis --version
 # QGIS 3.20.3-Odense 'Odense' (495fbaecaf)
 ```
@@ -205,7 +204,7 @@ qgis --version
 You can also run QGIS algorithms via the `qgisprocess` package as
 follows:
 
-    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/docker:qgis
 
 Then open a browser and the local url such as
 <http://192.168.0.99:8786/> or <http://localhost:8786>, enter RStudio
@@ -228,9 +227,9 @@ table(qgis_algs$provider)
 
 You can access algorithms from other GIS programs through QGIS but they
 need to be installed. These can be accessed from the
-`geocompr/geocompr:qgis` image as follows:
+`ghcr.io/geocompx/docker:qgis` image as follows:
 
-    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw geocompr/geocompr:qgis
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/docker:qgis
 
 Again, open the browser, e.g. at <http://localhost:8786>, and find the
 new algorithms as follows:
