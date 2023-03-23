@@ -3,7 +3,7 @@
 
 # Geocomputation with R in Docker
 
-[![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://hub.docker.com/r/geocompr/geocompr)
+[![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://github.com/geocompx/docker/blob/master/)
 
 This repo documents Docker images for geographic research and
 reproducing code in the book *Geocomputation with R*. The Dockerfiles
@@ -64,15 +64,13 @@ changes before submitting a Pull Request to improve the book:
 
 ``` bash
 # download repo with Windows Powershell or a Unix terminal
-git clone https://github.com/Robinlovelace/geocompr.git 
+git clone https://github.com/geocompx/geocompr.git 
 # or download manually from https://github.com/Robinlovelace/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:minimal
 # on linux and mac without password:
 docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  ghcr.io/geocompx/docker:minimal
-# on windows without a password:
-docker run -d -p 8786:8787 -v ${pwd}:/home/rstudio/data -e DISABLE_AUTH=TRUE robinlovelace/geocompr:minimal
 ```
 
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
@@ -106,19 +104,17 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                                       | description                                                            | size                                                                      |
-|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/)                | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal image + book files | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)    |
-| [geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)                      | rocker/geospatial plus core packages from geocompkg (Imports)          | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)   |
-| [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests)                    | rocker/geospatial plus all packages from geocompkgs (Suggests)         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
-| [geocompr:osgeo](https://hub.docker.com/r/geocompr/geocompr)                                | geocompr/geocompr:minimal running on rocker/geospatial:dev-osgeo       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/osgeo)     |
-| [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)                             | rocker/geospatial:latest with book contents                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)                            | rocker/geospatial:suggests that runs the book code                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
-| [geocompr:qgis](https://github.com/geocompx/docker/pkgs/container/docker/79735446?tag=qgis) | geocompr/geocompr with QGIS                                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
-| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)                               | Official Python image + geo pkgs                                       | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)          |
-| [geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)                             | rocker/geospatial:dev-osgeo with Python packages                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/geocompy)  |
-| [geocompr:conda](https://hub.docker.com/r/geocompr/geocompr)                                | Python packages installed with Miniconda                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/conda)     |
-| [geocompr:mamba](https://hub.docker.com/r/geocompr/geocompr)                                | Space efficient installation Python image with MicroMamba              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/mamba)     |
+| image                                                                        | description                                                                                                       | size                                                                |
+|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/docker:latest image + book files                                             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)    |
+| [geocompr:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus core packages from geocompkg (Imports) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)   |
+| [geocompr:suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests)             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)  |
+| [geocompr:osgeo](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:dev-osgeo                          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)     |
+| [geocompr:buildbook](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code                                          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook) |
+| [geocompr:qgis](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS                                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)      |
+| [geocompr:python](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)    |
+| [geocompr:geocompy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:geocompy with Python packages                                         | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=geocompy)  |
+| [geocompr:mamba](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba Space efficient installation Python image with MicroMamba       | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba)     |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
