@@ -11,4 +11,4 @@ ENV QT_QPA_PLATFORM=offscreen
 # # enable SAGA provider
 # RUN qgis_process plugins enable sagaprovider
 # # install R package qgisprocess from Github (paused due to API limits)
-# RUN R -e "remotes::install_github('paleolimbot/qgisprocess')"
+RUN R -e "remotes::install_github('r-spatial/qgisprocess')"
