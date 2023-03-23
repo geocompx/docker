@@ -106,21 +106,19 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                    | description                                                      | size                                                                      |
-|--------------------------------------------------------------------------|------------------------------------------------------------------|---------------------------------------------------------------------------|
-| [geocompr:latest](https://hub.docker.com/r/geocompr/geocompr)            | geocompr/geocompr:minimal image + book files                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)    |
-| [geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)   | rocker/geospatial plus core packages from geocompkg (Imports)    | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)   |
-| [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests) | rocker/geospatial plus all packages from geocompkgs (Suggests)   | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
-| [geocompr:osgeo](https://hub.docker.com/r/geocompr/geocompr)             | geocompr/geocompr:minimal running on rocker/geospatial:dev-osgeo | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/osgeo)     |
-| [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:latest with book contents                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
-| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)         | rocker/geospatial:suggests that runs the book code               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
-| [geocompr:qgis](https://hub.docker.com/r/geocompr/geocompr)              | geocompr/geocompr with QGIS                                      | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
-| [geocompr:qgis-dev](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with dev version of QGIS                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-dev)  |
-| [geocompr:qgis-min](https://hub.docker.com/r/geocompr/geocompr)          | geocompr/geocompr with just QGIS + **qgisprocess**               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis-min)  |
-| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)            | Official Python image + geo pkgs                                 | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)          |
-| [geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)          | rocker/geospatial:dev-osgeo with Python packages                 | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/geocompy)  |
-| [geocompr:conda](https://hub.docker.com/r/geocompr/geocompr)             | Python packages installed with Miniconda                         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/conda)     |
-| [geocompr:mamba](https://hub.docker.com/r/geocompr/geocompr)             | Space efficient installation Python image with MicroMamba        | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/mamba)     |
+| image                                                                                       | description                                                            | size                                                                      |
+|---------------------------------------------------------------------------------------------|------------------------------------------------------------------------|---------------------------------------------------------------------------|
+| [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/)                | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal image + book files | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/latest)    |
+| [geocompr:minimal](https://hub.docker.com/r/geocompr/geocompr/minimal)                      | rocker/geospatial plus core packages from geocompkg (Imports)          | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/minimal)   |
+| [geocompr:suggests](https://hub.docker.com/r/geocompr/geocompr/suggests)                    | rocker/geospatial plus all packages from geocompkgs (Suggests)         | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/suggests)  |
+| [geocompr:osgeo](https://hub.docker.com/r/geocompr/geocompr)                                | geocompr/geocompr:minimal running on rocker/geospatial:dev-osgeo       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/osgeo)     |
+| [geocompr:unzipped](https://hub.docker.com/r/geocompr/geocompr)                             | rocker/geospatial:latest with book contents                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/unzipped)  |
+| [geocompr:buildbook](https://hub.docker.com/r/geocompr/geocompr)                            | rocker/geospatial:suggests that runs the book code                     | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/buildbook) |
+| [geocompr:qgis](https://github.com/geocompx/docker/pkgs/container/docker/79735446?tag=qgis) | geocompr/geocompr with QGIS                                            | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/qgis)      |
+| [geocompr:python](https://hub.docker.com/r/geocompr/geocompr)                               | Official Python image + geo pkgs                                       | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)          |
+| [geocompr:geocompy](https://hub.docker.com/r/geocompr/geocompr)                             | rocker/geospatial:dev-osgeo with Python packages                       | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/geocompy)  |
+| [geocompr:conda](https://hub.docker.com/r/geocompr/geocompr)                                | Python packages installed with Miniconda                               | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/conda)     |
+| [geocompr:mamba](https://hub.docker.com/r/geocompr/geocompr)                                | Space efficient installation Python image with MicroMamba              | ![](https://img.shields.io/docker/image-size/geocompr/geocompr/mamba)     |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
