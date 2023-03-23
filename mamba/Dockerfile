@@ -13,7 +13,7 @@ RUN micromamba install -y -n base -f /tmp/env.yaml && \
     micromamba clean --all --yes
 ARG MAMBA_DOCKERFILE_ACTIVATE=1  # (otherwise python will not be found)
 RUN python unzip.py
-RUN micromamba install -y -n base -f py-main/environment.yml && \
+RUN micromamba install -y -n base -f geocompy-main/environment.yml && \
     micromamba clean --all --yes
 
 # RUN sudo apt install wget
