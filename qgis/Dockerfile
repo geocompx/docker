@@ -39,4 +39,6 @@ RUN qgis_process plugins enable processing_saga_nextgen
 RUN qgis_process plugins enable grassprovider
 
 # install R package qgisprocess from Github (paused due to API limits)
-RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')"
+# when running the next line RStudio server can no longer connect to the R session
+# and in any case, we do not really have to install the package here
+# RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')"
