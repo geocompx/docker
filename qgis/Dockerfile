@@ -26,19 +26,22 @@ RUN apt-get -y --with-new-pkgs upgrade && \
 RUN pip3 install qgis-plugin-manager
 # to enable the qgis-plugin-manager, add the corresponding path to PATH
 ENV PATH="/home/rstudio/.local/bin:$PATH"
+# from the next line onwards we have trouble with the rstudio server, therefore we switch to the rstudio user
+USER rstudio
 RUN mkdir -p /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 ENV QGIS_PLUGINPATH=/home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 RUN qgis-plugin-manager init
 RUN qgis-plugin-manager update
 # install SAGA next generation plugin
 RUN qgis-plugin-manager install 'Processing Saga NextGen Provider'
-# RUN qgis_process in a headless state
-ENV QT_QPA_PLATFORM=offscreen
-# enable desired plugins
-RUN qgis_process plugins enable processing_saga_nextgen
-RUN qgis_process plugins enable grassprovider
 
+# the rest is nice to have but not really necessary
+# RUN qgis_process in a headless state
+# ENV QT_QPA_PLATFORM=offscreen
+
+# enable desired plugins
+# RUN qgis_process plugins enable processing_saga_nextgen
+# RUN qgis_process plugins enable grassprovider
+USER root
 # install R package qgisprocess from Github (paused due to API limits)
-# when running the next line RStudio server can no longer connect to the R session
-# and in any case, we do not really have to install the package here
-# RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')"
+# RUN R -e "remotes::install_github('r-spatial/qgisprocess')"
