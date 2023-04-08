@@ -43,6 +43,7 @@ RUN qgis-plugin-manager install 'Processing Saga NextGen Provider'
 # RUN qgis_process plugins enable processing_saga_nextgen
 # RUN qgis_process plugins enable grassprovider
 USER root
-Rscript -e "install.packages('remotes')" 
-Rscript -e "remotes::install_github('r-spatial/sf')" 
-Rscript -e "remotes::install_github('r-spatial/qgisprocess')" 
+RUN Rscript -e "install.packages('remotes')" 
+RUN Rscript -e "remotes::install_github('r-spatial/sf')"
+RUN Rscript -e "remotes::install_github('rspatial/terra')" 
+RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')" 
