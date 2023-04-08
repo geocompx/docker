@@ -6,7 +6,6 @@ RUN apt-get update && apt-get -y --with-new-pkgs upgrade
 # how to install LTR, latest or nightly QGIS version, see:
 # https://qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
 RUN apt-get -y install gnupg software-properties-common python3-pip
-RUN add-apt-repository -y ppa:ubuntugis/ubuntugis-unstable
 RUN wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 # here, we install the QGIS-LTR, if you like the latest one, change in URIs from ubuntugis-ltr to ubuntugis
 SHELL ["/bin/bash", "-c"]
@@ -44,6 +43,6 @@ RUN qgis-plugin-manager install 'Processing Saga NextGen Provider'
 # RUN qgis_process plugins enable grassprovider
 USER root
 RUN Rscript -e "install.packages('remotes')" 
-RUN Rscript -e "remotes::install_github('r-spatial/sf')"
-RUN Rscript -e "remotes::install_github('rspatial/terra')" 
+# RUN Rscript -e "remotes::install_github('r-spatial/sf')"
+# RUN Rscript -e "remotes::install_github('rspatial/terra')" 
 RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')" 
