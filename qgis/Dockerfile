@@ -9,11 +9,11 @@ RUN apt-get -y install gnupg software-properties-common python3-pip
 RUN wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 # here, we install the QGIS-LTR, if you like the latest one, change in URIs from ubuntugis-ltr to ubuntugis
 SHELL ["/bin/bash", "-c"]
-RUN echo $'Types: deb deb-src \n\
-URIs: https://qgis.org/ubuntugis-ltr\n\
-Suites: jammy\n\
-Architectures: amd64\n\
-Components: main\n\
+RUN echo $'Types: deb deb-src
+URIs: https://qgis.org/ubuntu
+Suites: jammy
+Architectures: amd64
+Components: main
 Signed-By: /etc/apt/keyrings/qgis-archive-keyring.gpg' >/etc/apt/sources.list.d/qgis.sources
 RUN apt-get update
 # here using apt-get leads 10 packages kept back which in turn prevents the successful installation of qgis, ok, use --with-new-pkgs!
