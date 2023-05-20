@@ -32,18 +32,22 @@ RUN mkdir -p /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugi
 ENV QGIS_PLUGINPATH=/home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 
 # install QGIS plugins ################################################################################################
+# Using qgisprocess workflow:
 # See https://github.com/r-spatial/qgisprocess/blob/main/.github/workflows/R-CMD-check.yaml#L64
 # RUN echo "QGIS_PLUGINPATH=$(pwd)/extra_plugins" >> $GITHUB_ENV
-# RUN mkdir -p /root/.gnupg
-# RUN chmod 700 /root/.gnupg
-# RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6B827C12C2D425E227EDCA75089EBE08314DF160
-# RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg] http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu `lsb_release -c -s` main" > /etc/apt/sources.list.d/ubuntugis-unstable.list'
-# RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
-# RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
-# RUN apt-get update
-# RUN apt-get install -y qgis qgis-plugin-grass saga
-# RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
-# RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
+# This bit, with user as root, failed in Docker image, changing to rstudio:
+USER root
+RUN mkdir -p /root/.gnupg
+RUN chmod 700 /root/.gnupg
+# Version that works in image:
+RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6B827C12C2D425E227EDCA75089EBE08314DF160
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg] http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu `lsb_release -c -s` main" > /etc/apt/sources.list.d/ubuntugis-unstable.list'
+RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
+RUN apt-get update
+RUN apt-get install -y qgis qgis-plugin-grass saga
+RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
+RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 
 # Outdated: install SAGA next generation plugin with the qgis-plugin-manager ###########################################
 # RUN qgis-plugin-manager init
