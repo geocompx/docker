@@ -1,4 +1,4 @@
-FROM ghcr.io/geocompx/docker:latest
+FROM rocker/geospatial:dev-osgeo
 # ARG only sets the ENV var during the build session whereas ENV also keeps it in the containers later on
 ARG DEBIAN_FRONTEND noninteractive
 
@@ -10,7 +10,7 @@ RUN wget -O /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org
 # here, we install the QGIS-LTR, if you like the latest one, change in URIs from ubuntugis-ltr to ubuntugis
 SHELL ["/bin/bash", "-c"]
 RUN echo 'Types: deb deb-src' > /etc/apt/sources.list.d/qgis.sources
-RUN echo 'URIs: https://qgis.org/ubuntu' >> /etc/apt/sources.list.d/qgis.sources
+RUN echo 'URIs: https://qgis.org/ubuntugis' >> /etc/apt/sources.list.d/qgis.sources
 RUN echo 'Suites: jammy' >> /etc/apt/sources.list.d/qgis.sources
 RUN echo 'Architectures: amd64' >> /etc/apt/sources.list.d/qgis.sources
 RUN echo 'Components: main' >> /etc/apt/sources.list.d/qgis.sources
@@ -42,6 +42,8 @@ RUN qgis-plugin-manager install 'Processing Saga NextGen Provider'
 # RUN qgis_process plugins enable processing_saga_nextgen
 # RUN qgis_process plugins enable grassprovider
 USER root
+# Set the options() for R users:
+RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
 RUN Rscript -e "install.packages('remotes')" 
 # RUN Rscript -e "remotes::install_github('r-spatial/sf')"
 # RUN Rscript -e "remotes::install_github('rspatial/terra')" 
