@@ -70,4 +70,5 @@ RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /us
 RUN Rscript -e "install.packages('remotes')" 
 # RUN Rscript -e "remotes::install_github('r-spatial/sf')"
 # RUN Rscript -e "remotes::install_github('rspatial/terra')" 
+RUN Rscript -e "remotes::install_github('geocompx/geocompkg')"
 RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')" 
