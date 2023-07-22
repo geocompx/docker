@@ -1,0 +1,7 @@
+version: '3.9'
+services:
+  geocompy:
+    image: python:3.11
+    build: .
+    
+    
