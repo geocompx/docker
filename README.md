@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Geocomputation with R in Docker
@@ -103,11 +104,12 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                        | description                                                                                                       | compressed size                                                                |
+| image                                                                        | description                                                                                                       | size                                                                |
 |------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/docker:latest image + book files                                             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)    |
 | [geocompr:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus core packages from geocompkg (Imports) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)   |
 | [geocompr:suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests)             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)  |
+| [geocompr:binder](https://github.com/geocompx/docker/blob/master/binder)     | docker pull ghcr.io/ghcr.io/geocompx/docker:binder runs with Binder                                               | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder)    |
 | [geocompr:osgeo](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:dev-osgeo                          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)     |
 | [geocompr:buildbook](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code                                          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook) |
 | [geocompr:qgis](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS                                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)      |
