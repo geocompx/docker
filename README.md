@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Geocomputation with R in Docker
@@ -104,7 +103,7 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                        | description                                                                                                       | size                                                                |
+| image                                                                        | description                                                                                                       | compressed size                                                                |
 |------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
 | [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/docker:latest image + book files                                             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)    |
 | [geocompr:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus core packages from geocompkg (Imports) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)   |
