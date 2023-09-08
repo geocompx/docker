@@ -24,7 +24,7 @@ RUN apt update && apt install -y \
 #     micromamba clean --all --yes
 
 # RUN sudo apt install wget
-# RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.637/quarto-0.9.637-linux-amd64.deb
+# RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.3.450/quarto-1.3.450-linux-amd64.deb
 # RUN dpkg -i quarto*
 
 
