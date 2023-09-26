@@ -1,16 +1,17 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Geocomputation with R in Docker
+# Geocomputation with Docker
 
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://github.com/geocompx/docker/blob/master/)
 
 This repo documents Docker images for geographic research and
-reproducing code in the book *Geocomputation with R*. The Dockerfiles
-build on work done for the [Rocker
-Project](https://www.rocker-project.org/). As documented on the Rocker
-Project website, Docker can save time and increase reproducibility by
-providing an environment with up-to-date and stable software.
+reproducing code in the books *Geocomputation with R* and
+*Geocomputation with Python*. The Dockerfiles build on work done for the
+[Rocker Project](https://www.rocker-project.org/). As documented on the
+Rocker Project website, Docker can save time and increase
+reproducibility by providing an environment with up-to-date and stable
+software.
 
 To get started, after you [install
 Docker](https://docs.docker.com/get-docker/), try running one of the
