@@ -238,3 +238,4 @@ You should then be able to run commands in the newly created images, e.g. with:
 docker run -it mamba /bin/bash
 ```
 
+
