@@ -1,0 +1,18 @@
+on:
+  schedule:
+    - cron: "0 12 * * WED"
+  push:
+    branches:
+      - master
+
+name: Build docker image
+
+jobs:
+  render:
+    name: Build packages on Ubuntu
+    runs-on: ubuntu-latest
+    steps:
+    # add more steps
+      - name: Push results
+        run: |
+          git push https://${{github.actor}}:${{secrets.GITHUB_TOKEN}}@github.com/${{github.repository}}.git HEAD:${{ github.ref }} || echo "No changes to commit"
