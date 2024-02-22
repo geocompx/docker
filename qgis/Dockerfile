@@ -48,6 +48,8 @@ RUN apt-get update
 RUN apt-get install -y qgis qgis-plugin-grass saga
 RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
 RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
+# work-around neccessary starting from QGIS 3.34
+RUN apt purge libpdal16
 
 # Outdated: install SAGA next generation plugin with the qgis-plugin-manager ###########################################
 # RUN qgis-plugin-manager init
