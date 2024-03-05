@@ -1,4 +1,4 @@
-FROM ghcr.io/geocompx/docker:latest
+FROM ghcr.io/geocompx/docker:suggests
 # RUN --mount=type=secret,id=GITHUB_PAT \
 #   echo "GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT)" > ~/.Renviron
 # RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
@@ -17,13 +17,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
   && apt-get update \
   && sudo apt-get install -y osmium-tool
 
-RUN R -e "options(repos = c(geocompr = 'https://geocompr.r-universe.dev', CRAN = 'https://cloud.r-project.org')); install.packages('geocompkg', dependencies = TRUE)"
-RUN su rstudio && \
-  cd /home/rstudio && \
-  wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
-  unzip main.zip && \
-  mv geocompr-main /home/rstudio/geocompr && \
-  rm main.zip
+# RUN R -e "options(repos = c(geocompr = 'https://geocompr.r-universe.dev', CRAN = 'https://cloud.r-project.org')); install.packages('geocompkg', dependencies = TRUE)"
 RUN chown -Rv rstudio /home/rstudio/geocompr
 # Set RStudio preferences
 # No inline code:
