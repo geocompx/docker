@@ -1,7 +1,7 @@
 FROM geocompr/geocompr:minimal
 RUN su rstudio && \
   cd /home/rstudio && \
-  wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
+  wget https://github.com/geocompx/geocompr/archive/main.zip && \
   unzip main.zip && \
   mv geocompr-main /home/rstudio/geocompr && \
   rm main.zip

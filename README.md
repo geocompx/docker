@@ -45,7 +45,7 @@ To run a container without RStudio, try the following.
 Use this resource to play with the examples, develop new answers to the
 questions at the end of each page, or even to generate reproducible
 examples to illustrate
-[issues](https://github.com/Robinlovelace/geocompr/issues) with the
+[issues](https://github.com/geocompx/geocompr/issues) with the
 books contents.
 
 If not, see documentation on using Docker at websites such as
@@ -66,7 +66,7 @@ changes before submitting a Pull Request to improve the book:
 ``` bash
 # download repo with Windows Powershell or a Unix terminal
 git clone https://github.com/geocompx/geocompr.git 
-# or download manually from https://github.com/Robinlovelace/geocompr/archive/main.zip
+# or download manually from https://github.com/geocompx/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:minimal

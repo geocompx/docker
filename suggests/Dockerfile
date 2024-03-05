@@ -5,7 +5,7 @@ FROM ghcr.io/geocompx/docker:latest
 RUN R -e "options(repos = c(geocompr = 'https://geocompr.r-universe.dev', CRAN = 'https://cloud.r-project.org')); install.packages('geocompkg', dependencies = TRUE)"
 RUN su rstudio && \
   cd /home/rstudio && \
-  wget https://github.com/Robinlovelace/geocompr/archive/main.zip && \
+  wget https://github.com/geocompx/geocompr/archive/main.zip && \
   unzip main.zip && \
   mv geocompr-main /home/rstudio/geocompr && \
   rm main.zip
