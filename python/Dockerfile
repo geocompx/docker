@@ -5,6 +5,7 @@ RUN apt update && apt install -y \
     unzip \
     git \
     && rm -rf /var/lib/apt/lists/*
+# Install quarto
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.37/quarto-1.5.37-linux-arm64.deb
 RUN dpkg -i quarto*
 RUN rm quarto*
