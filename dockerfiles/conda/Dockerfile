@@ -16,7 +16,7 @@ RUN . /root/.bashrc && \
 RUN echo "conda activate geocompy" >> ~/.bashrc
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v0.9.637/quarto-0.9.637-linux-amd64.deb
+RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.4.555/quarto-1.4.555-linux-amd64.deb
 RUN dpkg -i quarto*
 
 # RUN wget https://github.com/geocompr/py/archive/refs/heads/main.zip
