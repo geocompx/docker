@@ -1,4 +1,4 @@
-FROM rocker/geospatial:dev-osgeo
+FROM ghcr.io/geocompx/docker:suggests
 # ARG only sets the ENV var during the build session whereas ENV also keeps it in the containers later on
 ARG DEBIAN_FRONTEND noninteractive
 
@@ -70,6 +70,6 @@ RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /us
 RUN Rscript -e "install.packages('remotes')" 
 # RUN Rscript -e "remotes::install_github('r-spatial/sf')"
 # RUN Rscript -e "remotes::install_github('rspatial/terra')" 
-RUN Rscript -e 'install.packages("geocompkg", repos = c("https://geocompr.r-universe.dev", "https://cloud.r-project.org"), dependencies = TRUE, force = TRUE)'
-
+RUN Rscript -e "remotes::install_github('geocompx/geocompkg')"
+RUN Rscript -e "remotes::install_github('r-spatial/qgisprocess')" 
 
