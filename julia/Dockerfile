@@ -1,4 +1,4 @@
-FROM julia:1.10.0-rc3-bullseye
+FROM julia:1.11.0-rc3-bullseye
 # Install wget and unzip:
 RUN apt update && apt install -y \
     wget \
