@@ -5,6 +5,7 @@ RUN apt update && apt install -y \
     unzip \
     git \
     python3 \
+    python3-pip \
     && rm -rf /var/lib/apt/lists/*
 # Install quarto
 RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.54/quarto-1.5.54-linux-amd64.deb
