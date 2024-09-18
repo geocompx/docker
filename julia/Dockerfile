@@ -12,10 +12,10 @@ RUN dpkg -i quarto*
 RUN rm quarto*
 # Install quarto julia requirements
 RUN julia -e 'using Pkg; Pkg.add("IJulia")'
-RUN julia -e 'using IJulia; notebook()'
+# RUN julia -e 'using IJulia; notebook()'
 RUN julia -e 'using Pkg; Pkg.add("Revise")'
 
-RUN set -eux; \
-    mkdir "$JULIA_USER_HOME";
+# RUN set -eux; \
+    # mkdir "$JULIA_USER_HOME";
 
-RUN julia -e 'using Pkg; Pkg.instantiate();'
+# RUN julia -e 'using Pkg; Pkg.instantiate();'
