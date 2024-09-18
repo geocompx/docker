@@ -10,4 +10,11 @@ RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.54/quar
 RUN dpkg -i quarto*
 RUN rm quarto*
 # Install quarto julia requirements
-RUN julia -e 'using Pkg; Pkg.add("IJulia"); using IJulia; installkernel(“Julia nodeps”, “–depwarn=no”); using Pkg; Pkg.add("Revise")'
+RUN julia -e 'using Pkg; Pkg.add("IJulia")'
+RUN julia -e 'using IJulia; installkernel(“Julia nodeps”, “–depwarn=no”)'
+RUN julia -e 'using Pkg; Pkg.add("Revise")'
+
+RUN set -eux; \
+    mkdir "$JULIA_USER_HOME";
+
+RUN julia -e 'using Pkg; Pkg.instantiate();'
