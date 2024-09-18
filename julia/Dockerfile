@@ -11,6 +11,7 @@ RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.5.54/quar
 RUN dpkg -i quarto*
 RUN rm quarto*
 # Install quarto julia requirements
+RUN python3 -m pip install jupyter
 RUN julia -e 'using Pkg; Pkg.add("IJulia")'
 # RUN julia -e 'using IJulia; notebook()'
 RUN julia -e 'using Pkg; Pkg.add("Revise")'
