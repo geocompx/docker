@@ -12,7 +12,7 @@ RUN dpkg -i quarto*
 RUN rm quarto*
 # Install quarto julia requirements
 RUN julia -e 'using Pkg; Pkg.add("IJulia")'
-RUN julia -e 'using IJulia; installkernel(“Julia nodeps”, “–depwarn=no”)'
+RUN julia -e 'using IJulia; installkernel"Julia nodeps", "–depwarn=no")'
 RUN julia -e 'using Pkg; Pkg.add("Revise")'
 
 RUN set -eux; \
