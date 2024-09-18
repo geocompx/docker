@@ -14,6 +14,7 @@ RUN rm quarto*
 # Install quarto julia requirements
 RUN python3 -m pip install jupyter
 RUN julia -e 'using Pkg; Pkg.add("IJulia")'
+RUN julia -e 'using IJulia; installkernel("Julia nodeps", "–depwarn=no")'
 # RUN julia -e 'using IJulia; notebook()'
 RUN julia -e 'using Pkg; Pkg.add("Revise")'
 
