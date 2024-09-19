@@ -1,2 +1,3 @@
 FROM ghcr.io/prefix-dev/pixi:latest
-RUN pixi global install quarto
+RUN pixi global install quarto r-base r-tidyverse r-tmap r-pak
+RUN Rscript -e 'pak::pkg_install("geocompx/geocompkg")'
