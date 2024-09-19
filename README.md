@@ -45,8 +45,8 @@ To run a container without RStudio, try the following.
 Use this resource to play with the examples, develop new answers to the
 questions at the end of each page, or even to generate reproducible
 examples to illustrate
-[issues](https://github.com/geocompx/geocompr/issues) with the
-books contents.
+[issues](https://github.com/geocompx/geocompr/issues) with the books
+contents.
 
 If not, see documentation on using Docker at websites such as
 [docker.com](https://docs.docker.com/get-started/) and
@@ -77,7 +77,7 @@ docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
 
 If you see something like this after following the steps above,
-congratulations: it worked! See
+congratulations: it worked\! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
 
@@ -106,7 +106,7 @@ such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
 | image                                                                        | description                                                                                                       | size                                                                |
-|------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------|
+| ---------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/docker:latest image + book files                                             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)    |
 | [geocompr:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus core packages from geocompkg (Imports) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)   |
 | [geocompr:suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests)             | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)  |
@@ -115,8 +115,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:buildbook](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code                                          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook) |
 | [geocompr:qgis](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS                                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)      |
 | [geocompr:python](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)    |
-| [geocompr:geocompy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:geocompy with Python packages                                         | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=geocompy)  |
-| [geocompr:mamba](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba Space efficient installation Python image with MicroMamba       | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba)     |
+| [geocompr:rust](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust                                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)      |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
@@ -265,4 +264,3 @@ e.g. with:
 ``` bash
 docker run -it mamba /bin/bash
 ```
-
