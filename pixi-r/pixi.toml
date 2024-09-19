@@ -5,8 +5,11 @@ platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
 
 [pypi-dependencies]
 numpy = "*"
-pandas = "*"
+geopandas = "*"
 matplotlib = "*"
 
 [dependencies]
 python = ">=3.9"
+r = ">=4.0.2"
+r-tidyverse = "*"
+r-sf = "*"
