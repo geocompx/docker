@@ -94,8 +94,7 @@ image            | description                               | size
 [geocompr:buildbook](https://github.com/geocompx/docker/blob/master/)         |  docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook)
 [geocompr:qgis](https://github.com/geocompx/docker/blob/master/)              |  docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)
 [geocompr:python](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)
-[geocompr:geocompy](https://github.com/geocompx/docker/blob/master/)          |  docker pull ghcr.io/ghcr.io/geocompx/docker:geocompy with Python packages  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=geocompy)
-[geocompr:mamba](https://github.com/geocompx/docker/blob/master/)          |  docker pull ghcr.io/ghcr.io/geocompx/docker:mamba Space efficient installation Python image with MicroMamba  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba)
+[geocompr:rust](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
