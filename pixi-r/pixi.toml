@@ -12,5 +12,10 @@ r-stars = "*"
 r-tmap = "*"
 r-mlr3 = "*"
 r-pak = "*"
+r-knitr = "*"
+r-rmarkdown = "*"
+r-tidygraph = "*"
+r-leaflet = "*"
+r-plotly = "*"
 
 # TODO for pixi-r-py: pixi import ...

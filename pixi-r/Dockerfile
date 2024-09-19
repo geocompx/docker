@@ -8,5 +8,5 @@ RUN pixi shell-hook > /shell-hook.sh
 RUN echo 'exec "$@"' >> /shell-hook.sh
 # RUN pixi install 
 # RUN pixi shell -y
-RUN pixi run R -e 'pak::pkg_install("geocompx/geocompkg")'
+RUN pixi run R -e 'pak::pkg_install("geocompx/geocompkg", dependencies = TRUE)'
 ENTRYPOINT ["/bin/bash", "/shell-hook.sh"]
