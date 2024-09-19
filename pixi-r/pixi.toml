@@ -1,11 +1,16 @@
 [project]
 name = "my_project"
 channels = ["conda-forge"]
-platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+platforms = ["linux-64"]
 
 [dependencies]
-r = ">=4.0.2"
+r = ">=4.4"
 r-tidyverse = "*"
 r-sf = "*"
-r-stars = "*"
 r-terra = "*"
+r-stars = "*"
+r-tmap = "*"
+r-mlr3 = "*"
+r-pak = "*"
+
+# TODO for pixi-r-py: pixi import ...
