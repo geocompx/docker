@@ -5,7 +5,7 @@ COPY pixi.toml .
 
 # Install dependencies using pixi
 RUN pixi install
-# RUN pixi run R -e 'remotes::install_github("geocompx/geocompkg", dependencies = TRUE, upgrade = FALSE)'
+RUN pixi run R -e 'remotes::install_github("geocompx/geocompkg", dependencies = TRUE, upgrade = FALSE)'
 
 # Generate the shell hook script
 RUN pixi shell-hook > /shell-hook.sh
