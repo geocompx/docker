@@ -1,18 +1,14 @@
 FROM ghcr.io/prefix-dev/pixi:bullseye
 
 # Copy the pixi.toml file
-COPY pixi.toml .
+# COPY pixi.toml .
 
 # Install dependencies using pixi
-RUN pixi install
-RUN pixi run R -e 'remotes::install_github("geocompx/geocompkg", dependencies = TRUE, upgrade = FALSE)'
+RUN pixi global install r r-tidyverse r-sf r-terra r-stars r-tmap r-mlr3 r-remotes r-knitr r-bookdown r-tidygraph r-leaflet r-plotly r-curl r-languageserver r-data.table
+# RUN pixi run R -e 'remotes::install_github("geocompx/geocompkg", dependencies = TRUE, upgrade = FALSE)'
 
-# Generate the shell hook script
-RUN pixi shell-hook > /shell-hook.sh
-# extend the shell-hook script to run the command passed to the container
-RUN echo 'exec "$@"' >> /shell-hook.sh
-
-# Ensure the shell hook script is sourced in the profile
-RUN echo 'source /shell-hook.sh' >> /etc/profile
-# And root user's bashrc:
-RUN echo 'source /shell-hook.sh' >> /root/.bashrc
+# ln all /root/.pixi/envs/r/bin and /root/.pixi/bin to /usr/local/bin:
+RUN ln -s /root/.pixi/envs/r/bin/* /usr/local/bin
+RUN ln -s /root/.pixi/bin/* /usr/local/bin
+# Set the default repos to cloud.r-project.org:
+RUN echo 'options(repos = c(CRAN = "https://cloud.r-project.org/"))' >> /root/.Rprofile
