@@ -17,5 +17,6 @@ r-rmarkdown = "*"
 r-tidygraph = "*"
 r-leaflet = "*"
 r-plotly = "*"
+r-curl = "*"
 
 # TODO for pixi-r-py: pixi import ...
