@@ -86,19 +86,19 @@ Building on the [rocker-org](https://github.com/rocker-org/rocker-versioned/blob
 
 image            | description                               | size   
 ---------------- | ----------------------------------------- | ------ 
-[geocompr:latest](https://github.com/geocompx/docker/pkgs/container/docker/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:latest   image + book files  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)
-[geocompr:minimal](https://github.com/geocompx/docker/blob/master/minimal)   |  docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus core packages from geocompkg (Imports) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)
-[geocompr:suggests](https://github.com/geocompx/docker/blob/master/suggests) |  docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)
-[geocompr:binder](https://github.com/geocompx/docker/blob/master/binder)     |  docker pull ghcr.io/ghcr.io/geocompx/docker:binder runs with Binder | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder)
-[geocompr:osgeo](https://github.com/geocompx/docker/blob/master/)             |  docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:dev-osgeo  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)
-[geocompr:buildbook](https://github.com/geocompx/docker/blob/master/)         |  docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook)
-[geocompr:qgis](https://github.com/geocompx/docker/blob/master/)              |  docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)
-[geocompr:python](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)
-[geocompr:rust](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)
-[geocompr:pixi-r](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-r | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r)
-[geocompr:pixi-rpy](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-rpy | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy)
-
-
+[docker:latest](https://github.com/geocompx/docker/pkgs/container/docker/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:latest   image + book files  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)
+[docker:minimal](https://github.com/geocompx/docker/blob/master/minimal)   |  docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus geocompkg Imports | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)
+[docker:suggests](https://github.com/geocompx/docker/blob/master/suggests) |  docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)
+[docker:binder](https://github.com/geocompx/docker/blob/master/binder)     |  docker pull ghcr.io/ghcr.io/geocompx/docker:binder runs with Binder | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder)
+[docker:osgeo](https://github.com/geocompx/docker/blob/master/)             |  docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:dev-osgeo  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)
+[docker:buildbook](https://github.com/geocompx/docker/blob/master/)         |  docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook)
+[docker:qgis](https://github.com/geocompx/docker/blob/master/)              |  docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)
+[docker:rocker-rpy](https://github.com/geocompx/docker/blob/master/)              |  docker pull ghcr.io/ghcr.io/geocompx/docker:rocker-rpy with python  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpy)
+[docker:python](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)
+[docker:rust](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)
+[docker:pixi-r](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-r | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r)
+[docker:pixi-py](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-py)
+[docker:pixi-rpy](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-rpy | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy)
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
