@@ -1,5 +1,5 @@
 [project]
-name = "my_project"
+name = "pixi-r"
 channels = ["conda-forge"]
 platforms = ["linux-64"]
 
