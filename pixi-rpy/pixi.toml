@@ -18,6 +18,7 @@ r-tidygraph = "*"
 r-leaflet = "*"
 r-plotly = "*"
 r-curl = "*"
+r-languageserver = "*"
 # See https://github.com/geocompx/geocompy/blob/main/environment.yml
 bokeh = "*"
 branca = "*"
