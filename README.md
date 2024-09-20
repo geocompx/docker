@@ -117,6 +117,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [geocompr:python](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)    |
 | [geocompr:rust](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust                                                        | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)      |
 | [geocompr:pixi-r](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-r                                                                | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r)    |
+| [geocompr:pixi-rpy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-rpy                                                              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy)  |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
