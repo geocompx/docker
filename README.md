@@ -122,13 +122,26 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname to ghcr.io/geocompx/docker to get the image you want.
+Add :tagname after ghcr.io/geocompx/docker to get the image you want.
 
 <!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
 ``` bash
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:buildbook
 ```
+
+### Note on pixi based images in devcontainers
+
+For [reasons we don’t understand on the pixi
+side](https://github.com/prefix-dev/pixi/discussions/2088), you must set
+the locale with something like
+
+``` 
+  "postCreateCommand": "apt update && apt install -y --no-install-recommends locales; echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen; locale-gen",
+```
+
+If you use these in a
+[devcontainer](https://github.com/geocompx/geocompr/blob/77dd6207c3b0e1a51d62202c62d5d045c2961038/.devcontainer.json#L1-L9).
 
 ## Examples
 
