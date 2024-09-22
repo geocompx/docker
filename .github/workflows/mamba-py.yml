@@ -1,4 +1,4 @@
-name: mamba 
+name: mamba-py 
 
 on:
   schedule:
@@ -26,7 +26,7 @@ jobs:
             ghcr.io/geocompx/docker
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=mamba
+            type=raw,value=mamba-py
             type=sha,prefix=mamba_
             type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=mamba_
       -
@@ -52,7 +52,7 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: mamba
+          context: mamba-py
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}

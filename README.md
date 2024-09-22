@@ -120,7 +120,8 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [docker:pixi-r](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-r                                                    | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r)     |
 | [docker:pixi-py](https://github.com/geocompx/docker/blob/master/)          | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-py                                                   | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-py)    |
 | [docker:pixi-rpy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-rpy                                                  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy)   |
-| [docker:pixi-rpy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba                                                     | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba)      |
+| [docker:mamba-py](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba-py                                                     | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-py)      |
+| [docker:mamba-pyr](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba-pyr                                                     | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-pyr)      |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
@@ -273,12 +274,12 @@ docker build qgis -t test
 docker run -p 8888:8888 test
 docker build conda -t geocompy
 docker run -it geocompy /bin/bash
-docker build mamba -t mamba
+docker build  -t 
 ```
 
 You should then be able to run commands in the newly created images,
 e.g. with:
 
 ``` bash
-docker run -it mamba /bin/bash
+docker run -it -py /bin/bash
 ```
