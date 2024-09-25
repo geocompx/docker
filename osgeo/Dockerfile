@@ -1,5 +1,5 @@
 FROM rocker/geospatial:dev-osgeo
-RUN R -e "options(repos = c(geocompr = 'https://geocompr.r-universe.dev', CRAN = 'https://cloud.r-project.org')); install.packages('geocompkg')"
+RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE)"
 
 # Set RStudio preferences
 # No inline code:

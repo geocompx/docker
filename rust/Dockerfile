@@ -17,7 +17,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
   && apt-get update \
   && sudo apt-get install -y osmium-tool
 
-# RUN R -e "options(repos = c(geocompr = 'https://geocompr.r-universe.dev', CRAN = 'https://cloud.r-project.org')); install.packages('geocompkg', dependencies = TRUE)"
+# RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
 RUN chown -Rv rstudio /home/rstudio/geocompr
 # Set RStudio preferences
 # No inline code:
