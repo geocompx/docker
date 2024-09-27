@@ -70,6 +70,6 @@ RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /us
 RUN Rscript -e "install.packages('remotes')" 
 # RUN Rscript -e "remotes::install_github('r-spatial/sf')"
 # RUN Rscript -e "remotes::install_github('rspatial/terra')" 
-RUN Rscript -e 'install.packages("geocompkg", repos = c("https://geocompr.r-universe.dev", "https://cloud.r-project.org"), dependencies = TRUE, force = TRUE)'
+RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
 
 
