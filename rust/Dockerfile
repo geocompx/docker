@@ -1,7 +1,10 @@
 FROM ghcr.io/geocompx/docker:suggests
-# RUN --mount=type=secret,id=GITHUB_PAT \
-#   echo "GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT)" > ~/.Renviron
-# RUN R -e "remotes::install_github('geocompr/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
+# od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
+RUN R -e "remotes::install_github('Urban-Analytics-Technology-Platform/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
+# acteng/netgen:
+RUN R -e "remotes::install_github('acteng/netgen', upgrade = TRUE, dependencies = TRUE)"
+# robinlovelace/simodels:
+RUN R -e "remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
   && export PATH="$HOME/.cargo/bin:$PATH" \
@@ -19,8 +22,5 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
 
 # RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
 RUN chown -Rv rstudio /home/rstudio/geocompr
-# Set RStudio preferences
-# No inline code:
-RUN echo '{' >> /etc/rstudio/rstudio-prefs.json
-RUN echo '    "rmd_chunk_output_inline": false' >> /etc/rstudio/rstudio-prefs.json
-RUN echo '}' >> /etc/rstudio/rstudio-prefs.json
+
+
