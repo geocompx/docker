@@ -6,9 +6,12 @@ RUN R -e "remotes::install_github('acteng/netgen', upgrade = TRUE, dependencies 
 # robinlovelace/simodels:
 RUN R -e "remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y \
+RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
   && export PATH="$HOME/.cargo/bin:$PATH" \
   && echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile \
+  # Also make cargo available and rustc available with ln -s:
+  && ln -s /root/.cargo/bin/cargo /usr/local/bin/cargo \
+  && ln -s /root/.cargo/bin/rustc /usr/local/bin/rustc \
   && cargo install --locked --git https://github.com/Urban-Analytics-Technology-Platform/od2net \
   && cd /tmp \
   && git clone https://github.com/felt/tippecanoe.git \
