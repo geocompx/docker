@@ -21,7 +21,7 @@ following commands:
 # The latest version of rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker
 # With up-to-date OSGeo packages and qgisprocess:
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:dev-osgeo
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:osgeo
 ```
 
 If you are asked for a username and password, then you should use
@@ -111,7 +111,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [docker:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus geocompkg Imports          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)      |
 | [docker:suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)     |
 | [docker:binder](https://github.com/geocompx/docker/blob/master/binder)     | docker pull ghcr.io/ghcr.io/geocompx/docker:binder runs with Binder                                   | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder)       |
-| [docker:osgeo](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:dev-osgeo              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)        |
+| [docker:osgeo](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:osgeo              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)        |
 | [docker:buildbook](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code                              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook)    |
 | [docker:qgis](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS                                            | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)         |
 | [docker:rocker-rpy](https://github.com/geocompx/docker/blob/master/)       | docker pull ghcr.io/ghcr.io/geocompx/docker:rocker-rpy with python                                    | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpy)   |
