@@ -28,9 +28,9 @@ jobs:
             ghcr.io/geocompx/buildbook
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=buildbook
-            type=sha,prefix=buildbook_
-            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=buildbook_
+            type=sha,
+            type=raw,pattern={{date 'YYYY-MM-DD'}},prefix=date_
+            type=raw,value=latest
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1

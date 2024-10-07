@@ -1,4 +1,4 @@
-FROM ghcr.io/geocompx/docker:suggests
+FROM ghcr.io/geocompx/suggests
 RUN su rstudio && \
     cd /home/rstudio && \
     wget https://github.com/geocompx/geocompr/archive/main.zip && \
