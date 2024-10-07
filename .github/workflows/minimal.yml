@@ -31,6 +31,7 @@ jobs:
             type=raw,value=minimal
             type=sha,prefix=minimal_
             type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=minimal_
+            type=raw,value=latest
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
