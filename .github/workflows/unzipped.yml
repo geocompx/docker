@@ -28,9 +28,9 @@ jobs:
             ghcr.io/geocompx/unzipped
           # generate Docker tags based on the following events/attributes
           tags: |
-            type=raw,value=unzipped
-            type=sha,prefix=unzipped_
-            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=unzipped_
+            type=sha,
+            type=raw,pattern={{date 'YYYY-MM-DD'}},prefix=date_
+            type=raw,value=latest
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1

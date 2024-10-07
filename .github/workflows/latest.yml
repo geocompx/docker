@@ -28,9 +28,9 @@ jobs:
             ghcr.io/geocompx/latest
           # generate Docker tags based on the following events/attributes
           tags: |
+            type=sha,
+            type=raw,pattern={{date 'YYYY-MM-DD'}},prefix=date_
             type=raw,value=latest
-            type=sha,prefix=latest_
-            type=schedule,pattern={{date 'YYYY-MM-DD'}},prefix=latest_
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
