@@ -31,7 +31,7 @@ jobs:
           # generate Docker tags based on the following events/attributes
           tags: |
             type=sha,
-            type=raw,pattern={{date 'YYYY-MM-DD'}},prefix=date_
+            type=raw,value={{date 'YYYY-MM-DD'}},prefix=date_
             type=raw,value=latest
       -
         name: Set up QEMU
