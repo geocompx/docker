@@ -2,7 +2,7 @@ name: rocker-rpyjl
 
 on:
   schedule:
-    - cron: '0 01 * * 7' # every Sunday at 1am
+    - cron: '0 01 * * 4' # every thursday at 1 am
   push:
     branches:
       - 'master'
