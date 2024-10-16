@@ -72,7 +72,10 @@ See [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-
 You can also pull and run the same images from ghcr.io, e.g. as follow:
 
 ```bash
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/docker:minimal
+# For latest version:
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/minimal
+# For a specific version/date (see https://github.com/geocompx/docker/pkgs/container/minimal):
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/minimal:date_2024-10-14
 ```
 
 From this point to *build* the book you can open projects in the `geocompr` directory from the project box in the top-right hand corner, and  knit `index.Rmd` with the little `knit` button above the the RStudio script panel (`Ctl+Shift+B` should do the same job).
