@@ -73,3 +73,5 @@ RUN Rscript -e "install.packages('remotes')"
 RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
 
 
+
+
