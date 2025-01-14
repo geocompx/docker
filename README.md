@@ -21,7 +21,7 @@ following commands:
 # The latest version of rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker
 # With up-to-date OSGeo packages and qgisprocess:
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:osgeo
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/osgeo
 ```
 
 If you are asked for a username and password, then you should use
@@ -69,22 +69,25 @@ git clone https://github.com/geocompx/geocompr.git
 # or download manually from https://github.com/geocompx/geocompr/archive/main.zip
 cd geocompr # navigate into the repo
 # on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:minimal
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/minimal
 # on linux and mac without password:
-docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  ghcr.io/geocompx/docker:minimal
+docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  ghcr.io/geocompx/minimal
 ```
 
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
 
 If you see something like this after following the steps above,
-congratulations: it worked\! See
+congratulations: it worked! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
 
 You can also pull and run the same images from ghcr.io, e.g. as follow:
 
 ``` bash
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/docker:minimal
+# For latest version:
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/minimal
+# For a specific version/date (see https://github.com/geocompx/docker/pkgs/container/minimal):
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/ghcr.io/geocompx/minimal:date_2024-10-14
 ```
 
 From this point to *build* the book you can open projects in the
@@ -105,24 +108,24 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image                                                                      | description                                                                                           | size                                                                   |
-| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [docker:latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/docker:latest image + book files                                 | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest)       |
-| [docker:minimal](https://github.com/geocompx/docker/blob/master/minimal)   | docker pull ghcr.io/ghcr.io/geocompx/docker:minimal rocker/geospatial plus geocompkg Imports          | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal)      |
-| [docker:suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/docker:suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests)     |
-| [docker:binder](https://github.com/geocompx/docker/blob/master/binder)     | docker pull ghcr.io/ghcr.io/geocompx/docker:binder runs with Binder                                   | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder)       |
-| [docker:osgeo](https://github.com/geocompx/docker/blob/master/)            | docker pull ghcr.io/ghcr.io/geocompx/docker:osgeo running on rocker/geospatial:osgeo              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo)        |
-| [docker:buildbook](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:buildbook runs the book code                              | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook)    |
-| [docker:qgis](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:qgis with QGIS                                            | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis)         |
-| [docker:rocker-rpy](https://github.com/geocompx/docker/blob/master/)       | docker pull ghcr.io/ghcr.io/geocompx/docker:rocker-rpy with python                                    | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpy)   |
-| [docker:rocker-rpyjl](https://github.com/geocompx/docker/blob/master/)     | docker pull ghcr.io/ghcr.io/geocompx/docker:rocker-rpyjl with R, Python, and Julia                    | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpyjl) |
-| [docker:python](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:python Python image + geo pkgs                            | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python)       |
-| [docker:rust](https://github.com/geocompx/docker/blob/master/)             | docker pull ghcr.io/ghcr.io/geocompx/docker:rust with Rust                                            | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust)         |
-| [docker:pixi-r](https://github.com/geocompx/docker/blob/master/)           | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-r                                                    | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r)       |
-| [docker:pixi-py](https://github.com/geocompx/docker/blob/master/)          | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-py                                                   | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-py)      |
-| [docker:pixi-rpy](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:pixi-rpy                                                  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy)     |
-| [docker:mamba-py](https://github.com/geocompx/docker/blob/master/)         | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba-py                                                  | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-py)     |
-| [docker:mamba-pyr](https://github.com/geocompx/docker/blob/master/)        | docker pull ghcr.io/ghcr.io/geocompx/docker:mamba-pyr                                                 | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-pyr)    |
+| image | description | size |
+|----|----|----|
+| [latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/ghcr.io/geocompx/latest image + book files | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest) |
+| [minimal](https://github.com/geocompx/docker/blob/master/minimal) | docker pull ghcr.io/ghcr.io/geocompx/minimal rocker/geospatial plus geocompkg Imports | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal) |
+| [suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/ghcr.io/geocompx/suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests) |
+| [binder](https://github.com/geocompx/docker/blob/master/binder) | docker pull ghcr.io/ghcr.io/geocompx/binder runs with Binder | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder) |
+| [osgeo](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/osgeo running on rocker/geospatial:osgeo | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo) |
+| [buildbook](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/buildbook runs the book code | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook) |
+| [qgis](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/qgis with QGIS | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis) |
+| [rocker-rpy](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/rocker-rpy with python | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpy) |
+| [rocker-rpyjl](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/rocker-rpyjl with R, Python, and Julia | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpyjl) |
+| [python](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/python Python image + geo pkgs | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python) |
+| [rust](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/rust with Rust | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust) |
+| [pixi-r](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-r | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r) |
+| [pixi-py](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-py) |
+| [pixi-rpy](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-rpy | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy) |
+| [mamba-py](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/mamba-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-py) |
+| [mamba-pyr](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/mamba-pyr | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-pyr) |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
@@ -132,7 +135,7 @@ Add :tagname after ghcr.io/geocompx/docker to get the image you want.
 <!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:buildbook
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/buildbook
 ```
 
 ### Note on pixi based images in devcontainers
@@ -141,9 +144,7 @@ For [reasons we don’t understand on the pixi
 side](https://github.com/prefix-dev/pixi/discussions/2088), you must set
 the locale with something like
 
-``` 
-  "postCreateCommand": "apt update && apt install -y --no-install-recommends locales; echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen; locale-gen",
-```
+      "postCreateCommand": "apt update && apt install -y --no-install-recommends locales; echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen; locale-gen",
 
 If you use these in a
 [devcontainer](https://github.com/geocompx/geocompr/blob/77dd6207c3b0e1a51d62202c62d5d045c2961038/.devcontainer.json#L1-L9).
@@ -159,7 +160,7 @@ directory of the folder containing the code:
 ``` bash
 # on linux and mac with password:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
-  -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/docker:osgeo
+  -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/osgeo
 ```
 
 ### Python
@@ -167,7 +168,7 @@ docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
 The Python tag contains Python geospatial packages:
 
 ``` bash
-docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/docker:python /bin/bash
+docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/python /bin/bash
 
 python3
 import pandas as pd
@@ -178,7 +179,7 @@ import movingpandas as mpd
 You can run an interactive session via Reticulate in RStudio as follows:
 
 ``` bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker:python
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/python
 ```
 
 And then in the resulting RStudio session you can enter something along
@@ -210,8 +211,8 @@ To plot from Python packages (work in
 To run QGIS from the command line, you can run:
 
 ``` bash
-docker pull ghcr.io/geocompx/docker:qgis
-docker run --rm -ti ghcr.io/geocompx/docker:qgis /bin/bash
+docker pull ghcr.io/geocompx/qgis
+docker run --rm -ti ghcr.io/geocompx/qgis /bin/bash
 qgis --version
 # QGIS 3.20.3-Odense 'Odense' (495fbaecaf)
 ```
@@ -219,7 +220,7 @@ qgis --version
 You can also run QGIS algorithms via the `qgisprocess` package as
 follows:
 
-    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/docker:qgis
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/qgis
 
 Then open a browser and the local url such as
 <http://192.168.0.99:8786/> or <http://localhost:8786>, enter RStudio
@@ -242,9 +243,9 @@ table(qgis_algs$provider)
 
 You can access algorithms from other GIS programs through QGIS but they
 need to be installed. These can be accessed from the
-`ghcr.io/geocompx/docker:qgis` image as follows:
+`ghcr.io/geocompx/qgis` image as follows:
 
-    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/docker:qgis
+    docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/qgis
 
 Again, open the browser, e.g. at <http://localhost:8786>, and find the
 new algorithms as follows:
