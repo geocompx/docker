@@ -13,7 +13,6 @@ Rocker Project website, Docker can save time and increase
 reproducibility by providing an environment with up-to-date and stable
 software.
 
-
 To get started, after you [install
 Docker](https://docs.docker.com/get-docker/), try running one of the
 following commands:
