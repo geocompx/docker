@@ -4,6 +4,7 @@ FROM ghcr.io/geocompx/minimal
 ARG GITHUB_PAT
 
 # Use BuildKit secret mount to securely pass GitHub PAT during build
+# Export the PAT as an environment variable before running R
 RUN --mount=type=secret,id=GITHUB_PAT \
-    GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT) \
-    R -e "Sys.setenv(GITHUB_PAT=Sys.getenv('GITHUB_PAT')); remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
+    export GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT) && \
+    R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
