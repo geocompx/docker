@@ -11,8 +11,6 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-20.04
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
       -
         name: Checkout
@@ -58,5 +56,3 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          secrets: |
-            "GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}"
