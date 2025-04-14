@@ -269,19 +269,40 @@ disposal from the R command line 🎉
 
 ## Building the images locally
 
-You can build the images locally, e.g. as follows:
+You can build the images locally, e.g. as follows:
 
 ``` bash
 docker build qgis -t test
 docker run -p 8888:8888 test
 docker build conda -t geocompy
 docker run -it geocompy /bin/bash
-docker build  -t 
 ```
 
 You should then be able to run commands in the newly created images,
-e.g. with:
+e.g. with:
 
 ``` bash
-docker run -it  /bin/bash
+docker run -it test /bin/bash
 ```
+
+### Using GitHub PAT with BuildKit secret mounts
+
+Some images (like `suggests` and `rust`) require GitHub API access to install packages from GitHub repositories. To avoid hitting GitHub API rate limits, you can securely pass a GitHub Personal Access Token (PAT) during the build process using BuildKit secret mounts:
+
+1. First, create a GitHub Personal Access Token by following the instructions at [GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+2. Save your token to a file (but don't commit this file to version control):
+   ```bash
+   echo "your_github_token" > GITHUB_PAT.txt
+   ```
+
+3. Build the image using BuildKit secret mounts:
+   ```bash
+   # Enable BuildKit
+   export DOCKER_BUILDKIT=1
+   
+   # Build with secret mount
+   docker build --secret id=GITHUB_PAT,src=GITHUB_PAT.txt -t geocompx/suggests suggests
+   ```
+
+This approach is more secure than using build arguments or environment variables because the secret is only available during the specific build steps that need it and is not stored in any image layer or build cache.

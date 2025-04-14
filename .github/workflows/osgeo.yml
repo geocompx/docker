@@ -7,8 +7,6 @@ on:
     branches:
       - 'master'
       - 'main'
-    paths:
-      - 'osgeo/**'
 
 jobs:
   docker:

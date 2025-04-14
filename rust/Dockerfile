@@ -1,10 +1,22 @@
 FROM ghcr.io/geocompx/docker:suggests
+
+# Define ARG for compatibility
+ARG GITHUB_PAT
+
 # od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
-RUN R -e "remotes::install_github('Urban-Analytics-Technology-Platform/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
+RUN --mount=type=secret,id=GITHUB_PAT \
+    GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT 2>/dev/null || echo "") \
+    R -e "Sys.setenv(GITHUB_PAT=Sys.getenv('GITHUB_PAT')); remotes::install_github('Urban-Analytics-Technology-Platform/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
+
 # acteng/netgen:
-RUN R -e "remotes::install_github('acteng/netgen', upgrade = TRUE, dependencies = TRUE)"
+RUN --mount=type=secret,id=GITHUB_PAT \
+    GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT 2>/dev/null || echo "") \
+    R -e "Sys.setenv(GITHUB_PAT=Sys.getenv('GITHUB_PAT')); remotes::install_github('acteng/netgen', upgrade = TRUE, dependencies = TRUE)"
+
 # robinlovelace/simodels:
-RUN R -e "remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
+RUN --mount=type=secret,id=GITHUB_PAT \
+    GITHUB_PAT=$(cat /run/secrets/GITHUB_PAT 2>/dev/null || echo "") \
+    R -e "Sys.setenv(GITHUB_PAT=Sys.getenv('GITHUB_PAT')); remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
   && export PATH="$HOME/.cargo/bin:$PATH" \
@@ -25,6 +37,3 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
 
 # Ensure od2net is available in the PATH:
 RUN ln -s /root/.cargo/bin/od2net /usr/local/bin/od2net
-
-
-

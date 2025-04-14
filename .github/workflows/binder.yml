@@ -7,8 +7,6 @@ on:
     branches:
       - 'master'
       - 'main'
-    paths:
-      - 'binder/**'
 
 jobs:
   docker:
