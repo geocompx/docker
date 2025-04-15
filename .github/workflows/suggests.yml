@@ -52,7 +52,7 @@ jobs:
         name: Build and push # Or similar name
         uses: docker/build-push-action@v6
         with:
-          context: binder # Assuming context is 'binder'
+          context: suggests
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }} # Adjust if meta step is different
           labels: ${{ steps.meta.outputs.labels }} # Adjust if meta step is different
