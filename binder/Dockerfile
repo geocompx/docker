@@ -1,2 +1,2 @@
-FROM rocker/binder:4.4.1
-RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
+FROM rocker/binder:latest
+RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompr.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"

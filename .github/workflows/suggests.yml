@@ -2,7 +2,7 @@ name: suggests
 
 on:
   schedule:
-    - cron: '0 03 * * 5' # everyday at 1am
+    - cron: '0 03 * * 5' # every Friday at 1am
   push:
     branches:
       - 'master'
