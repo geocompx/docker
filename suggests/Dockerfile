@@ -1,2 +1,2 @@
 FROM ghcr.io/geocompx/minimal
-RUN R -e "remotes::install_github('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE)"
+RUN --mount=type=secret,id=GITHUB_PAT R -e "remotes::install_github('geocompx/geocompkg', auth_token = readLines('/run/secrets/GITHUB_PAT'), upgrade = TRUE, dependencies = TRUE, force = TRUE)"
