@@ -1,9 +1,7 @@
 FROM ghcr.io/geocompx/docker:suggests
 
 # od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
-RUN R -e "remotes::install_github('Urban-Analytics-Technology-Platform/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
-# acteng/netgen:
-RUN R -e "remotes::install_github('acteng/netgen', upgrade = TRUE, dependencies = TRUE)"
+RUN R -e "remotes::install_github('a-b-street/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
 # robinlovelace/simodels:
 RUN R -e "remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
