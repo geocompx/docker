@@ -121,9 +121,6 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | [rocker-rpyjl](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/rocker-rpyjl with R, Python, and Julia | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpyjl) |
 | [python](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/python Python image + geo pkgs | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python) |
 | [rust](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/rust with Rust | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust) |
-| [pixi-r](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-r | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-r) |
-| [pixi-py](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-py) |
-| [pixi-rpy](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/pixi-rpy | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=pixi-rpy) |
 | [mamba-py](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/mamba-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-py) |
 | [mamba-pyr](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/ghcr.io/geocompx/mamba-pyr | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-pyr) |
 
@@ -137,17 +134,6 @@ Add :tagname after ghcr.io/geocompx/docker to get the image you want.
 ``` bash
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/buildbook
 ```
-
-### Note on pixi based images in devcontainers
-
-For [reasons we don’t understand on the pixi
-side](https://github.com/prefix-dev/pixi/discussions/2088), you must set
-the locale with something like
-
-      "postCreateCommand": "apt update && apt install -y --no-install-recommends locales; echo \"en_US.UTF-8 UTF-8\" >> /etc/locale.gen; locale-gen",
-
-If you use these in a
-[devcontainer](https://github.com/geocompx/geocompr/blob/77dd6207c3b0e1a51d62202c62d5d045c2961038/.devcontainer.json#L1-L9).
 
 ## Examples
 

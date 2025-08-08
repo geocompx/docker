@@ -38,12 +38,6 @@ jobs:
             dockerfile: mamba-py/Dockerfile
           - image: mamba-pyr
             dockerfile: mamba-pyr/Dockerfile
-          - image: pixi-r
-            dockerfile: pixi-r/Dockerfile
-          - image: pixi-py
-            dockerfile: pixi-py/Dockerfile
-          - image: pixi-rpy
-            dockerfile: pixi-rpy/Dockerfile
           - image: latest # This is the root Dockerfile
             dockerfile: Dockerfile
 
