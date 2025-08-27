@@ -73,15 +73,16 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push
+        if: github.event_name == 'schedule' || github.event_name == 'push'
         uses: docker/build-push-action@v6
         with:
           context: .
           file: ${{ matrix.dockerfile }}
-          push: ${{ github.event_name == 'schedule' || github.event_name == 'push' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
-            "GITHUB_PAT=${{ secrets.GITHUB_PAT }}"
+            "GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}"
 
   update-readme:
     needs: build-and-push-images
