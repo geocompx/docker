@@ -55,7 +55,7 @@ jobs:
           images: ghcr.io/geocompx/${{ matrix.image }}
           tags: |
             type=sha,enable=${{ github.event_name == 'push' }}
-            type=raw,value=latest,enable=${{ matrix.image == 'latest' && github.event_name == 'schedule' }}
+            type=raw,value=latest,enable=${{ matrix.image == 'latest' }}
             type=raw,value={{date 'YYYY-MM-DD'}},enable=${{ github.event_name == 'schedule' }}
 
       - name: Set up QEMU
