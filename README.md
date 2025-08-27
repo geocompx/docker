@@ -19,7 +19,7 @@ following commands:
 
 ``` bash
 # The latest version of rocker/geospatial + geocompr dependencies
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/docker
+docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/latest
 # With up-to-date OSGeo packages and qgisprocess:
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/osgeo
 ```
@@ -40,7 +40,7 @@ html version of the book.
 
 To run a container without RStudio, try the following.
 
-    docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/docker /bin/bash
+    docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/latest /bin/bash
 
 Use this resource to play with the examples, develop new answers to the
 questions at the end of each page, or even to generate reproducible
@@ -127,7 +127,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname after ghcr.io/geocompx/docker to get the image you want.
+Add :tagname after ghcr.io/geocompx/<image> to get the image you want.
 
 <!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 

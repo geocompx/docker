@@ -1,4 +1,4 @@
-FROM ghcr.io/geocompx/docker:suggests
+FROM ghcr.io/geocompx/suggests
 
 # od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
 RUN R -e "remotes::install_github('a-b-street/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"

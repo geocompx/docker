@@ -1,4 +1,4 @@
-FROM ghcr.io/geocompx/docker:minimal
+FROM ghcr.io/geocompx/minimal
 RUN /rocker_scripts/install_python.sh
 # Install ubuntu pkg so that python3 is python and pip3 is pip:
 RUN apt-get update && apt-get install -y python-is-python3
