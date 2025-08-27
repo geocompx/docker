@@ -13,4 +13,4 @@ RUN apt-get update && apt-get install -y --no-install-recommends python-is-pytho
 	&& rm -rf /var/lib/apt/lists/*
 
 # Optionally install project requirements into the existing venv if desired:
-# RUN /opt/venv/bin/pip install -r https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt
+RUN /opt/venv/bin/pip install -r https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt
