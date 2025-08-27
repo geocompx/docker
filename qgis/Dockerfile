@@ -45,7 +45,11 @@ RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/ubuntugis-unstable-
 RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-nightly-release `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 RUN apt-get update
-RUN apt-get install -y qgis qgis-plugin-grass saga
+# TODO: Re-instate this line to install GRASS plugin?:
+# RUN apt-get install -y qgis qgis-plugin-grass saga
+# Without grass-plugin (failing), see https://github.com/geocompx/docker/issues/102
+RUN apt-get install -y qgis saga
+
 RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
 RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
 
