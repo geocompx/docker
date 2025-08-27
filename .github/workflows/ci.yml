@@ -79,7 +79,7 @@ jobs:
           context: .
           file: ${{ matrix.dockerfile }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ matrix.image == 'latest' && format('{0}\n{1}', steps.meta.outputs.tags, 'ghcr.io/geocompx/latest') || steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           secrets: |
             "GITHUB_PAT=${{ secrets.GITHUB_TOKEN }}"
