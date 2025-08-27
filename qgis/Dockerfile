@@ -41,14 +41,12 @@ RUN mkdir -p /root/.gnupg
 RUN chmod 700 /root/.gnupg
 # Version that works in image:
 RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 6B827C12C2D425E227EDCA75089EBE08314DF160
-RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/ubuntugis-unstable-archive-keyring.gpg] http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu `lsb_release -c -s` main" > /etc/apt/sources.list.d/ubuntugis-unstable.list'
+
+# Add QGIS LTR repo and key
 RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
-RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-nightly-release `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
-RUN apt-get update
-# TODO: Re-instate this line to install GRASS plugin?:
-# RUN apt-get install -y qgis qgis-plugin-grass saga
-# Without grass-plugin (failing), see https://github.com/geocompx/docker/issues/102
-RUN apt-get install -y qgis saga
+# RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
+RUN apt-get update && apt-get -y --with-new-pkgs upgrade
+RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
 
 RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
 RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
