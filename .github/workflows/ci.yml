@@ -52,7 +52,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/geocompx/docker/${{ matrix.image }}
+          images: ghcr.io/geocompx/${{ matrix.image }}
           tags: |
             type=sha,enable=${{ github.event_name == 'push' }}
             type=raw,value=latest,enable=${{ matrix.image == 'latest' && github.event_name == 'schedule' }}
