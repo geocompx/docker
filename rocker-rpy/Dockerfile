@@ -8,9 +8,8 @@ RUN /rocker_scripts/install_python.sh
 ENV RETICULATE_PYTHON=/opt/venv/bin/python
 ENV PATH=/opt/venv/bin:${PATH}
 
-# Small helper so the 'python' command exists (doesn't reinstall python itself).
-RUN apt-get update && apt-get install -y --no-install-recommends python-is-python3 \
-	&& rm -rf /var/lib/apt/lists/*
+# Override the python symlink to use the venv Python (not system Python)
+RUN ln -sf /opt/venv/bin/python /usr/bin/python
 
 # Optionally install project requirements into the existing venv if desired:
 RUN /opt/venv/bin/pip install -r https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt
