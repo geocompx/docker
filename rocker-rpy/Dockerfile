@@ -10,6 +10,8 @@ ENV PATH=/opt/venv/bin:${PATH}
 
 # Override the python symlink to use the venv Python (not system Python)
 RUN ln -sf /opt/venv/bin/python /usr/bin/python
+RUN ln -sf /opt/venv/bin/python /bin/python 
+
 # Set version of Python that Quarto will use:
 ENV QUARTO_PYTHON=/opt/venv/bin/python
 
