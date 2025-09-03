@@ -1,4 +1,4 @@
-FROM python:3.11.4-slim-bullseye
+FROM python:3.13-slim-bookworm
 # Install wget and unzip:
 RUN apt update && apt install -y \
     wget \
