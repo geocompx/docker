@@ -41,6 +41,8 @@ jobs:
             dockerfile: mamba-py/Dockerfile
           - image: mamba-pyr
             dockerfile: mamba-pyr/Dockerfile
+          - image: pythonr
+            dockerfile: pythonr/Dockerfile
           - image: latest # This is the root Dockerfile
             dockerfile: Dockerfile
 
