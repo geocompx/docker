@@ -1,4 +1,4 @@
-FROM python:3.13-slim-bookworm
+FROM ghcr.io/geocompx/python
 
 # Install R
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -9,6 +9,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libxml2-dev \
     libtcl8.6 \
     libtk8.6 \
+    # rspatial deps:
+    libgdal-dev \
+    libproj-dev \
+    libspatialindex-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Set up locale for R installation
@@ -26,3 +30,9 @@ RUN echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
 # Install geocompx:
 RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompr.r-universe.dev', 'https://mlr-org.r-universe.dev', 'https://cloud.r-project.org'))"
 
+# # build the book
+# RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
+#     unzip main.zip && \
+#     mv geocompr-main geocompr && \
+#     rm main.zip
+# RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
