@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # rspatial deps:
     libgdal-dev \
     libproj-dev \
+    libudunits2-dev \
     libspatialindex-dev \
     && rm -rf /var/lib/apt/lists/*
 
@@ -27,6 +28,8 @@ RUN bash install_R_source.sh
 RUN mkdir -p /etc/R
 RUN echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/latest"))' > /etc/R/Rprofile.site
 RUN echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
+# Install sf:
+RUN R -e "install.packages('sf')"
 # Install geocompx:
 RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompr.r-universe.dev', 'https://mlr-org.r-universe.dev', 'https://cloud.r-project.org'))"
 
