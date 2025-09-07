@@ -47,8 +47,10 @@ RUN echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
 RUN R -e "install.packages('sf', repos = 'https://cloud.r-project.org')"
 # Install remotes for GitHub installs:
 RUN R -e "install.packages('remotes', repos = 'https://cloud.r-project.org')"
+# Install bookdown for book building:
+RUN R -e "install.packages('bookdown', repos = 'https://cloud.r-project.org')"
 # Install geocompx:
-RUN R -e "remotes::install_github('geocompx/geocompkg')"
+RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://cloud.r-project.org'), dependencies = TRUE, force = TRUE)"
 
 # # build the book
 # RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
