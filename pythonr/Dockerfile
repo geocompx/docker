@@ -29,9 +29,9 @@ RUN mkdir -p /etc/R
 RUN echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/latest"))' > /etc/R/Rprofile.site
 RUN echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
 # Install sf:
-RUN R -e "install.packages('sf')"
+RUN R -e "install.packages('sf', repos = 'https://cloud.r-project.org')"
 # Install geocompx:
-RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompr.r-universe.dev', 'https://mlr-org.r-universe.dev', 'https://cloud.r-project.org'))"
+RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = 'https://cloud.r-project.org')"
 
 # # build the book
 # RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
