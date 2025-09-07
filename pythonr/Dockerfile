@@ -35,6 +35,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     libfontconfig1-dev \
     libfreetype6-dev \
     build-essential \
+    libharfbuzz-dev \
+    libfribidi-dev \
     cmake \
     && rm -rf /var/lib/apt/lists/*
 

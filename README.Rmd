@@ -116,8 +116,6 @@ image            | description                               | size
 [rocker-rpyjl](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/rocker-rpyjl with R, Python, and Julia | ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/geocompx/docker/gh-pages/badges/rocker-rpyjl-size.json)
 [python](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/geocompx/python Python image + geo pkgs  | ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/geocompx/docker/gh-pages/badges/python-size.json)
 [rust](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/geocompx/rust with Rust  | ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/geocompx/docker/gh-pages/badges/rust-size.json)
-[mamba-py](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/geocompx/mamba-py | ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/geocompx/docker/gh-pages/badges/mamba-py-size.json)
-[mamba-pyr](https://github.com/geocompx/docker/blob/master/)            |  docker pull ghcr.io/geocompx/mamba-pyr | ![](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/geocompx/docker/gh-pages/badges/mamba-pyr-size.json)
 
 The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
@@ -146,6 +144,7 @@ docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
 The Python tag contains Python geospatial packages:
 
 ```bash
+docker pull ghcr.io/geocompx/python
 docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/python /bin/bash
 
 python3
