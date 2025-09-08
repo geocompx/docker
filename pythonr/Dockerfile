@@ -37,6 +37,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libharfbuzz-dev \
     libfribidi-dev \
+    libv8-dev \
+    libmagick++-dev \
     cmake \
     && rm -rf /var/lib/apt/lists/*
 
