@@ -1,11 +1,17 @@
 FROM python:3.12-slim-bookworm
 
-# Install wget, unzip, git, and build tools (needed for compiling packages like matplotlib)
-RUN apt update && apt install -y \
+# Install dependencies, git, and gh cli
+RUN apt-get update && apt-get install -y --no-install-recommends \
     wget \
     unzip \
     git \
     build-essential \
+    curl \
+    && curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
+    && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list \
+    && apt-get update \
+    && apt-get install -y gh \
     && rm -rf /var/lib/apt/lists/*
 
 # Install quarto

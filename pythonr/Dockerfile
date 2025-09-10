@@ -1,18 +1,17 @@
 FROM ghcr.io/geocompx/python
 
-# Install R
+# Install R and locales
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    wget \
     ca-certificates \
     libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
     libtcl8.6 \
     libtk8.6 \
+    locales \
+    && locale-gen C.UTF-8 \
     && rm -rf /var/lib/apt/lists/*
 
-# Set up locale for R installation
-RUN apt-get update && apt-get install -y locales && locale-gen C.UTF-8 && rm -rf /var/lib/apt/lists/*
 ENV LANG=C.UTF-8
 ENV LC_ALL=C.UTF-8
 
@@ -42,11 +41,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     cmake \
     && rm -rf /var/lib/apt/lists/*
 
+# Install ragg and its dependencies for high-quality headless graphics
+RUN R -e "install.packages(c('ragg', 'systemfonts', 'textshaping'))"
 
-# Configure rspm
-RUN mkdir -p /etc/R
-RUN echo 'options(repos = c(CRAN = "https://packagemanager.rstudio.com/all/latest"))' > /etc/R/Rprofile.site
-RUN echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
+# Configure R to use ragg as the default graphics device
+RUN mkdir -p /etc/R && \
+    echo "options(repos = c(CRAN = 'https://cloud.r-project.org'))" > /etc/R/Rprofile.site && \
+    echo "if (requireNamespace('ragg', quietly = TRUE)) { options(device = ragg::agg_png) }" >> /etc/R/Rprofile.site && \
+    echo 'options(Ncpus = parallel::detectCores())' >> /etc/R/Rprofile.site
+
 # Install sf:
 RUN R -e "install.packages('sf', repos = 'https://cloud.r-project.org')"
 # Install remotes for GitHub installs:
