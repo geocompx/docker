@@ -108,21 +108,21 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| Image                                                        | Command                                                                                        | Size   |
-| :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------- | :----- |
-| [binder](https://ghcr.io/geocompx/binder:latest)             | [docker pull ghcr.io/geocompx/binder](https://github.com/geocompx/geocompr/blob/master/)       | 6.74GB |
-| [buildbook](https://ghcr.io/geocompx/buildbook:latest)       | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/geocompr/blob/master/)    | 6.44GB |
-| [geocompy](https://ghcr.io/geocompx/geocompy:latest)         | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/geocompr/blob/master/)       | 5.09GB |
-| [minimal](https://ghcr.io/geocompx/minimal:latest)           | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/geocompr/blob/master/)      | 5.43GB |
-| [osgeo](https://ghcr.io/geocompx/osgeo:latest)               | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/geocompr/blob/master/)        | 6.07GB |
-| [python](https://ghcr.io/geocompx/python:latest)             | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/geocompr/blob/master/)       | 2.32GB |
-| [pythonr](https://ghcr.io/geocompx/pythonr:latest)           | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/geocompr/blob/master/)      | 4.37GB |
-| [qgis](https://ghcr.io/geocompx/qgis:latest)                 | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/geocompr/blob/master/)         | 8.63GB |
-| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest)     | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/geocompr/blob/master/)   | 6.46GB |
-| [rocker-rpyjl](https://ghcr.io/geocompx/rocker-rpyjl:latest) | [docker pull ghcr.io/geocompx/rocker-rpyjl](https://github.com/geocompx/geocompr/blob/master/) | 7.68GB |
-| [rust](https://ghcr.io/geocompx/rust:latest)                 | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/geocompr/blob/master/)         | 7.63GB |
-| [suggests](https://ghcr.io/geocompx/suggests:latest)         | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/geocompr/blob/master/)     | 5.67GB |
-| [unzipped](https://ghcr.io/geocompx/unzipped:latest)         | [docker pull ghcr.io/geocompx/unzipped](https://github.com/geocompx/geocompr/blob/master/)     | 4.98GB |
+| Image                                                        | Command                                                                                                             | Size   |
+| :----------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :----- |
+| [binder](https://ghcr.io/geocompx/binder:latest)             | [docker pull ghcr.io/geocompx/binder](https://github.com/geocompx/docker/blob/master/binder/Dockerfile)             | 6.74GB |
+| [buildbook](https://ghcr.io/geocompx/buildbook:latest)       | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile)       | 6.44GB |
+| [geocompy](https://ghcr.io/geocompx/geocompy:latest)         | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/docker/blob/master/geocompy/Dockerfile)           | 5.09GB |
+| [minimal](https://ghcr.io/geocompx/minimal:latest)           | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile)           | 5.43GB |
+| [osgeo](https://ghcr.io/geocompx/osgeo:latest)               | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile)               | 6.07GB |
+| [python](https://ghcr.io/geocompx/python:latest)             | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile)             | 2.32GB |
+| [pythonr](https://ghcr.io/geocompx/pythonr:latest)           | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile)           | 4.37GB |
+| [qgis](https://ghcr.io/geocompx/qgis:latest)                 | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/docker/blob/master/qgis/Dockerfile)                 | 8.63GB |
+| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest)     | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/docker/blob/master/rocker-rpy/Dockerfile)     | 6.46GB |
+| [rocker-rpyjl](https://ghcr.io/geocompx/rocker-rpyjl:latest) | [docker pull ghcr.io/geocompx/rocker-rpyjl](https://github.com/geocompx/docker/blob/master/rocker-rpyjl/Dockerfile) | 7.68GB |
+| [rust](https://ghcr.io/geocompx/rust:latest)                 | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/docker/blob/master/rust/Dockerfile)                 | 7.63GB |
+| [suggests](https://ghcr.io/geocompx/suggests:latest)         | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile)         | 5.67GB |
+| [unzipped](https://ghcr.io/geocompx/unzipped:latest)         | [docker pull ghcr.io/geocompx/unzipped](https://github.com/geocompx/docker/blob/master/unzipped/Dockerfile)         | 4.98GB |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
