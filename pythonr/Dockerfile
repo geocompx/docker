@@ -26,10 +26,10 @@ RUN mkdir -p /etc/R && \
     echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'))" > /root/.Rprofile
 
 # Install pak
-RUN R -e "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest')); install.packages('pak')"
+RUN R -e "install.packages('pak')"
 
 # # Install packages with pak (binaries from RSPM)
-# RUN Rscript -e "pak::pkg_install('sf')"
+RUN Rscript -e "pak::pkg_install('sf')"
 
 # RUN wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/refs/heads/master/scripts/setup_R.sh
 # RUN bash setup_R.sh
@@ -76,7 +76,7 @@ RUN R -e "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux
 # # Install bookdown for book building:
 # RUN R -e "install.packages('bookdown', repos = 'https://cloud.r-project.org')"
 # # Install geocompx:
-# RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://cloud.r-project.org'), dependencies = TRUE, force = TRUE)"
+RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'), dependencies = TRUE, force = TRUE)"
 
 # # build the book
 # RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
