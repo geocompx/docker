@@ -1,3 +1,4 @@
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Geocomputation with Docker
@@ -76,7 +77,7 @@ docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
 
 If you see something like this after following the steps above,
-congratulations: it worked! See
+congratulations: it worked\! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
 
@@ -107,26 +108,26 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| image | description | size |
-|----|----|----|
-| [latest](https://github.com/geocompx/docker/pkgs/container/docker/) | docker pull ghcr.io/geocompx/latest image + book files | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=latest) |
-| [minimal](https://github.com/geocompx/docker/blob/master/minimal) | docker pull ghcr.io/geocompx/minimal rocker/geospatial plus geocompkg Imports | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=minimal) |
-| [suggests](https://github.com/geocompx/docker/blob/master/suggests) | docker pull ghcr.io/geocompx/suggests includes all packages from geocompkgs (Suggests) | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=suggests) |
-| [binder](https://github.com/geocompx/docker/blob/master/binder) | docker pull ghcr.io/geocompx/binder runs with Binder | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=binder) |
-| [osgeo](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/osgeo running on rocker/geospatial:osgeo | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=osgeo) |
-| [buildbook](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/buildbook runs the book code | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=buildbook) |
-| [qgis](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/qgis with QGIS | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=qgis) |
-| [rocker-rpy](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/rocker-rpy with python | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpy) |
-| [rocker-rpyjl](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/rocker-rpyjl with R, Python, and Julia | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rocker-rpyjl) |
-| [python](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/python Python image + geo pkgs | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=python) |
-| [rust](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/rust with Rust | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=rust) |
-| [mamba-py](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/mamba-py | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-py) |
-| [mamba-pyr](https://github.com/geocompx/docker/blob/master/) | docker pull ghcr.io/geocompx/mamba-pyr | ![](https://ghcr-badge.deta.dev/geocompx/docker/size?tag=mamba-pyr) |
+| Image                                                        | Command                                                                                        | Size   |
+| :----------------------------------------------------------- | :--------------------------------------------------------------------------------------------- | :----- |
+| [binder](https://ghcr.io/geocompx/binder:latest)             | [docker pull ghcr.io/geocompx/binder](https://github.com/geocompx/geocompr/blob/master/)       | 6.74GB |
+| [buildbook](https://ghcr.io/geocompx/buildbook:latest)       | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/geocompr/blob/master/)    | 6.44GB |
+| [geocompy](https://ghcr.io/geocompx/geocompy:latest)         | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/geocompr/blob/master/)       | 5.09GB |
+| [minimal](https://ghcr.io/geocompx/minimal:latest)           | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/geocompr/blob/master/)      | 5.43GB |
+| [osgeo](https://ghcr.io/geocompx/osgeo:latest)               | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/geocompr/blob/master/)        | 6.07GB |
+| [python](https://ghcr.io/geocompx/python:latest)             | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/geocompr/blob/master/)       | 2.32GB |
+| [pythonr](https://ghcr.io/geocompx/pythonr:latest)           | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/geocompr/blob/master/)      | 4.37GB |
+| [qgis](https://ghcr.io/geocompx/qgis:latest)                 | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/geocompr/blob/master/)         | 8.63GB |
+| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest)     | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/geocompr/blob/master/)   | 6.46GB |
+| [rocker-rpyjl](https://ghcr.io/geocompx/rocker-rpyjl:latest) | [docker pull ghcr.io/geocompx/rocker-rpyjl](https://github.com/geocompx/geocompr/blob/master/) | 7.68GB |
+| [rust](https://ghcr.io/geocompx/rust:latest)                 | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/geocompr/blob/master/)         | 7.63GB |
+| [suggests](https://ghcr.io/geocompx/suggests:latest)         | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/geocompr/blob/master/)     | 5.67GB |
+| [unzipped](https://ghcr.io/geocompx/unzipped:latest)         | [docker pull ghcr.io/geocompx/unzipped](https://github.com/geocompx/geocompr/blob/master/)     | 4.98GB |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
 
-Add :tagname after ghcr.io/geocompx/<image> to get the image you want.
+Add :tagname after ghcr.io/geocompx/imagename to get the image you want.
 
 <!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
 
@@ -153,6 +154,7 @@ docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
 The Python tag contains Python geospatial packages:
 
 ``` bash
+docker pull ghcr.io/geocompx/python
 docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/python /bin/bash
 
 python3
@@ -254,19 +256,51 @@ disposal from the R command line 🎉
 
 ## Building the images locally
 
-You can build the images locally, e.g. as follows:
+You can build the images locally, e.g. as follows:
 
 ``` bash
 docker build qgis -t test
 docker run -p 8888:8888 test
 docker build conda -t geocompy
 docker run -it geocompy /bin/bash
+docker build  -t 
 ```
 
 You should then be able to run commands in the newly created images,
-e.g. with:
+e.g. with:
 
 ``` bash
-docker run -it test /bin/bash
+docker run -it  /bin/bash
 ```
 
+### Using GitHub PAT with BuildKit secret mounts
+
+Some images (like `suggests` and `rust`) require GitHub API access to
+install packages from GitHub repositories. To avoid hitting GitHub API
+rate limits, you can securely pass a GitHub Personal Access Token (PAT)
+during the build process using BuildKit secret mounts:
+
+1.  First, create a GitHub Personal Access Token by following the
+    instructions at [GitHub
+    Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+2.  Save your token to a file (but don’t commit this file to version
+    control):
+    
+    ``` bash
+    echo "your_github_token" > GITHUB_PAT.txt
+    ```
+
+3.  Build the image using BuildKit secret mounts:
+    
+    ``` bash
+    # Enable BuildKit
+    export DOCKER_BUILDKIT=1
+    
+    # Build with secret mount
+    docker build --secret id=GITHUB_PAT,src=GITHUB_PAT.txt -t geocompx/suggests suggests
+    ```
+
+This approach is more secure than using build arguments or environment
+variables because the secret is only available during the specific build
+steps that need it and is not stored in any image layer or build cache.
