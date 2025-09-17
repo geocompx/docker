@@ -24,7 +24,7 @@ RUN mkdir -p /etc/R && \
 RUN R -e "install.packages('pak')"
 
 # # Install packages with pak (binaries from RSPM)
-RUN Rscript -e "pak::pkg('sf')"
+RUN Rscript -e "pak::pak('sf')"
 
 RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'), dependencies = TRUE, force = TRUE)"
 
