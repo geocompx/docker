@@ -1,0 +1,5 @@
+image_name,description,size
+binder,"docker pull ghcr.io/geocompx/binder runs with Binder",6.74GB
+buildbook,"docker pull ghcr.io/geocompx/buildbook runs the book code",6.44GB
+geocompy,"docker pull ghcr.io/geocompx/latest image + book files",5.09GB
+mamba-py,"docker pull ghcr.io/geocompx/mamba-py",4.01GB
