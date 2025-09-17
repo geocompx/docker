@@ -28,9 +28,9 @@ RUN Rscript -e "pak::pak('sf')"
 
 RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'), dependencies = TRUE, force = TRUE)"
 
-# build the book
-RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
-    unzip main.zip && \
-    mv geocompr-main geocompr && \
-    rm main.zip
-RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
+# # Uncomment the following to test building the book:
+# RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
+#     unzip main.zip && \
+#     mv geocompr-main geocompr && \
+#     rm main.zip
+# RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
