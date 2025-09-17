@@ -37,10 +37,6 @@ jobs:
             dockerfile: rust/Dockerfile
           - image: buildbook
             dockerfile: buildbook/Dockerfile
-          - image: mamba-py
-            dockerfile: mamba-py/Dockerfile
-          - image: mamba-pyr
-            dockerfile: mamba-pyr/Dockerfile
           - image: python
             dockerfile: python/Dockerfile
           - image: pythonr

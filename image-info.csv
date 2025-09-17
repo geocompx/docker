@@ -1,5 +1,14 @@
 image_name,description,size
-binder,"docker pull ghcr.io/geocompx/binder runs with Binder",6.74GB
-buildbook,"docker pull ghcr.io/geocompx/buildbook runs the book code",6.44GB
-geocompy,"docker pull ghcr.io/geocompx/latest image + book files",5.09GB
-mamba-py,"docker pull ghcr.io/geocompx/mamba-py",4.01GB
+binder,"docker pull ghcr.io/geocompx/binder",6.74GB
+buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB
+geocompy,"docker pull ghcr.io/geocompx/latest",5.09GB
+minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB
+osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB
+python,"docker pull ghcr.io/geocompx/python",2.32GB
+pythonr,"docker pull ghcr.io/geocompx/pythonr",4.37GB
+qgis,"docker pull ghcr.io/geocompx/qgis",8.63GB
+rocker-rpy,"docker pull ghcr.io/geocompx/rocker-rpy",6.46GB
+rocker-rpyjl,"docker pull ghcr.io/geocompx/rocker-rpyjl",7.68GB
+rust,"docker pull ghcr.io/geocompx/rust",7.63GB
+suggests,"docker pull ghcr.io/geocompx/suggests",5.67GB
+unzipped,"docker pull ghcr.io/geocompx/unzipped",4.98GB

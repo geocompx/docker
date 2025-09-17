@@ -24,13 +24,13 @@ RUN mkdir -p /etc/R && \
 RUN R -e "install.packages('pak')"
 
 # # Install packages with pak (binaries from RSPM)
-RUN Rscript -e "pak::pkg_install('sf')"
+RUN Rscript -e "pak::pkg('sf')"
 
 RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.dev', 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'), dependencies = TRUE, force = TRUE)"
 
-# # build the book
-# RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
-#     unzip main.zip && \
-#     mv geocompr-main geocompr && \
-#     rm main.zip
-# RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
+# build the book
+RUN wget https://github.com/geocompx/geocompr/archive/main.zip && \
+    unzip main.zip && \
+    mv geocompr-main geocompr && \
+    rm main.zip
+RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
