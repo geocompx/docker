@@ -14,6 +14,7 @@ RUN curl -O https://cdn.posit.co/r/debian-12/pkgs/r-${R_VERSION}_1_$(dpkg --prin
 
 ENV PATH="/opt/R/${R_VERSION}/bin:${PATH}"
 ENV R_PKG_TYPE=binary
+ENV RETICULATE_PYTHON="/usr/local/bin/python"
 
 RUN mkdir -p /etc/R && \
     echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'))" > /etc/R/Rprofile.site && \
