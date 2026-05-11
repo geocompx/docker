@@ -17,13 +17,6 @@ jobs:
       dockerfile: minimal/Dockerfile
     secrets: inherit
 
-  binder:
-    uses: ./.github/workflows/build-docker.yml
-    with:
-      image: binder
-      dockerfile: binder/Dockerfile
-    secrets: inherit
-
   osgeo:
     uses: ./.github/workflows/build-docker.yml
     with:
@@ -102,7 +95,7 @@ jobs:
     secrets: inherit
 
   update-readme:
-    needs: [minimal, binder, osgeo, qgis, python, suggests, latest, rocker-rpy, pythonr, buildbook, rust, rocker-rpyjl]
+    needs: [minimal, osgeo, qgis, python, suggests, latest, rocker-rpy, pythonr, buildbook, rust, rocker-rpyjl]
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule' # Only run this on the scheduled run
     steps:

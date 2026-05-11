@@ -20,12 +20,10 @@ declare -A descriptions=(
     ["python"]="docker pull ghcr.io/geocompx/python"
     ["rust"]="docker pull ghcr.io/geocompx/rust"
     ["pythonr"]="docker pull ghcr.io/geocompx/pythonr"
-    ["geocompy"]="docker pull ghcr.io/geocompx/latest"
-    ["unzipped"]="docker pull ghcr.io/geocompx/unzipped"
 )
 
 # List of packages from the original script
-packages=("binder" "buildbook" "geocompy" "minimal" "osgeo" "python" "pythonr" "qgis" "rocker-rpy" "rocker-rpyjl" "rust" "suggests" "unzipped")
+packages=("binder" "buildbook" "minimal" "osgeo" "python" "pythonr" "qgis" "rocker-rpy" "rocker-rpyjl" "rust" "suggests")
 
 for pkg in "${packages[@]}"; do
     if [[ -n "${descriptions[$pkg]}" ]]; then
