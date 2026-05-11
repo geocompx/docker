@@ -1,11 +1,16 @@
 FROM ghcr.io/geocompx/suggests
 
 # od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
-RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('a-b-street/od2net/r', upgrade = TRUE, dependencies = TRUE)"
+RUN git clone --depth 1 https://github.com/a-b-street/od2net.git /tmp/od2net \
+  && R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::local_install('/tmp/od2net/r', upgrade = TRUE, dependencies = TRUE)" \
+  && rm -rf /tmp/od2net
 # robinlovelace/simodels:
 RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
-RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
+    && rm -rf /var/lib/apt/lists/* \
+  && curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain stable -y \
   && export PATH="$HOME/.cargo/bin:$PATH" \
   && echo 'export PATH="$HOME/.cargo/bin:$PATH"' >> ~/.profile \
   # Also make cargo available and rustc available with ln -s:
@@ -16,11 +21,11 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
   && git clone https://github.com/felt/tippecanoe.git \
   && cd tippecanoe \
   && make -j \
-  && sudo make install \
+  && make install \
   && tippecanoe --version \
   && echo "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted" >> /etc/apt/sources.list \
   && apt-get update \
-  && sudo apt-get install -y osmium-tool
+  && apt-get install -y osmium-tool
 
 # Ensure od2net is available in the PATH:
 RUN ln -s /root/.cargo/bin/od2net /usr/local/bin/od2net
