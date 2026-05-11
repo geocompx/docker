@@ -1,5 +1,5 @@
 # aim: test code to install dependencies for docker images
-remotes::install_github("r-hub/sysreqs")
+pak::pak("r-hub/sysreqs")
 sysreqs::sysreqs(desc = system.file(package = "sf", "DESCRIPTION"), platform = "linux-x86_64-ubuntu-gcc") # works
 paste(sysreqs::sysreqs(desc = system.file(package = "tmap", "DESCRIPTION"), platform = "linux-x86_64-ubuntu-gcc"), sep = " ")
 reqs = sysreqs::sysreqs(desc = system.file(package = "geocompkg", "DESCRIPTION"), platform = "linux-x86_64-ubuntu-gcc")

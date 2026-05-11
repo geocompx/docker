@@ -10,4 +10,4 @@ RUN # Update your repository information to reflect also the just added QGIS one
 RUN apt update
 RUN # Now, install QGIS:
 RUN apt -y install qgis qgis-plugin-grass
-RUN R -e "remotes::install_github('paleolimbot/qgisprocess')"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('paleolimbot/qgisprocess')"

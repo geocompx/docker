@@ -17,7 +17,7 @@ RUN apt-get update \
 RUN R -e "remotes::install_cran('tinytest')"
 # install the r-spatial stack linking to new OSGeo pkgs
 RUN R -e "install.packages(c('sf', 'lwgeom', 'rgdal', 'sp', 'stars'))"
-RUN R -e "remotes::install_github('geocompr/geocompkg')"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('geocompr/geocompkg')"
 # RUN apt-get update && \
   # set repos to CRAN to allow package updates
  #   echo "options(repos = c(CRAN = 'https://cran.rstudio.com/'), download.file.method = 'libcurl')" >> /usr/local/lib/R/etc/Rprofile.site 

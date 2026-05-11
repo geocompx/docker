@@ -1,9 +1,9 @@
 FROM ghcr.io/geocompx/suggests
 
 # od2net R package: https://urban-analytics-technology-platform.github.io/od2net/r/
-RUN R -e "remotes::install_github('a-b-street/od2net', subdir = 'r', upgrade = TRUE, dependencies = TRUE)"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('a-b-street/od2net/r', upgrade = TRUE, dependencies = TRUE)"
 # robinlovelace/simodels:
-RUN R -e "remotes::install_github('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('robinlovelace/simodels', upgrade = TRUE, dependencies = TRUE)"
 
 RUN curl https://sh.rustup.rs -sSf | sh -s -- --default-toolchain nightly -y \
   && export PATH="$HOME/.cargo/bin:$PATH" \

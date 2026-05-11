@@ -7,7 +7,7 @@ ARG QUARTO_VERSION=1.9.37
 # inherit Quarto support even when they only reference the published image.
 LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
 
-RUN R -e "install.packages('remotes', repos = 'https://cloud.r-project.org/'); remotes::install_github('geocompx/geocompkg', upgrade = TRUE)"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('geocompx/geocompkg', upgrade = TRUE)"
 # Update quarto to latest stable version:
 RUN /rocker_scripts/install_quarto.sh ${QUARTO_VERSION}
 # Set RStudio preferences

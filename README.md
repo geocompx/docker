@@ -217,7 +217,7 @@ console:
 ``` r
 system("qgis --version")
 ## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
-remotes::install_github("paleolimbot/qgisprocess") # install the latest version of the package
+pak::pak("paleolimbot/qgisprocess") # install the latest version of the package
 qgis_algs = qgisprocess::qgis_algorithms()
 nrow(qgis_algs)
 ## [1] 303
@@ -240,7 +240,7 @@ new algorithms as follows:
 ``` r
 system("qgis --version")
 ## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
-remotes::install_github("paleolimbot/qgisprocess") # install the latest version of the package
+pak::pak("paleolimbot/qgisprocess") # install the latest version of the package
 ## Skipping install of 'qgisprocess' from a github remote, the SHA1 (6e378511) has not changed since last install.
 qgis_algs = qgisprocess::qgis_algorithms()
 nrow(qgis_algs)
