@@ -1,5 +1,7 @@
 FROM continuumio/miniconda3
 
+ARG QUARTO_VERSION=1.9.37
+
 # See https://pythonspeed.com/articles/conda-docker-image-size/
 # RUN environment.yml .
 RUN wget https://github.com/geocompr/py/raw/main/environment.yml
@@ -16,8 +18,12 @@ RUN . /root/.bashrc && \
 RUN echo "conda activate geocompy" >> ~/.bashrc
 SHELL ["/bin/bash", "--login", "-c"]
 
-RUN wget https://github.com/quarto-dev/quarto-cli/releases/download/v1.7.34/quarto-1.7.34-linux-amd64.deb
-RUN dpkg -i quarto*
+RUN arch="$(dpkg --print-architecture)" \
+    && wget -q "https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && apt-get update \
+    && apt-get install -y --no-install-recommends "./quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && rm "quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
+    && rm -rf /var/lib/apt/lists/*
 
 # RUN wget https://github.com/geocompr/py/archive/refs/heads/main.zip
 # RUN unzip main.zip
