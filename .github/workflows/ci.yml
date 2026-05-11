@@ -10,67 +10,99 @@ on:
   workflow_dispatch: # Allows manual triggering
 
 jobs:
-  phase-1:
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - image: minimal
-            dockerfile: minimal/Dockerfile
-          - image: binder
-            dockerfile: binder/Dockerfile
-          - image: osgeo
-            dockerfile: osgeo/Dockerfile
-          - image: qgis
-            dockerfile: qgis/Dockerfile
-          - image: python
-            dockerfile: python/Dockerfile
+  minimal:
     uses: ./.github/workflows/build-docker.yml
     with:
-      image: ${{ matrix.image }}
-      dockerfile: ${{ matrix.dockerfile }}
+      image: minimal
+      dockerfile: minimal/Dockerfile
     secrets: inherit
 
-  phase-2:
-    needs: phase-1
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - image: suggests
-            dockerfile: suggests/Dockerfile
-          - image: rocker-rpy
-            dockerfile: rocker-rpy/Dockerfile
-          - image: pythonr
-            dockerfile: pythonr/Dockerfile
-          - image: latest
-            dockerfile: Dockerfile
+  binder:
     uses: ./.github/workflows/build-docker.yml
     with:
-      image: ${{ matrix.image }}
-      dockerfile: ${{ matrix.dockerfile }}
+      image: binder
+      dockerfile: binder/Dockerfile
     secrets: inherit
 
-  phase-3:
-    needs: phase-2
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - image: rust
-            dockerfile: rust/Dockerfile
-          - image: buildbook
-            dockerfile: buildbook/Dockerfile
-          - image: rocker-rpyjl
-            dockerfile: rocker-rpyjl/Dockerfile
+  osgeo:
     uses: ./.github/workflows/build-docker.yml
     with:
-      image: ${{ matrix.image }}
-      dockerfile: ${{ matrix.dockerfile }}
+      image: osgeo
+      dockerfile: osgeo/Dockerfile
+    secrets: inherit
+
+  qgis:
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: qgis
+      dockerfile: qgis/Dockerfile
+    secrets: inherit
+
+  python:
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: python
+      dockerfile: python/Dockerfile
+    secrets: inherit
+
+  suggests:
+    needs: minimal
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: suggests
+      dockerfile: suggests/Dockerfile
+    secrets: inherit
+
+  latest:
+    needs: minimal
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: latest
+      dockerfile: Dockerfile
+    secrets: inherit
+
+  rocker-rpy:
+    needs: minimal
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: rocker-rpy
+      dockerfile: rocker-rpy/Dockerfile
+    secrets: inherit
+
+  pythonr:
+    needs: python
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: pythonr
+      dockerfile: pythonr/Dockerfile
+    secrets: inherit
+
+  buildbook:
+    needs: suggests
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: buildbook
+      dockerfile: buildbook/Dockerfile
+    secrets: inherit
+
+  rust:
+    needs: suggests
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: rust
+      dockerfile: rust/Dockerfile
+    secrets: inherit
+
+  rocker-rpyjl:
+    needs: rocker-rpy
+    uses: ./.github/workflows/build-docker.yml
+    with:
+      image: rocker-rpyjl
+      dockerfile: rocker-rpyjl/Dockerfile
     secrets: inherit
 
   update-readme:
-    needs: [phase-1, phase-2, phase-3]
+    needs: [minimal, binder, osgeo, qgis, python, suggests, latest, rocker-rpy, pythonr, buildbook, rust, rocker-rpyjl]
     runs-on: ubuntu-latest
     if: github.event_name == 'schedule' # Only run this on the scheduled run
     steps:
