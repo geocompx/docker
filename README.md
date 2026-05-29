@@ -52,6 +52,24 @@ If not, see documentation on using Docker at websites such as
 [docker.com](https://docs.docker.com/get-started/) and
 <https://www.rocker-project.org/>.
 
+## Devcontainers and VS Code support
+
+The R-enabled images in this repository (`latest`, `minimal`, `osgeo`,
+`pythonr`) fully support VS Code Devcontainers. When you launch a
+devcontainer using one of these images:
+
+- **Alternative R Frontend (arf)** is pre-installed system-wide to
+  `/usr/local/bin/arf`, providing a highly improved interactive R shell
+  with bracketed paste, multi-line editing, and syntax highlighting.
+- VS Code is automatically configured via container metadata to use
+  `arf` as the default R terminal frontend out-of-the-box.
+- For interactive convenience, the `R` command is aliased system-wide
+  (`alias R=arf`) in bash terminals. Typing `R` in an interactive shell
+  automatically routes to the `arf` console. (This is safe as shell
+  aliases only apply in interactive bash shells and do not interfere
+  with standard non-interactive scripts running package installations or
+  build pipelines).
+
 ## Sharing folders with Docker
 
 To use these Docker images for your own work you will need to share
@@ -77,7 +95,7 @@ docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr
 ![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
 
 If you see something like this after following the steps above,
-congratulations: it worked\! See
+congratulations: it worked! See
 [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server)
 for more info.
 
@@ -108,19 +126,18 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-| Image                                                        | Command                                                                                                             | Size   |
-| :----------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------ | :----- |
-| [binder](https://ghcr.io/geocompx/binder:latest)             | [docker pull ghcr.io/geocompx/binder](https://github.com/geocompx/docker/blob/master/binder/Dockerfile)             | 6.74GB |
-| [buildbook](https://ghcr.io/geocompx/buildbook:latest)       | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile)       | 6.44GB |
-| [minimal](https://ghcr.io/geocompx/minimal:latest)           | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile)           | 5.43GB |
-| [osgeo](https://ghcr.io/geocompx/osgeo:latest)               | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile)               | 6.07GB |
-| [python](https://ghcr.io/geocompx/python:latest)             | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile)             | 2.32GB |
-| [pythonr](https://ghcr.io/geocompx/pythonr:latest)           | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile)           | 4.37GB |
-| [qgis](https://ghcr.io/geocompx/qgis:latest)                 | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/docker/blob/master/qgis/Dockerfile)                 | 8.63GB |
-| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest)     | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/docker/blob/master/rocker-rpy/Dockerfile)     | 6.46GB |
+| Image | Command | Size |
+|:---|:---|:---|
+| [buildbook](https://ghcr.io/geocompx/buildbook:latest) | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile) | 6.44GB |
+| [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB |
+| [osgeo](https://ghcr.io/geocompx/osgeo:latest) | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile) | 6.07GB |
+| [python](https://ghcr.io/geocompx/python:latest) | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile) | 2.32GB |
+| [pythonr](https://ghcr.io/geocompx/pythonr:latest) | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile) | 4.37GB |
+| [qgis](https://ghcr.io/geocompx/qgis:latest) | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/docker/blob/master/qgis/Dockerfile) | 8.63GB |
+| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest) | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/docker/blob/master/rocker-rpy/Dockerfile) | 6.46GB |
 | [rocker-rpyjl](https://ghcr.io/geocompx/rocker-rpyjl:latest) | [docker pull ghcr.io/geocompx/rocker-rpyjl](https://github.com/geocompx/docker/blob/master/rocker-rpyjl/Dockerfile) | 7.68GB |
-| [rust](https://ghcr.io/geocompx/rust:latest)                 | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/docker/blob/master/rust/Dockerfile)                 | 7.63GB |
-| [suggests](https://ghcr.io/geocompx/suggests:latest)         | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile)         | 5.67GB |
+| [rust](https://ghcr.io/geocompx/rust:latest) | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/docker/blob/master/rust/Dockerfile) | 7.63GB |
+| [suggests](https://ghcr.io/geocompx/suggests:latest) | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile) | 5.67GB |
 
 The base image is `rocker/geospatial` from
 [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
@@ -284,17 +301,17 @@ during the build process using BuildKit secret mounts:
 
 2.  Save your token to a file (but don’t commit this file to version
     control):
-    
+
     ``` bash
     echo "your_github_token" > GITHUB_PAT.txt
     ```
 
 3.  Build the image using BuildKit secret mounts:
-    
+
     ``` bash
     # Enable BuildKit
     export DOCKER_BUILDKIT=1
-    
+
     # Build with secret mount
     docker build --secret id=GITHUB_PAT,src=GITHUB_PAT.txt -t geocompx/suggests suggests
     ```

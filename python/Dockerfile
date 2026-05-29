@@ -3,7 +3,7 @@ FROM ${PYTHON_BASE_IMAGE}
 
 ARG QUARTO_VERSION=1.9.37
 
-LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"]}}}]'
 
 # Install dependencies, git, and gh cli
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -32,6 +32,7 @@ RUN arch="$(dpkg --print-architecture)" \
 RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/py/main/requirements.txt \
     && python -m pip install --no-cache-dir -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
+
 
 # Clean up build tools to reduce image size (optional but recommended)
 RUN apt purge -y build-essential && apt autoremove -y && rm -rf /var/lib/apt/lists/*
