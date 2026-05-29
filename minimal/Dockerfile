@@ -13,12 +13,12 @@ RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', 
 RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | sh \
     && cp /root/.cargo/bin/arf /usr/local/bin/arf
 # Update quarto to latest stable version:
-    && sh /tmp/arf-installer.sh \
-    && rm /tmp/arf-installer.sh
-# Update quarto to latest stable version:
 RUN /rocker_scripts/install_quarto.sh ${QUARTO_VERSION}
 # Set RStudio preferences
 # No inline code:
 RUN echo '{' >> /etc/rstudio/rstudio-prefs.json
 RUN echo '    "rmd_chunk_output_inline": false' >> /etc/rstudio/rstudio-prefs.json
 RUN echo '}' >> /etc/rstudio/rstudio-prefs.json
+
+# System-wide shell alias to make 'R' run 'arf' in interactive shells
+RUN echo "alias R=arf" >> /etc/bash.bashrc

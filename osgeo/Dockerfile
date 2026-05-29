@@ -11,3 +11,6 @@ RUN export ARF_CONSOLE_INSTALL_DIR=/usr/local ARF_CONSOLE_NO_MODIFY_PATH=1 \
 RUN echo '{' >> /etc/rstudio/rstudio-prefs.json
 RUN echo '    "rmd_chunk_output_inline": false' >> /etc/rstudio/rstudio-prefs.json
 RUN echo '}' >> /etc/rstudio/rstudio-prefs.json
+
+# System-wide shell alias to make 'R' run 'arf' in interactive shells
+RUN echo "alias R=arf" >> /etc/bash.bashrc

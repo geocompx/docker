@@ -43,3 +43,6 @@ RUN R -e "install.packages('geocompkg', repos = c('https://geocompx.r-universe.d
 #     mv geocompr-main geocompr && \
 #     rm main.zip
 # RUN Rscript -e 'bookdown::render_book("geocompr", output_format = "bookdown::gitbook", clean = FALSE)'
+
+# System-wide shell alias to make 'R' run 'arf' in interactive shells
+RUN echo "alias R=arf" >> /etc/bash.bashrc
