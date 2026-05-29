@@ -1,5 +1,7 @@
 FROM ghcr.io/geocompx/python
 
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.linux":"/usr/local/bin/arf"},"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+
 # Note: previously this image built on Rocker but install_R_ppa.sh fails on Debian 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
@@ -15,6 +17,10 @@ RUN curl -O https://cdn.posit.co/r/debian-12/pkgs/r-${R_VERSION}_1_$(dpkg --prin
 ENV PATH="/opt/R/${R_VERSION}/bin:${PATH}"
 ENV R_PKG_TYPE=binary
 ENV RETICULATE_PYTHON="/usr/local/bin/python"
+
+# Install arf — Alternative R Frontend (https://github.com/eitsupi/arf)
+RUN ARF_CONSOLE_INSTALL_DIR=/usr/local ARF_CONSOLE_NO_MODIFY_PATH=1 \
+    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/download/v0.3.4/arf-console-installer.sh | sh
 
 RUN mkdir -p /etc/R && \
     echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'))" > /etc/R/Rprofile.site && \
