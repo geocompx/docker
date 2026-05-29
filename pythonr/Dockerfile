@@ -6,6 +6,7 @@ LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
     locales \
+    xz-utils \
     && rm -rf /var/lib/apt/lists/*
 # Manual R installation: Download and install R DEB for Debian 12
 ARG R_VERSION=4.5.1
