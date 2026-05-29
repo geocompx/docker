@@ -48,8 +48,11 @@ RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.or
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
 RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
 
-RUN wget -qO sagang_plugin.zip https://plugins.qgis.org/plugins/processing_saga_nextgen/version/0.0.7/download/
-RUN unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins
+RUN mkdir -p /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins \
+    && wget -qO sagang_plugin.zip https://github.com/north-road/qgis-processing-saga-nextgen/archive/refs/heads/master.zip \
+    && unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins \
+    && mv /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins/qgis-processing-saga-nextgen-master /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
+    && rm sagang_plugin.zip
 
 # Outdated: install SAGA next generation plugin with the qgis-plugin-manager ###########################################
 # RUN qgis-plugin-manager init
