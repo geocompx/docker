@@ -33,5 +33,8 @@ RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/
     && python -m pip install --no-cache-dir -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
 
+# Install arf — Alternative R Frontend (https://github.com/eitsupi/arf)
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | sh
+
 # Clean up build tools to reduce image size (optional but recommended)
 RUN apt purge -y build-essential && apt autoremove -y && rm -rf /var/lib/apt/lists/*
