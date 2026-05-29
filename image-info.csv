@@ -1,5 +1,4 @@
 image_name,description,size
-binder,"docker pull ghcr.io/geocompx/binder",6.74GB
 buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB
 minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB
 osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB

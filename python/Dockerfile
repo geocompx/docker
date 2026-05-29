@@ -3,7 +3,7 @@ FROM ${PYTHON_BASE_IMAGE}
 
 ARG QUARTO_VERSION=1.9.37
 
-LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"]}}}]'
 
 # Install dependencies, git, and gh cli
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -33,8 +33,6 @@ RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/
     && python -m pip install --no-cache-dir -r /tmp/requirements.txt \
     && rm /tmp/requirements.txt
 
-# Install arf — Alternative R Frontend (https://github.com/eitsupi/arf)
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | sh
 
 # Clean up build tools to reduce image size (optional but recommended)
 RUN apt purge -y build-essential && apt autoremove -y && rm -rf /var/lib/apt/lists/*
