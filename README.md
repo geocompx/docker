@@ -52,6 +52,24 @@ If not, see documentation on using Docker at websites such as
 [docker.com](https://docs.docker.com/get-started/) and
 <https://www.rocker-project.org/>.
 
+## Devcontainers and VS Code support
+
+The R-enabled images in this repository (`latest`, `minimal`, `osgeo`,
+`pythonr`) fully support VS Code Devcontainers. When you launch a
+devcontainer using one of these images:
+
+- **Alternative R Frontend (arf)** is pre-installed system-wide to
+  `/usr/local/bin/arf`, providing a highly improved interactive R shell
+  with bracketed paste, multi-line editing, and syntax highlighting.
+- VS Code is automatically configured via container metadata to use
+  `arf` as the default R terminal frontend out-of-the-box.
+- For interactive convenience, the `R` command is aliased system-wide
+  (`alias R=arf`) in bash terminals. Typing `R` in an interactive shell
+  automatically routes to the `arf` console. (This is safe as shell
+  aliases only apply in interactive bash shells and do not interfere
+  with standard non-interactive scripts running package installations or
+  build pipelines).
+
 ## Sharing folders with Docker
 
 To use these Docker images for your own work you will need to share
