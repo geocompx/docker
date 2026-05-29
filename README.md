@@ -129,6 +129,7 @@ repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 | Image | Command | Size |
 |:---|:---|:---|
 | [buildbook](https://ghcr.io/geocompx/buildbook:latest) | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile) | 6.44GB |
+| [latest](https://ghcr.io/geocompx/latest:latest) | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/docker/blob/master/Dockerfile) | 5.70GB |
 | [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB |
 | [osgeo](https://ghcr.io/geocompx/osgeo:latest) | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile) | 6.07GB |
 | [python](https://ghcr.io/geocompx/python:latest) | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile) | 2.32GB |

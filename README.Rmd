@@ -101,7 +101,12 @@ img_names = imgs[[1]]
 urls = paste0("https://ghcr.io/geocompx/", imgs$image_name, ":latest")
 imgs[[1]] = paste0("[", imgs[[1]], "](", urls, ")")
 # Example: https://github.com/geocompx/docker/blob/master/binder/Dockerfile
-source_code_urls = paste0("https://github.com/geocompx/docker/blob/master/", img_names, "/Dockerfile")
+# latest lives at root Dockerfile, others in subdirectories
+source_code_urls = ifelse(
+  img_names == "latest",
+  paste0("https://github.com/geocompx/docker/blob/master/Dockerfile"),
+  paste0("https://github.com/geocompx/docker/blob/master/", img_names, "/Dockerfile")
+)
 imgs[[2]] = paste0("[", imgs[[2]], "](", source_code_urls, ")")
 names(imgs) = c("Image", "Command", "Size")
 ```

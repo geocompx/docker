@@ -1,5 +1,6 @@
 image_name,description,size
 buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB
+latest,"docker pull ghcr.io/geocompx/latest",5.70GB
 minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB
 osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB
 python,"docker pull ghcr.io/geocompx/python",2.32GB
