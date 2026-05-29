@@ -19,8 +19,10 @@ ENV R_PKG_TYPE=binary
 ENV RETICULATE_PYTHON="/usr/local/bin/python"
 
 # Install arf — Alternative R Frontend (https://github.com/eitsupi/arf)
-RUN ARF_CONSOLE_INSTALL_DIR=/usr/local ARF_CONSOLE_NO_MODIFY_PATH=1 \
-    curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/download/v0.3.4/arf-console-installer.sh | sh
+RUN export ARF_CONSOLE_INSTALL_DIR=/usr/local ARF_CONSOLE_NO_MODIFY_PATH=1 \
+    && wget -qO /tmp/arf-installer.sh https://github.com/eitsupi/arf/releases/download/v0.3.4/arf-console-installer.sh \
+    && sh /tmp/arf-installer.sh \
+    && rm /tmp/arf-installer.sh
 
 RUN mkdir -p /etc/R && \
     echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'))" > /etc/R/Rprofile.site && \
