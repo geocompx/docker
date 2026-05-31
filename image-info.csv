@@ -1,12 +1,12 @@
-image_name,description,size
-buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB
-latest,"docker pull ghcr.io/geocompx/latest",5.70GB
-minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB
-osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB
-python,"docker pull ghcr.io/geocompx/python",2.32GB
-pythonr,"docker pull ghcr.io/geocompx/pythonr",4.37GB
-qgis,"docker pull ghcr.io/geocompx/qgis",8.63GB
-rocker-rpy,"docker pull ghcr.io/geocompx/rocker-rpy",6.46GB
-rocker-rpyjl,"docker pull ghcr.io/geocompx/rocker-rpyjl",7.68GB
-rust,"docker pull ghcr.io/geocompx/rust",7.63GB
-suggests,"docker pull ghcr.io/geocompx/suggests",5.67GB
+image_name,command,size,description
+buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB,Pre-configured book build environment
+latest,"docker pull ghcr.io/geocompx/latest",5.70GB,Default full geocompx environment
+minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB,Lightweight R + core geospatial libs
+osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB,R with latest OSGeo GDAL/PROJ/GEOS
+python,"docker pull ghcr.io/geocompx/python",2.32GB,Python + geospatial libraries
+pythonr,"docker pull ghcr.io/geocompx/pythonr",4.37GB,Python + R + geospatial libraries
+qgis,"docker pull ghcr.io/geocompx/qgis",8.63GB,QGIS desktop GIS environment
+rocker-rpy,"docker pull ghcr.io/geocompx/rocker-rpy",6.46GB,R + Python scientific stack
+rocker-rpyjl,"docker pull ghcr.io/geocompx/rocker-rpyjl",7.68GB,R + Python + Julia multi-language
+rust,"docker pull ghcr.io/geocompx/rust",7.63GB,R + Rust toolchain
+suggests,"docker pull ghcr.io/geocompx/suggests",5.67GB,Full R dependencies for geocompr

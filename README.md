@@ -126,16 +126,16 @@ including builds that use more up-to-date versions of OSGeo packages
 such as GDAL provided by the [UbuntuGIS software
 repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
 
-|| Image | Command | Size | Description |
+| Image | Command | Size | Description |
 |:---|:---|:---|:---|
 | [python](https://ghcr.io/geocompx/python:latest) | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile) | 2.32GB | Python + geospatial libraries |
 | [pythonr](https://ghcr.io/geocompx/pythonr:latest) | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile) | 4.37GB | Python + R + geospatial libraries |
-| [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB | Minimal R + core geospatial libs |
-| [latest](https://ghcr.io/geocompx/latest:latest) | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/docker/blob/master/Dockerfile) | 5.70GB | Default image (R + core geospatial) |
-| [suggests](https://ghcr.io/geocompx/suggests:latest) | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile) | 5.67GB | Full R dependencies for geocompx |
-| [osgeo](https://ghcr.io/geocompx/osgeo:latest) | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile) | 6.07GB | Latest OSGeo packages via UbuntuGIS |
+| [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB | Lightweight R + core geospatial libs |
+| [suggests](https://ghcr.io/geocompx/suggests:latest) | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile) | 5.67GB | Full R dependencies for geocompr |
+| [latest](https://ghcr.io/geocompx/latest:latest) | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/docker/blob/master/Dockerfile) | 5.70GB | Default full geocompx environment |
+| [osgeo](https://ghcr.io/geocompx/osgeo:latest) | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile) | 6.07GB | R with latest OSGeo GDAL/PROJ/GEOS |
 | [buildbook](https://ghcr.io/geocompx/buildbook:latest) | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile) | 6.44GB | Pre-configured book build environment |
-| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest) | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/docker/blob/master/rocker-rpy/Dockerfile) | 6.46GB | R + Python full scientific stack |
+| [rocker-rpy](https://ghcr.io/geocompx/rocker-rpy:latest) | [docker pull ghcr.io/geocompx/rocker-rpy](https://github.com/geocompx/docker/blob/master/rocker-rpy/Dockerfile) | 6.46GB | R + Python scientific stack |
 | [rust](https://ghcr.io/geocompx/rust:latest) | [docker pull ghcr.io/geocompx/rust](https://github.com/geocompx/docker/blob/master/rust/Dockerfile) | 7.63GB | R + Rust toolchain |
 | [rocker-rpyjl](https://ghcr.io/geocompx/rocker-rpyjl:latest) | [docker pull ghcr.io/geocompx/rocker-rpyjl](https://github.com/geocompx/docker/blob/master/rocker-rpyjl/Dockerfile) | 7.68GB | R + Python + Julia multi-language |
 | [qgis](https://ghcr.io/geocompx/qgis:latest) | [docker pull ghcr.io/geocompx/qgis](https://github.com/geocompx/docker/blob/master/qgis/Dockerfile) | 8.63GB | QGIS desktop GIS environment |
