@@ -5,7 +5,7 @@ ARG QUARTO_VERSION=1.9.37
 
 # Ship editor defaults with the image so downstream Codespaces/devcontainers
 # inherit Quarto support even when they only reference the published image.
-LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.linux":"/usr/local/bin/arf","r.bracketedPaste":true},"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
 
 RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak('geocompx/geocompkg', upgrade = TRUE)"
 # Install arf — Alternative R Frontend (https://github.com/eitsupi/arf)

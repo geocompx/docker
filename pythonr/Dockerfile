@@ -1,6 +1,6 @@
 FROM ghcr.io/geocompx/python
 
-LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.linux":"/usr/local/bin/arf"},"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.linux":"/usr/local/bin/arf","r.bracketedPaste":true},"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
 
 # Note: previously this image built on Rocker but install_R_ppa.sh fails on Debian 
 RUN apt-get update && apt-get install -y --no-install-recommends \

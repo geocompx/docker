@@ -6,6 +6,10 @@ RUN export ARF_CONSOLE_INSTALL_DIR=/usr/local ARF_CONSOLE_NO_MODIFY_PATH=1 \
     && sh /tmp/arf-installer.sh \
     && rm /tmp/arf-installer.sh
 
+# Ship editor defaults with the image so downstream Codespaces/devcontainers
+# inherit VS Code R support even when they only reference the published image.
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"settings":{"r.rterm.linux":"/usr/local/bin/arf","r.bracketedPaste":true},"extensions":["quarto.quarto","REditorSupport.r","ms-python.python","ms-toolsai.jupyter"]}}}]'
+
 # Set RStudio preferences
 # No inline code:
 RUN echo '{' >> /etc/rstudio/rstudio-prefs.json
