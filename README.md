@@ -3,7 +3,7 @@
 
 # Geocomputation with Docker
 
-[![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://github.com/geocompx/docker/blob/master/)
+[![](https://img.shields.io/docker/pulls/geocompx/docker?style=plastic)](https://github.com/geocompx/docker/blob/master/)
 
 This repo provides Docker images for geographic research and reproducing
 code from the books *Geocomputation with R* and *Geocomputation with
@@ -47,7 +47,7 @@ provide variants with different package sets and library versions:
 | [python](https://ghcr.io/geocompx/python:latest) | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile) | 2.32GB | Python + geospatial libraries |
 | [pythonr](https://ghcr.io/geocompx/pythonr:latest) | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile) | 4.37GB | Python + R + geospatial libraries |
 | [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB | Lightweight R + core geospatial libs |
-| [suggests](https://ghcr.io/geocompx/suggests:latest) | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile) | 5.67GB | Full R dependencies for geocompr |
+| [suggests](https://ghcr.io/geocompx/suggests:latest) | [docker pull ghcr.io/geocompx/suggests](https://github.com/geocompx/docker/blob/master/suggests/Dockerfile) | 5.67GB | Full R dependencies for geocompx |
 | [latest](https://ghcr.io/geocompx/latest:latest) | [docker pull ghcr.io/geocompx/latest](https://github.com/geocompx/docker/blob/master/Dockerfile) | 5.70GB | Default full geocompx environment |
 | [osgeo](https://ghcr.io/geocompx/osgeo:latest) | [docker pull ghcr.io/geocompx/osgeo](https://github.com/geocompx/docker/blob/master/osgeo/Dockerfile) | 6.07GB | R with latest OSGeo GDAL/PROJ/GEOS |
 | [buildbook](https://ghcr.io/geocompx/buildbook:latest) | [docker pull ghcr.io/geocompx/buildbook](https://github.com/geocompx/docker/blob/master/buildbook/Dockerfile) | 6.44GB | Pre-configured book build environment |

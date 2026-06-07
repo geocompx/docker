@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 
 # Geocomputation with Docker
 
-[![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://github.com/geocompx/docker/blob/master/)
+[![](https://img.shields.io/docker/pulls/geocompx/docker?style=plastic)](https://github.com/geocompx/docker/blob/master/)
 
 This repo provides Docker images for geographic research and reproducing code from the books *Geocomputation with R* and *Geocomputation with Python*, building on the [Rocker Project](https://www.rocker-project.org/).
 

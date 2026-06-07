@@ -10,4 +10,4 @@ qgis,"docker pull ghcr.io/geocompx/qgis",8.63GB,QGIS desktop GIS environment
 rocker-rpy,"docker pull ghcr.io/geocompx/rocker-rpy",6.46GB,R + Python scientific stack
 rocker-rpyjl,"docker pull ghcr.io/geocompx/rocker-rpyjl",7.68GB,R + Python + Julia multi-language
 rust,"docker pull ghcr.io/geocompx/rust",7.63GB,R + Rust toolchain
-suggests,"docker pull ghcr.io/geocompx/suggests",5.67GB,Full R dependencies for geocompr
+suggests,"docker pull ghcr.io/geocompx/suggests",5.67GB,Full R dependencies for geocompx
