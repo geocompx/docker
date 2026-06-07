@@ -2,6 +2,7 @@ image_name,command,size,description
 buildbook,"docker pull ghcr.io/geocompx/buildbook",6.44GB,Pre-configured book build environment
 latest,"docker pull ghcr.io/geocompx/latest",5.70GB,Default full geocompx environment
 minimal,"docker pull ghcr.io/geocompx/minimal",5.43GB,Lightweight R + core geospatial libs
+minimal-slim,"docker pull ghcr.io/geocompx/minimal-slim",?,Slim R + geospatial without RStudio
 osgeo,"docker pull ghcr.io/geocompx/osgeo",6.07GB,R with latest OSGeo GDAL/PROJ/GEOS
 python,"docker pull ghcr.io/geocompx/python",2.32GB,Python + geospatial libraries
 pythonr,"docker pull ghcr.io/geocompx/pythonr",4.37GB,Python + R + geospatial libraries

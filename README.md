@@ -43,6 +43,7 @@ provide variants with different package sets and library versions:
 
 | Image | Command | Size | Description |
 |:---|:---|:---|:---|
+| [minimal-slim](https://ghcr.io/geocompx/minimal-slim:latest) | [docker pull ghcr.io/geocompx/minimal-slim](https://github.com/geocompx/docker/blob/master/minimal-slim/Dockerfile) | ? | Slim R + geospatial without RStudio |
 | [python](https://ghcr.io/geocompx/python:latest) | [docker pull ghcr.io/geocompx/python](https://github.com/geocompx/docker/blob/master/python/Dockerfile) | 2.32GB | Python + geospatial libraries |
 | [pythonr](https://ghcr.io/geocompx/pythonr:latest) | [docker pull ghcr.io/geocompx/pythonr](https://github.com/geocompx/docker/blob/master/pythonr/Dockerfile) | 4.37GB | Python + R + geospatial libraries |
 | [minimal](https://ghcr.io/geocompx/minimal:latest) | [docker pull ghcr.io/geocompx/minimal](https://github.com/geocompx/docker/blob/master/minimal/Dockerfile) | 5.43GB | Lightweight R + core geospatial libs |

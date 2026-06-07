@@ -10,6 +10,7 @@ echo "image_name,description,size" > "$csv_file"
 declare -A descriptions=(
     ["latest"]="docker pull ghcr.io/geocompx/latest"
     ["minimal"]="docker pull ghcr.io/geocompx/minimal"
+    ["minimal-slim"]="docker pull ghcr.io/geocompx/minimal-slim"
     ["suggests"]="docker pull ghcr.io/geocompx/suggests"
     ["binder"]="docker pull ghcr.io/geocompx/binder"
     ["osgeo"]="docker pull ghcr.io/geocompx/osgeo"
@@ -23,7 +24,7 @@ declare -A descriptions=(
 )
 
 # List of packages from the original script
-packages=("binder" "buildbook" "minimal" "osgeo" "python" "pythonr" "qgis" "rocker-rpy" "rocker-rpyjl" "rust" "suggests")
+packages=("binder" "buildbook" "minimal" "minimal-slim" "osgeo" "python" "pythonr" "qgis" "rocker-rpy" "rocker-rpyjl" "rust" "suggests")
 
 for pkg in "${packages[@]}"; do
     if [[ -n "${descriptions[$pkg]}" ]]; then
