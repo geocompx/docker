@@ -57,12 +57,13 @@ RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass
 USER root
 
 # install R packages ##################################################################################################
+# Step 1: Compile key spatial C/C++ packages from source so they link against
+# the ubuntugis-unstable GDAL/PROJ/GEOS libraries (no CRAN binary available)
+RUN R -e "install.packages(c('sf', 'terra', 'stars', 'lwgeom'), repos = c(CRAN = 'https://cloud.r-project.org'), type = 'source')"
+# Step 2: Install everything else from RSPM binaries via pak
+RUN R -e "install.packages('pak', repos = 'https://cloud.r-project.org'); pak::pak('geocompx/geocompkg', upgrade = TRUE)"
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
-RUN Rscript -e "install.packages('pak', repos = 'https://cloud.r-project.org/')"
-# RUN Rscript -e "pak::pak('r-spatial/sf')"
-# RUN Rscript -e "pak::pak('rspatial/terra')"
-RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompx.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"
 
 
 
