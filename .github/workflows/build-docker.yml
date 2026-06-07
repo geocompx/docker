@@ -45,7 +45,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build and push
+      - name: Build and push (push skipped on pull_request)
         uses: docker/build-push-action@v6
         with:
           context: .
