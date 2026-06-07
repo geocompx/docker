@@ -15,81 +15,33 @@ knitr::opts_chunk$set(
 
 [![](https://img.shields.io/docker/pulls/geocompr/geocompr?style=plastic)](https://github.com/geocompx/docker/blob/master/)
 
-This repo documents Docker images for geographic research and reproducing code in the books *Geocomputation with R* and *Geocomputation with Python*.
-The Dockerfiles build on work done for the [Rocker Project](https://www.rocker-project.org/).
-As documented on the Rocker Project website, Docker can save time and increase reproducibility by providing an environment with up-to-date and stable software.
-
-To get started, after you [install Docker](https://docs.docker.com/get-docker/), try running one of the following commands:
+This repo provides Docker images for geographic research and reproducing code from the books *Geocomputation with R* and *Geocomputation with Python*, building on the [Rocker Project](https://www.rocker-project.org/).
 
 ```{r, engine='bash', eval=FALSE}
-# The latest version of rocker/geospatial + geocompr dependencies
+# Latest rocker/geospatial + geocompr dependencies
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/latest
 # With up-to-date OSGeo packages and qgisprocess:
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/osgeo
 ```
 
-If you are asked for a username and password, then you should use `rstudio` as your username and the password you set with the above code (e.g., `pw`).
+Log in at http://localhost:8786/ with username `rstudio` and the password from the command (e.g. `pw`).
 
-Then open a browser at http://localhost:8786/, and you should see something like this:
-
-![](https://user-images.githubusercontent.com/1825120/79639334-33eb9f00-8183-11ea-8358-588fe17afe25.png)
-
-If so congratulations 🎉 you can proceed to open the `geocompr.Rproj` project or other files in the `geocompr` folder, which contains a complete copy of the source code and example data needed to build the html version of the book.
-
-To run a container without RStudio, try the following.
-
-```
+```{r, engine='bash', eval=FALSE}
+# Shell-only, no RStudio:
 docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/latest /bin/bash
-```
-
-Use this resource to play with the examples, develop new answers to the questions at the end of each page, or even to generate reproducible examples to illustrate [issues](https://github.com/geocompx/geocompr/issues) with the books contents.
-
-If not, see documentation on using Docker at websites such as [docker.com](https://docs.docker.com/get-started/) and https://www.rocker-project.org/.
-
-## Devcontainers and VS Code support
-
-The R-enabled images in this repository (`latest`, `minimal`, `osgeo`, `pythonr`) fully support VS Code Devcontainers.
-
-## Sharing folders with Docker
-
-To use these Docker images for your own work you will need to share files with Docker.
-That means sharing 'volumes'.
-You can do this using the `-v` argument as shown below, which shares your current working directory with the Docker container.
-If you run these commands in a terminal that has access to Docker, like `bash` or Windows `PowerShell` you should get a local copy of *Geocomputation with R* on your computer that you can use for testing and development purposes, e.g. to test changes before submitting a Pull Request to improve the book:
-
-```bash
-# download repo with Windows Powershell or a Unix terminal
-git clone https://github.com/geocompx/geocompr.git 
-# or download manually from https://github.com/geocompx/geocompr/archive/main.zip
-cd geocompr # navigate into the repo
-# on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/minimal
-# on linux and mac without password:
-docker run -d -p 8786:8787 -e DISABLE_AUTH=TRUE -v $(pwd):/home/rstudio/geocompr  ghcr.io/geocompx/minimal
-```
-
-![](https://user-images.githubusercontent.com/1825120/39538109-9b50e7ac-4e33-11e8-93b3-e00e95a79294.png)
-
-If you see something like this after following the steps above, congratulations: it worked!
-See [github.com/rocker-org](https://github.com/rocker-org/rocker/wiki/Using-the-RStudio-image#running-rstudio-server) for more info.
-
-You can also pull and run the same images from ghcr.io, e.g. as follow:
-
-```bash
-# For latest version:
+# Bind-mount your working directory:
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/minimal
-# For a specific version/date (see https://github.com/geocompx/docker/pkgs/container/minimal):
+# Pin a specific version (date tag):
 docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/minimal:date_2024-10-14
 ```
 
-From this point to *build* the book you can open projects in the `geocompr` directory from the project box in the top-right hand corner, and  knit `index.Rmd` with the little `knit` button above the the RStudio script panel (`Ctl+Shift+B` should do the same job).
+## Devcontainers and VS Code support
 
-There are various versions of the `geocompr` Docker image available.
-The default is the `latest` tag, representing the `Dockerfile` in the root of this repo, but you can get other images, as outlined below.
+The R-enabled images (`latest`, `minimal`, `osgeo`, `pythonr`) support VS Code Devcontainers. Open the repo in VS Code and it will detect the `.devcontainer/devcontainer.json` configuration automatically.
 
 ## Versions
 
-Building on the [rocker-org](https://github.com/rocker-org/rocker-versioned/blob/master/README.md)  project, we provide various versions for testing and development, including builds that use more up-to-date versions of OSGeo packages such as GDAL provided by the [UbuntuGIS software repository](https://wiki.ubuntu.com/UbuntuGIS), as shown below:
+The base image is `rocker/geospatial` from [rocker-versioned2](https://github.com/rocker-org/rocker-versioned2). We provide variants with different package sets and library versions:
 
 ```{r, include=FALSE}
 imgs = readr::read_csv("image-info.csv")
@@ -105,32 +57,11 @@ names(imgs) = c("Image", "Command", "Size", "Description")
 knitr::kable(imgs)
 ```
 
+Add `:tagname` after `ghcr.io/geocompx/<image>` for a specific version (see [packages](https://github.com/geocompx/docker/pkgs/container/minimal)).
 
-The base image is `rocker/geospatial` from [github.com/rocker-org/rocker-versioned2](https://github.com/rocker-org/rocker-versioned2).
+### Building leaner custom images
 
-Add :tagname after ghcr.io/geocompx/imagename to get the image you want.
-
-<!-- To run the `buildbook` version (represented by the extension `-b` for most tags), for example, run the following command (with port and password set to a port of your preference): -->
-
-```{r, engine='bash', eval=FALSE}
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/buildbook
-```
-
-### Building leaner custom images with rocker-versioned2
-
-The images above are opinionated "batteries included" builds. For users who want smaller images or a different package selection, the [rocker-versioned2](https://github.com/rocker-org/rocker-versioned2) repository provides modular `install_*.sh` scripts that can be composed on top of a slim base image.
-
-A reference `minimal-slim/Dockerfile` is included in this repo showing how to build a lean geospatial R image from `rocker/r-ver` without RStudio or heavy CLI tools.
-
-For example, to build a minimal R + geospatial image yourself:
-
-```Dockerfile
-FROM rocker/r-ver:4.6.0
-RUN /rocker_scripts/install_geospatial.sh
-RUN /rocker_scripts/install_rstudio.sh
-```
-
-Or to add only what you need:
+For users who want smaller images or different packages, a reference [`minimal-slim/Dockerfile`](minimal-slim/Dockerfile) shows how to build from `rocker/r-ver` without RStudio or heavy CLI tools, using [`rocker-versioned2` scripts](https://github.com/rocker-org/rocker-versioned2/tree/master/scripts):
 
 ```Dockerfile
 FROM rocker/r-ver:4.6.0
@@ -140,172 +71,68 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN install2.r sf terra spData
 ```
 
-Key [`rocker-versioned2` scripts](https://github.com/rocker-org/rocker-versioned2/tree/master/scripts) to mix and match:
-
-- [`/rocker_scripts/install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh) — GDAL, PROJ, GEOS, and the core R geospatial packages (sf, terra, raster, stars, sp, etc.)
-- [`/rocker_scripts/install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh) — RStudio Server (uses S6 supervisor, ~300MB)
-- [`/rocker_scripts/install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh) — Python 3 + reticulate + venv
-- [`/rocker_scripts/install_tidyverse.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh) — The tidyverse stack
-- [`/rocker_scripts/install_quarto.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_quarto.sh) — Quarto CLI
-
-#### Suggested improvements upstream (for the Rocker project)
-
-1. **Provide a "geospatial-minimal" variant** in `rocker-versioned2` that omits RStudio Server and the heavy R geospatial package set, giving just the system libraries (GDAL, PROJ, GEOS, etc.) on top of `r-ver`. Users could then `install2.r sf terra` on top of a ~1–2GB base.
-2. **Use a smaller base image** (e.g., `debian:bookworm-slim` or `ubuntu:22.04`) rather than the full `rocker/verse` for images that don't need TeX Live, pandoc, or Jupyter.
-3. **Prune base image layers** — the [`books/rocker` best practices](https://rocker-project.org/use/extending.html) already recommend `--no-install-recommends` and `rm -rf /var/lib/apt/lists/*`, but the base images themselves could be rebuilt with multi-stage builds to discard build tools after package compilation.
-4. **Make stripping of RSPM binary libraries opt-out** rather than opt-in (see [rocker-versioned2#340](https://github.com/rocker-org/rocker-versioned2/issues/340)) — this can save 20–30% on R package image size with no observed runtime cost.
-5. **Offer a "pruned" `rocker/geospatial` tag** that has had LaTeX, pandoc, and Java removed (the largest contributors to image bloat) for users who only need the geospatial C libraries + R bindings.
+Available rocker-versioned2 scripts:
+- [`install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh) — GDAL, PROJ, GEOS + sf, terra, raster, stars, sp
+- [`install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh) — RStudio Server with S6 supervisor
+- [`install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh) — Python 3 + reticulate
+- [`install_tidyverse.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh) — Tidyverse stack
+- [`install_quarto.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_quarto.sh) — Quarto CLI
 
 ## Examples
 
-### osgeo
-
-To test your code or package against recent versions of OSGeo libraries (GDAL, GEOS, PROJ), you can run the following command from inside root directory of the folder containing the code:
-
-```bash
-# on linux and mac with password:
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
-  -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/osgeo
-```
-
 ### Python
 
-The Python tag contains Python geospatial packages:
+The `python` image provides Python geospatial packages (pandas, geopandas, movingpandas, osmnx, matplotlib, shapely, seaborn). The `pythonr` image adds R on top.
 
 ```bash
 docker pull ghcr.io/geocompx/python
 docker run -e PASSWORD=pw --rm -ti ghcr.io/geocompx/python /bin/bash
-
-python3
-import pandas as pd
-import geopandas as gpd
-import movingpandas as mpd
+python3 -c "import geopandas; print(geopandas.__version__)"
 ```
 
-You can run an interactive session via Reticulate in RStudio as follows:
-
-```bash
-docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/python
-```
-
-And then in the resulting RStudio session you can enter something along the lines of:
-
-```r
-library(sf)
-f = file.path(system.file("shape/nc.shp", package="sf"))
-nc_sf = read_sf(f)
-library(reticulate)
-system("pip3 install descartes")
-gp = import("geopandas")
-nc_gp = gp$read_file(f)
-class(nc_gp)
-plot(nc_gp$AREA, nc_gp$PERIMETER)
-gp = import("geopandas", convert = FALSE)
-nc_gp = gp$read_file(f)
-nc_gp
-plt = import("matplotlib.pyplot", convert = FALSE)
-nc_gp$plot()
-plt$savefig("test.png")
-```
-
-To plot from Python packages (work in [progress](https://github.com/geocompr/docker/issues/12)).
-
+For R + Python interop, run `ghcr.io/geocompx/pythonr` and use `reticulate` from R.
 
 ### QGIS
 
-To run QGIS from the command line, you can run:
+The `qgis` image includes QGIS, GRASS, and SAGA.
 
 ```bash
-docker pull ghcr.io/geocompx/qgis
 docker run --rm -ti ghcr.io/geocompx/qgis /bin/bash
 qgis --version
-# QGIS 3.20.3-Odense 'Odense' (495fbaecaf)
 ```
 
-You can also run QGIS algorithms via the `qgisprocess` package as follows:
-
-```
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/qgis
-```
-
-Then open a browser and the local url such as http://192.168.0.99:8786/ or http://localhost:8786, enter RStudio server, and you should be able to access QGIS as follows in the R console:
+QGIS algorithms are accessible from R via `qgisprocess`:
 
 ```{r, eval=FALSE}
-system("qgis --version")
-## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
-pak::pak("paleolimbot/qgisprocess") # install the latest version of the package
+pak::pak("paleolimbot/qgisprocess")
 qgis_algs = qgisprocess::qgis_algorithms()
 nrow(qgis_algs)
-## [1] 303
 table(qgis_algs$provider)
-##    3d   gdal native   qgis 
-##     1     55    196     51 
 ```
 
-### QGIS extensions
+With GRASS and SAGA available as providers, you have access to ~970 algorithms.
 
-You can access algorithms from other GIS programs through QGIS but they need to be installed.
-These can be accessed from the `ghcr.io/geocompx/qgis` image as follows:
+### osgeo
 
+For testing against recent GDAL/PROJ/GEOS versions:
+
+```bash
+docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data \
+  -e USERID=$UID -e PASSWORD=pw ghcr.io/geocompx/osgeo
 ```
-docker run -d -p 8786:8787 -v $(pwd):/home/rstudio/data -e PASSWORD=pw ghcr.io/geocompx/qgis
-```
-
-Again, open the browser, e.g. at http://localhost:8786, and find the new algorithms as follows:
-
-
-```{r, eval=FALSE}
-system("qgis --version")
-## QGIS 3.16.1-Hannover 'Hannover' (b381a90dca)
-pak::pak("paleolimbot/qgisprocess") # install the latest version of the package
-## Skipping install of 'qgisprocess' from a github remote, the SHA1 (6e378511) has not changed since last install.
-qgis_algs = qgisprocess::qgis_algorithms()
-nrow(qgis_algs)
-## [1] 970
-table(qgis_algs$provider)
-
-##    3d   gdal grass7 native   qgis   saga 
-##     1     55    301    196     51    366 
-```
-
-Congratulations, you now have nearly 1000 QGIS algorithms at your disposal from the R command line 🎉
 
 ## Building the images locally
 
-You can build the images locally, e.g. as follows:
-
 ```bash
-docker build qgis -t test
-docker run -p 8888:8888 test
-docker build dockerfiles/conda -t conda
-docker run -it conda /bin/bash
-docker build  -t 
-```
-
-You should then be able to run commands in the newly created images, e.g. with:
-
-```bash
-docker run -it  /bin/bash
+docker build qgis -t geocompx/qgis
+docker build minimal -t geocompx/minimal
 ```
 
 ### Using GitHub PAT with BuildKit secret mounts
 
-Some images (like `suggests` and `rust`) require GitHub API access to install packages from GitHub repositories. To avoid hitting GitHub API rate limits, you can securely pass a GitHub Personal Access Token (PAT) during the build process using BuildKit secret mounts:
+Some images (`suggests`, `rust`) install packages from GitHub repositories. Pass a GitHub PAT securely with BuildKit:
 
-1. First, create a GitHub Personal Access Token by following the instructions at [GitHub Docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-
-2. Save your token to a file (but don't commit this file to version control):
-   ```bash
-   echo "your_github_token" > GITHUB_PAT.txt
-   ```
-
-3. Build the image using BuildKit secret mounts:
-   ```bash
-   # Enable BuildKit
-   export DOCKER_BUILDKIT=1
-   
-   # Build with secret mount
-   docker build --secret id=GITHUB_PAT,src=GITHUB_PAT.txt -t geocompx/suggests suggests
-   ```
-
-This approach is more secure than using build arguments or environment variables because the secret is only available during the specific build steps that need it and is not stored in any image layer or build cache.
+```bash
+echo "your_github_token" > GITHUB_PAT.txt
+DOCKER_BUILDKIT=1 docker build --secret id=GITHUB_PAT,src=GITHUB_PAT.txt -t geocompx/suggests suggests
+```
