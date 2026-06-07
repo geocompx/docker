@@ -138,6 +138,77 @@ Add :tagname after ghcr.io/geocompx/imagename to get the image you want.
 docker run -e PASSWORD=pw --rm -p 8786:8787 ghcr.io/geocompx/buildbook
 ```
 
+### Building leaner custom images with rocker-versioned2
+
+The images above are opinionated “batteries included” builds. For users
+who want smaller images or a different package selection, the
+[rocker-versioned2](https://github.com/rocker-org/rocker-versioned2)
+repository provides modular `install_*.sh` scripts that can be composed
+on top of a slim base image.
+
+A reference `minimal-slim/Dockerfile` is included in this repo showing
+how to build a lean geospatial R image from `rocker/r-ver` without
+RStudio or heavy CLI tools.
+
+For example, to build a minimal R + geospatial image yourself:
+
+``` dockerfile
+FROM rocker/r-ver:4.4.2
+RUN /rocker_scripts/install_geospatial.sh
+RUN /rocker_scripts/install_rstudio.sh
+```
+
+Or to add only what you need:
+
+``` dockerfile
+FROM rocker/r-ver:4.4.2
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgdal-dev libgeos-dev libproj-dev \
+    && rm -rf /var/lib/apt/lists/*
+RUN install2.r sf terra spData
+```
+
+Key [`rocker-versioned2`
+scripts](https://github.com/rocker-org/rocker-versioned2/tree/master/scripts)
+to mix and match:
+
+- [`/rocker_scripts/install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh)
+  — GDAL, PROJ, GEOS, and the core R geospatial packages (sf, terra,
+  raster, stars, sp, etc.)
+- [`/rocker_scripts/install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh)
+  — RStudio Server (uses S6 supervisor, ~300MB)
+- [`/rocker_scripts/install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh)
+  — Python 3 + reticulate + venv
+- [`/rocker_scripts/install_tidyverse.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh)
+  — The tidyverse stack
+- [`/rocker_scripts/install_quarto.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_quarto.sh)
+  — Quarto CLI
+
+#### Suggested improvements upstream (for the Rocker project)
+
+1.  **Provide a “geospatial-minimal” variant** in `rocker-versioned2`
+    that omits RStudio Server and the heavy R geospatial package set,
+    giving just the system libraries (GDAL, PROJ, GEOS, etc.) on top of
+    `r-ver`. Users could then `install2.r sf terra` on top of a ~1–2GB
+    base.
+2.  **Use a smaller base image** (e.g., `debian:bookworm-slim` or
+    `ubuntu:22.04`) rather than the full `rocker/verse` for images that
+    don’t need TeX Live, pandoc, or Jupyter.
+3.  **Prune base image layers** — the [`books/rocker` best
+    practices](https://rocker-project.org/use/extending.html) already
+    recommend `--no-install-recommends` and
+    `rm -rf /var/lib/apt/lists/*`, but the base images themselves could
+    be rebuilt with multi-stage builds to discard build tools after
+    package compilation.
+4.  **Make stripping of RSPM binary libraries opt-out** rather than
+    opt-in (see
+    [rocker-versioned2#340](https://github.com/rocker-org/rocker-versioned2/issues/340))
+    — this can save 20–30% on R package image size with no observed
+    runtime cost.
+5.  **Offer a “pruned” `rocker/geospatial` tag** that has had LaTeX,
+    pandoc, and Java removed (the largest contributors to image bloat)
+    for users who only need the geospatial C libraries + R bindings.
+
 ## Examples
 
 ### osgeo
