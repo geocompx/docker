@@ -46,36 +46,24 @@ RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-arch
 RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 # RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
-RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
-
-RUN mkdir -p /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins \
-    && wget -qO sagang_plugin.zip https://github.com/north-road/qgis-processing-saga-nextgen/archive/refs/heads/master.zip \
-    && unzip -q sagang_plugin.zip -d /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins \
-    && mv /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins/qgis-processing-saga-nextgen-master /home/rstudio/.local/share/QGIS/QGIS3/profiles/default/python/plugins/processing_saga_nextgen \
-    && rm sagang_plugin.zip
-
-# Outdated: install SAGA next generation plugin with the qgis-plugin-manager ###########################################
-# RUN qgis-plugin-manager init
-# RUN qgis-plugin-manager update
-# install SAGA next generation plugin
-# RUN qgis-plugin-manager install 'Processing Saga NextGen Provider'
+RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass
 
 # the rest is nice to have but not really necessary
 # RUN qgis_process in a headless state
 # ENV QT_QPA_PLATFORM=offscreen
 
 # enable desired plugins
-# RUN qgis_process plugins enable processing_saga_nextgen
 # RUN qgis_process plugins enable grassprovider
 USER root
 
 # install R packages ##################################################################################################
+# Step 1: Compile key spatial C/C++ packages from source so they link against
+# the ubuntugis-unstable GDAL/PROJ/GEOS libraries (no CRAN binary available)
+RUN R -e "install.packages(c('sf', 'terra', 'stars', 'lwgeom'), repos = c(CRAN = 'https://cloud.r-project.org'), type = 'source')"
+# Step 2: Install everything else from RSPM binaries via pak
+RUN R -e "install.packages('pak', repos = 'https://cloud.r-project.org'); pak::pak('geocompx/geocompkg', upgrade = TRUE)"
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
-RUN Rscript -e "install.packages('pak', repos = 'https://cloud.r-project.org/')"
-# RUN Rscript -e "pak::pak('r-spatial/sf')"
-# RUN Rscript -e "pak::pak('rspatial/terra')"
-RUN R -e "install.packages('geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompx.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"
 
 
 

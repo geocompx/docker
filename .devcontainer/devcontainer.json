@@ -3,11 +3,6 @@
 	"image": "ghcr.io/geocompx/minimal:latest",
 	"customizations": {
 		"vscode": {
-			"settings": {
-				"r.rterm.linux": "/usr/local/bin/arf",
-				"r.rterm.option": [],
-				"r.bracketedPaste": true
-			},
 			"extensions": [
 				"REditorSupport.r",
 				"quarto.quarto",
