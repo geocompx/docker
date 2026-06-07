@@ -153,7 +153,7 @@ RStudio or heavy CLI tools.
 For example, to build a minimal R + geospatial image yourself:
 
 ``` dockerfile
-FROM rocker/r-ver:4.4.2
+FROM rocker/r-ver:4.6.0
 RUN /rocker_scripts/install_geospatial.sh
 RUN /rocker_scripts/install_rstudio.sh
 ```
@@ -161,7 +161,7 @@ RUN /rocker_scripts/install_rstudio.sh
 Or to add only what you need:
 
 ``` dockerfile
-FROM rocker/r-ver:4.4.2
+FROM rocker/r-ver:4.6.0
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev libgeos-dev libproj-dev \
     && rm -rf /var/lib/apt/lists/*

@@ -1,5 +1,5 @@
 # Slim custom geospatial image built from rocker/r-ver, without RStudio or heavy CLI tools
-ARG R_VER=4.4.2
+ARG R_VER=4.6.0
 FROM rocker/r-ver:${R_VER}
 
 # System dependencies: keep only what sf/terra/spData need at runtime/build time
