@@ -45,6 +45,9 @@ RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-arch
 # Add QGIS LTR repo and key
 RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 # RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
+# if we want qgis ltr, we need to run the following line
+RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntu-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
+
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
 RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
 
