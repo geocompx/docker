@@ -46,7 +46,7 @@ RUN gpg --no-default-keyring --keyring /etc/apt/keyrings/ubuntugis-unstable-arch
 RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.org/downloads/qgis-archive-keyring.gpg
 # RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntugis-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
-RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass
+RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
 
 # the rest is nice to have but not really necessary
 # RUN qgis_process in a headless state
