@@ -63,12 +63,12 @@ USER root
 # Step 1: Compile key spatial C/C++ packages from source so they link against
 # the ubuntugis-unstable GDAL/PROJ/GEOS libraries (no CRAN binary available)
 RUN R -e "install.packages(c('sf', 'terra', 'stars', 'lwgeom'), repos = c(CRAN = 'https://cloud.r-project.org'), type = 'source')"
-# Step 2: Install everything else from RSPM binaries via pak.
+# Step 2: Install everything else from RSPM binaries.
 # `dependencies = TRUE` includes Suggests, which geocompkg uses to list the
 # book's bridge/companion packages (qgisprocess, Rsagacmd, rgrass, tmap, mlr3*,
 # vegan, ...). Without it, the CI/CD that builds geocompr against this image
 # fails on `library(qgisprocess)` etc.
-RUN R -e "install.packages('pak', repos = 'https://cloud.r-project.org'); pak::pak('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE)"
+RUN R -e "install.packages('geocompx/geocompkg', upgrade = TRUE, dependencies = TRUE, force = TRUE, repos = c('https://geocompx.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
 
