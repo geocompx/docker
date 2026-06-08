@@ -65,6 +65,7 @@ USER root
 # book's bridge/companion packages (qgisprocess, Rsagacmd, rgrass, tmap, mlr3*,
 # vegan, ...). Without it, the CI/CD that builds geocompr against this image
 # fails on `library(qgisprocess)` etc.
+RUN R -e "install.packages('geocompkg', dependencies = TRUE, repos = c('https://geocompx.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
 
