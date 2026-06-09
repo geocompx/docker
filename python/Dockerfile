@@ -3,7 +3,7 @@ FROM ${PYTHON_BASE_IMAGE}
 
 ARG QUARTO_VERSION=1.9.37
 
-LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"]}}}]'
+LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"],"settings":{"python.defaultInterpreterPath":"/usr/local/bin/python"}}}}]'
 
 # Install dependencies, git, and gh cli
 RUN apt-get update && apt-get install -y --no-install-recommends \

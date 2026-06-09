@@ -17,6 +17,10 @@ ENV PATH="/opt/R/${R_VERSION}/bin:${PATH}"
 ENV R_PKG_TYPE=binary
 ENV RETICULATE_PYTHON="/usr/local/bin/python"
 
+# Ensure python3 resolves to the 3.12 interpreter from the base image,
+# not the Debian system Python 3.11 pulled in as a transitive dependency.
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python 10
+
 RUN mkdir -p /etc/R && \
     echo "options(repos = c(CRAN = 'https://packagemanager.posit.co/cran/__linux__/bookworm/latest'))" > /etc/R/Rprofile.site && \
     mkdir -p /root && \
