@@ -3,6 +3,7 @@ FROM ghcr.io/geocompx/python
 # Note: previously this image built on Rocker but install_R_ppa.sh fails on Debian 
 RUN apt-get update && apt-get install -y --no-install-recommends \
     curl \
+    libdeflate0 \
     locales \
     xz-utils \
     && rm -rf /var/lib/apt/lists/*
