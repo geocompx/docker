@@ -23,5 +23,14 @@ RUN echo '{' > /etc/rstudio/rstudio-prefs.json \
     && echo '    "rmd_chunk_output_inline": false' >> /etc/rstudio/rstudio-prefs.json \
     && echo '}' >> /etc/rstudio/rstudio-prefs.json
 
+# Enable httpgd plot device automatically when running interactively in VS Code / Codespaces
+RUN echo 'if (interactive() && (Sys.getenv("TERM_PROGRAM") == "vscode" || Sys.getenv("CODESPACES") == "true")) {' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '  if (requireNamespace("httpgd", quietly = TRUE)) {' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '    options(vsc.plot = FALSE)' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '    options(device = httpgd::hgd)' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '  }' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '}' >> /usr/local/lib/R/etc/Rprofile.site
+
 # Clean up apt caches
 RUN rm -rf /var/lib/apt/lists/*
+
