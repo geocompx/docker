@@ -12,7 +12,7 @@ RUN apt-get update \
 # Install only the essential geocompkg Imports (not Suggests) to keep the
 # image lean. The full geocompkg Suggests set (60+ packages) is available
 # via the `suggests` image or users can install on demand.
-RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','methods'), upgrade = FALSE)"
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','httpgd','methods'), upgrade = FALSE)"
 
 # Strip binary shared libraries from RSPM packages to reduce final image size
 # See https://github.com/rocker-org/rocker-versioned2/issues/340
@@ -23,5 +23,14 @@ RUN echo '{' > /etc/rstudio/rstudio-prefs.json \
     && echo '    "rmd_chunk_output_inline": false' >> /etc/rstudio/rstudio-prefs.json \
     && echo '}' >> /etc/rstudio/rstudio-prefs.json
 
+# Enable httpgd plot device automatically when running interactively in VS Code / Codespaces
+RUN echo 'if (interactive() && (Sys.getenv("TERM_PROGRAM") == "vscode" || Sys.getenv("CODESPACES") == "true")) {' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '  if (requireNamespace("httpgd", quietly = TRUE)) {' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '    options(vsc.plot = FALSE)' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '    options(device = httpgd::hgd)' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '  }' >> /usr/local/lib/R/etc/Rprofile.site \
+    && echo '}' >> /usr/local/lib/R/etc/Rprofile.site
+
 # Clean up apt caches
 RUN rm -rf /var/lib/apt/lists/*
+
