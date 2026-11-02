@@ -4,8 +4,8 @@ LABEL org.opencontainers.image.authors="Robin Lovelace <rob00x@gmail.com>" \
       org.opencontainers.image.source="https://github.com/geocompx/docker" \
       devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["REditorSupport.r","Posit.air-vscode","quarto.quarto","ms-python.python"],"settings":{"r.rterm.linux":"/usr/local/bin/R","r.rpath.linux":"/usr/local/bin/R","r.lsp.path":"/usr/local/bin/R","r.plot.backend":"auto","r.sessionWatcher":true,"r.bracketedPaste":true,"r.interactive.executionTarget":"terminal"}}}}]'
 
-# Contender 1 (Dev-Ready Slim): Keep C/C++ -dev headers for source builds, drop Clang libomp-dev (GCC uses libgomp1),
-# and remove unused third-party static .a archives in /usr/lib/*-linux-gnu while preserving /usr/lib/gcc and *nonshared.a
+# Contender 2 (Ultra-Slim Runtime): Posit R (which includes gcc/g++/gfortran/make/openblas-dev) + exact runtime .so libraries
+# without 650 MB of libboost1.83-dev / libllvm19 / libspatialite-dev / python3.13 / third-party static .a archives
 ARG R_VERSION=4.6.2
 RUN . /etc/os-release && \
     if [ "${VERSION_ID}" = "12" ]; then R_VER="4.6.0"; else R_VER="${R_VERSION}"; fi && \
@@ -18,29 +18,20 @@ RUN . /etc/os-release && \
     curl -fSL -o /tmp/r.deb "https://cdn.posit.co/r/debian-${VERSION_ID}/pkgs/r-${R_VER}_1_$(dpkg --print-architecture).deb" && \
     apt-get install -y --no-install-recommends /tmp/r.deb \
         libopenblas0-pthread \
-        libopenblas-dev \
-        liblapack-dev \
-        gfortran \
-        libudunits2-dev \
-        libgdal-dev \
-        libgeos-dev \
-        libproj-dev \
+        liblapack3 \
+        libgdal36 \
+        libgeos-c1t64 \
+        libproj25 \
+        libudunits2-0 \
         libglpk40 \
-        libglpk-dev \
-        libcurl4-openssl-dev \
-        libssl-dev \
-        libxml2-dev \
-        libfontconfig1-dev \
-        libfreetype6-dev \
-        libfribidi-dev \
-        libharfbuzz-dev \
-        libgit2-dev \
-        libmagick++-dev \
-        libnode-dev \
-        libcairo2-dev \
-        libx11-dev \
-        libuv1-dev \
-        libabsl-dev \
+        libmagick++-7.q16-5 \
+        libnode115 \
+        libgit2-1.9 \
+        libabsl20240722 \
+        libuv1t64 \
+        libfribidi0 \
+        libharfbuzz0b \
+        libtiffxx6 \
     && find /usr/lib/*-linux-gnu -name "*.a" ! -name "*nonshared*" ! -name "libc.a" ! -name "libm.a" -delete \
     && ln -sfn "/opt/R/${R_VER}" /opt/R/current \
     && ln -sfn /opt/R/current/bin/R /usr/local/bin/R \
