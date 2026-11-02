@@ -49,7 +49,9 @@ RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.or
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntu-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 
 RUN apt-get -o Acquire::Retries=5 update && apt-get -o Acquire::Retries=5 -y --with-new-pkgs upgrade
-RUN apt-get -o Acquire::Retries=5 install -y --fix-missing --no-install-recommends qgis grass qgis-plugin-grass saga && rm -rf /var/lib/apt/lists/*
+RUN for i in 1 2 3; do \
+      apt-get -o Acquire::Retries=5 -o Acquire::https::Pipeline-Depth=0 install -y --no-install-recommends qgis grass qgis-plugin-grass saga && break || sleep 5; \
+    done && rm -rf /var/lib/apt/lists/*
 
 # the rest is nice to have but not really necessary
 # RUN qgis_process in a headless state
