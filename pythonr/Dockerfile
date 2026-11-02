@@ -32,10 +32,9 @@ RUN . /etc/os-release && \
     && ln -sfn /opt/R/current/bin/Rscript /usr/local/bin/Rscript \
     && rm -rf /tmp/r.deb /var/lib/apt/lists/*
 
-ENV PATH="/opt/R/current/bin:${PATH}"
-
-# Make Python visible on standard path for R's reticulate
-RUN update-alternatives --install /usr/bin/python3 python3 /usr/local/bin/python 10
+ENV PATH="/opt/R/current/bin:/usr/local/bin:${PATH}" \
+    QUARTO_PYTHON="/usr/local/bin/python" \
+    RETICULATE_PYTHON="/usr/local/bin/python"
 
 # Configure Rprofile.site and /root/.Rprofile with P3M binary repository and HTTPUserAgent
 # so both pak and base install.packages() receive precompiled Linux binary packages from P3M
@@ -62,4 +61,6 @@ RUN R -e "install.packages('pak')"
 # Install geocompkg (including Suggests) + VS Code R extension (vscode-R v3+) dependencies
 # using pak so system requirements and precompiled P3M/r-universe binaries are resolved in parallel
 RUN Rscript -e "options(repos = c(geocompx = 'https://geocompx.r-universe.dev', mlrorg = 'https://mlr-org.r-universe.dev', getOption('repos'))); pak::pak(c('sf', 'geocompkg', 'languageserver', 'httpgd', 'jgd', 'rstudioapi', 'processx', 'ps', 'later', 'jsonlite', 'svglite', 'reticulate'), dependencies = TRUE)" && \
-    rm -rf /tmp/* /root/.cache/R/pkgcache
+    ln -sf /usr/local/bin/python /usr/bin/python3 && \
+    ln -sf /usr/local/bin/python /usr/bin/python && \
+    rm -rf /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*

@@ -1,9 +1,12 @@
-ARG PYTHON_BASE_IMAGE=python:3.12-slim-trixie
+ARG PYTHON_BASE_IMAGE=python:3.14-slim-trixie
 FROM ${PYTHON_BASE_IMAGE}
 
 ARG QUARTO_VERSION=1.11.9
 
 LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"],"settings":{"python.defaultInterpreterPath":"/usr/local/bin/python"}}}}]'
+
+ENV QUARTO_PYTHON="/usr/local/bin/python" \
+    RETICULATE_PYTHON="/usr/local/bin/python"
 
 # Install dependencies, git, and gh cli
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -32,7 +35,8 @@ RUN arch="$(dpkg --print-architecture)" \
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
 # Install requirements using uv for fast parallel wheel resolution
-RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/py/main/requirements.txt \
+RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/geocompy/main/requirements.txt \
+    && sed -i 's/==/>=/g' /tmp/requirements.txt \
     && uv pip install --system --no-cache -r /tmp/requirements.txt seaborn openpyxl statsmodels pyarrow \
     && rm /tmp/requirements.txt
 

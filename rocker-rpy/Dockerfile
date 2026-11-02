@@ -33,4 +33,7 @@ ENV QUARTO_PYTHON=/usr/bin/python
 # The `--break-system-packages` flag is added to override the security feature.
 # The `--ignore-installed` flag is added to prevent pip from trying to uninstall
 # packages that are managed by the system.
-RUN pip3 install --no-cache-dir --break-system-packages --ignore-installed -r https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt
+RUN wget -q -O /tmp/requirements.txt https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt \
+    && sed -i 's/==/>=/g' /tmp/requirements.txt \
+    && pip3 install --no-cache-dir --break-system-packages --ignore-installed -r /tmp/requirements.txt \
+    && rm /tmp/requirements.txt
