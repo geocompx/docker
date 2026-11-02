@@ -2,9 +2,6 @@
 FROM ghcr.io/geocompx/minimal
 
 # Install core Python 3 packages and other dependencies.
-# - python3-dev: Headers needed to compile certain Python packages with C extensions.
-# - python3-pip: The package installer for Python 3, installed globally.
-# - swig: Used for wrapping C/C++ libraries for Python.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-dev \
@@ -30,8 +27,10 @@ ENV QUARTO_PYTHON=/usr/bin/python \
 # Install uv for fast parallel Python wheel resolution
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
-# Install project requirements globally using uv
+# Install project requirements globally using uv, strip debug symbols, and prune test directories
 RUN wget -q -O /tmp/requirements.txt https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt \
     && sed -i 's/==/>=/g' /tmp/requirements.txt \
     && uv pip install --system --break-system-packages --reinstall-package pyyaml --no-cache -r /tmp/requirements.txt \
+    && (find /usr/local/lib/python*/dist-packages -name "*.so*" -type f -exec strip --strip-unneeded {} + 2>/dev/null || true) \
+    && (find /usr/local/lib/python*/dist-packages -type d -name "tests" -prune -exec rm -rf {} + 2>/dev/null || true) \
     && rm /tmp/requirements.txt

@@ -15,14 +15,11 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install essential geocompkg Imports + VS Code R extension (vscode-R v3+) session/plot/LSP dependencies:
-# - languageserver: R LSP support
-# - httpgd, jgd, rstudioapi, svglite: plot backends & rstudioapi emulation in vscode-R v3+
-# - processx, ps, later, jsonlite: required by vscode-R's bundled `sess` package so first-run installation is instantaneous
+# Install essential geocompkg Imports + VS Code R extension (vscode-R v3+) session/plot/LSP dependencies
 # Strip debug symbols from compiled R package shared objects and clean pkgcache in the same layer
 RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','httpgd','jgd','rstudioapi','processx','ps','later','jsonlite','svglite','methods'), upgrade = FALSE)" \
-    && strip --strip-debug /usr/local/lib/R/site-library/*/libs/*.so 2>/dev/null || true \
-    && rm -rf /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*
+    && (strip --strip-unneeded /usr/local/lib/R/site-library/*/libs/*.so 2>/dev/null || true) \
+    && rm -rf /usr/local/lib/R/site-library/*/doc /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*
 
 # Install arf (modern Rust-based R console used by vscode-R persistent interactive sessions)
 RUN wget -qO- https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | env CARGO_DIST_FORCE_INSTALL_DIR=/usr/local sh \
