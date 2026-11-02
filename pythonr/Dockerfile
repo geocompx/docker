@@ -53,7 +53,8 @@ RUN cp /opt/R/current/lib/R/etc/Rprofile.site /etc/R/Rprofile.site && \
     cp /opt/R/current/lib/R/etc/Rprofile.site /root/.Rprofile
 
 # Install arf (modern Rust-based R console used by vscode-R persistent sessions)
-RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | env ARF_INSTALL_DIR=/usr/local/bin sh
+RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | env CARGO_DIST_FORCE_INSTALL_DIR=/usr/local sh \
+    && /usr/local/bin/arf --version
 
 # Install pak from precompiled binary
 RUN R -e "install.packages('pak')"
