@@ -6,12 +6,16 @@ ARG QUARTO_VERSION=1.11.9
 LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"],"settings":{"python.defaultInterpreterPath":"/usr/local/bin/python"}}}}]'
 
 ENV QUARTO_PYTHON="/usr/local/bin/python" \
-    RETICULATE_PYTHON="/usr/local/bin/python"
+    RETICULATE_PYTHON="/usr/local/bin/python" \
+    GDAL_NUM_THREADS="ALL_CPUS" \
+    GDAL_CACHEMAX="512" \
+    VSI_CACHE="TRUE" \
+    GDAL_HTTP_MULTIPLEX="YES" \
+    PYOGRIO_USE_ARROW="1"
 
-# Install dependencies, git, and gh cli
+# Install dependencies, git, and gh cli (no build-essential needed since uv installs binary wheels)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
-    build-essential \
     curl \
     git \
     unzip \
@@ -20,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && chmod go+r /usr/share/keyrings/githubcli-archive-keyring.gpg \
     && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" > /etc/apt/sources.list.d/github-cli.list \
     && apt-get update \
-    && apt-get install -y gh \
+    && apt-get install -y --no-install-recommends gh \
     && rm -rf /var/lib/apt/lists/*
 
 # Install quarto
@@ -39,6 +43,3 @@ RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/
     && sed -i 's/==/>=/g' /tmp/requirements.txt \
     && uv pip install --system --no-cache -r /tmp/requirements.txt seaborn openpyxl statsmodels pyarrow \
     && rm /tmp/requirements.txt
-
-# Clean up build tools to reduce image size (optional but recommended)
-RUN apt purge -y build-essential && apt autoremove -y && rm -rf /var/lib/apt/lists/*

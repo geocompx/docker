@@ -4,6 +4,11 @@ LABEL org.opencontainers.image.authors="Robin Lovelace <rob00x@gmail.com>, Jakub
       org.opencontainers.image.source="https://github.com/geocompx/docker" \
       devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["REditorSupport.r","Posit.air-vscode","quarto.quarto"],"settings":{"r.rterm.linux":"/usr/local/bin/R","r.rpath.linux":"/usr/local/bin/R","r.lsp.path":"/usr/local/bin/R","r.plot.backend":"auto","r.sessionWatcher":true,"r.bracketedPaste":true,"r.interactive.executionTarget":"terminal"}}}}]'
 
+ENV GDAL_NUM_THREADS="ALL_CPUS" \
+    GDAL_CACHEMAX="512" \
+    VSI_CACHE="TRUE" \
+    GDAL_HTTP_MULTIPLEX="YES"
+
 RUN apt-get update \
     && DEBIAN_FRONTEND=noninteractive apt-get purge -y postgis netcdf-bin \
     && apt-get autoremove -y \
@@ -14,14 +19,14 @@ RUN apt-get update \
 # - languageserver: R LSP support
 # - httpgd, jgd, rstudioapi, svglite: plot backends & rstudioapi emulation in vscode-R v3+
 # - processx, ps, later, jsonlite: required by vscode-R's bundled `sess` package so first-run installation is instantaneous
-RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','httpgd','jgd','rstudioapi','processx','ps','later','jsonlite','svglite','methods'), upgrade = FALSE)"
+# Strip debug symbols from compiled R package shared objects and clean pkgcache in the same layer
+RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','httpgd','jgd','rstudioapi','processx','ps','later','jsonlite','svglite','methods'), upgrade = FALSE)" \
+    && strip --strip-debug /usr/local/lib/R/site-library/*/libs/*.so 2>/dev/null || true \
+    && rm -rf /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*
 
 # Install arf (modern Rust-based R console used by vscode-R persistent interactive sessions)
 RUN wget -qO- https://github.com/eitsupi/arf/releases/latest/download/arf-console-installer.sh | env CARGO_DIST_FORCE_INSTALL_DIR=/usr/local sh \
     && /usr/local/bin/arf --version
-
-# Strip debug symbols from compiled R package shared objects to save ~200MB
-RUN strip /usr/local/lib/R/site-library/*/libs/*.so
 
 # Disable inline RMarkdown/Quarto chunk output in RStudio
 RUN echo '{' > /etc/rstudio/rstudio-prefs.json \
@@ -35,5 +40,3 @@ RUN echo 'if (interactive() && (Sys.getenv("TERM_PROGRAM") == "vscode" || Sys.ge
     && echo '    options(device = httpgd::hgd)' >> /usr/local/lib/R/etc/Rprofile.site \
     && echo '  }' >> /usr/local/lib/R/etc/Rprofile.site \
     && echo '}' >> /usr/local/lib/R/etc/Rprofile.site
-
-RUN rm -rf /var/lib/apt/lists/*
