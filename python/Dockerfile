@@ -33,7 +33,7 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
 # Install requirements using uv for fast parallel wheel resolution
 RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/py/main/requirements.txt \
-    && uv pip install --system --no-cache -r /tmp/requirements.txt \
+    && uv pip install --system --no-cache -r /tmp/requirements.txt seaborn openpyxl statsmodels pyarrow \
     && rm /tmp/requirements.txt
 
 # Clean up build tools to reduce image size (optional but recommended)
