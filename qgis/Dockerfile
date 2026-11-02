@@ -1,6 +1,6 @@
 FROM rocker/geospatial:dev-osgeo
 # ARG only sets the ENV var during the build session whereas ENV also keeps it in the containers later on
-ARG DEBIAN_FRONTEND noninteractive
+ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
 # # how to install LTR, latest or nightly QGIS version, see:
@@ -49,7 +49,7 @@ RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.or
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntu-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 
 RUN apt-get update && apt-get -y --with-new-pkgs upgrade
-RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga
+RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga && rm -rf /var/lib/apt/lists/*
 
 # the rest is nice to have but not really necessary
 # RUN qgis_process in a headless state
@@ -65,10 +65,6 @@ USER root
 # book's bridge/companion packages (qgisprocess, Rsagacmd, rgrass, tmap, mlr3*,
 # vegan, ...). Without it, the CI/CD that builds geocompr against this image
 # fails on `library(qgisprocess)` etc.
-RUN R -e "install.packages('geocompkg', dependencies = TRUE, repos = c('https://geocompx.r-universe.dev', 'https://mlr-org.r-universe.dev', options('repos')))"
+RUN R -e "options(repos = c(geocompx = 'https://geocompx.r-universe.dev', mlrorg = 'https://mlr-org.r-universe.dev', getOption('repos'))); if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak'); pak::pak('geocompkg', dependencies = TRUE)"
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
-
-
-
-

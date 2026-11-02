@@ -64,7 +64,7 @@ Add `:tagname` after `ghcr.io/geocompx/<image>` for a specific version (see [pac
 For users who want smaller images or different packages, a reference [`minimal-slim/Dockerfile`](minimal-slim/Dockerfile) shows how to build from `rocker/r-ver` without RStudio or heavy CLI tools, using [`rocker-versioned2` scripts](https://github.com/rocker-org/rocker-versioned2/tree/master/scripts):
 
 ```Dockerfile
-FROM rocker/r-ver:4.6.0
+FROM rocker/r-ver:4.6.2
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev libgeos-dev libproj-dev \
     && rm -rf /var/lib/apt/lists/*
@@ -72,6 +72,7 @@ RUN install2.r sf terra spData
 ```
 
 Available rocker-versioned2 scripts:
+
 - [`install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh) — GDAL, PROJ, GEOS + sf, terra, raster, stars, sp
 - [`install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh) — RStudio Server with S6 supervisor
 - [`install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh) — Python 3 + reticulate

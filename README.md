@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
 # Geocomputation with Docker
@@ -69,24 +68,20 @@ from `rocker/r-ver` without RStudio or heavy CLI tools, using
 scripts](https://github.com/rocker-org/rocker-versioned2/tree/master/scripts):
 
 ``` dockerfile
-FROM rocker/r-ver:4.6.0
+FROM rocker/r-ver:4.6.2
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libgdal-dev libgeos-dev libproj-dev \
     && rm -rf /var/lib/apt/lists/*
 RUN install2.r sf terra spData
 ```
 
-Available rocker-versioned2 scripts: -
-[`install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh)
-— GDAL, PROJ, GEOS + sf, terra, raster, stars, sp -
-[`install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh)
-— RStudio Server with S6 supervisor -
-[`install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh)
-— Python 3 + reticulate -
-[`install_tidyverse.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh)
-— Tidyverse stack -
-[`install_quarto.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_quarto.sh)
-— Quarto CLI
+Available rocker-versioned2 scripts:
+
+- [`install_geospatial.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_geospatial.sh) — GDAL, PROJ, GEOS + sf, terra, raster, stars, sp
+- [`install_rstudio.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh) — RStudio Server with S6 supervisor
+- [`install_python.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_python.sh) — Python 3 + reticulate
+- [`install_tidyverse.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_tidyverse.sh) — Tidyverse stack
+- [`install_quarto.sh`](https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_quarto.sh) — Quarto CLI
 
 ## Examples
 

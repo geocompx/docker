@@ -5,8 +5,9 @@
 		"vscode": {
 			"settings": {
 				"r.sessionWatcher": true,
-				"r.plot.useHttpgd": true,
-				"r.bracketedPaste": true
+				"r.plot.backend": "auto",
+				"r.bracketedPaste": true,
+				"r.interactive.executionTarget": "terminal"
 			},
 			"extensions": [
 				"REditorSupport.r",

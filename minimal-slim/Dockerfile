@@ -1,5 +1,5 @@
 # Slim custom geospatial image built from rocker/r-ver, without RStudio or heavy CLI tools
-ARG R_VER=4.6.0
+ARG R_VER=4.6.2
 FROM rocker/r-ver:${R_VER}
 
 # System dependencies: keep only what sf/terra/spData need at runtime/build time
@@ -13,11 +13,11 @@ RUN apt-get update \
         libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# R packages: geocompx/geocompkg Imports only (sf, terra, spData, units, dplyr, methods, languageserver)
+# R packages: geocompx/geocompkg Imports + VS Code R extension (vscode-R v3+) dependencies
 # Using install2.r from rocker-versioned2 style (lightweight, no extra system deps)
 ARG NCPUS=-1
 RUN install2.r --error --skipmissing --skipinstalled -n "${NCPUS}" \
-        sf terra spData units dplyr methods languageserver \
+        sf terra spData units dplyr methods languageserver httpgd jgd rstudioapi processx ps later jsonlite svglite \
     && rm -rf /tmp/downloaded_packages
 
 # Strip binary .so files from RSPM installs
