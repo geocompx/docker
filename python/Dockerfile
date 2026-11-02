@@ -1,7 +1,7 @@
-ARG PYTHON_BASE_IMAGE=python:3.12-slim-bookworm
+ARG PYTHON_BASE_IMAGE=python:3.12-slim-trixie
 FROM ${PYTHON_BASE_IMAGE}
 
-ARG QUARTO_VERSION=1.9.37
+ARG QUARTO_VERSION=1.11.9
 
 LABEL devcontainer.metadata='[{"customizations":{"vscode":{"extensions":["quarto.quarto","ms-python.python","ms-toolsai.jupyter"],"settings":{"python.defaultInterpreterPath":"/usr/local/bin/python"}}}}]'
 
@@ -27,6 +27,9 @@ RUN arch="$(dpkg --print-architecture)" \
     && apt-get install -y --no-install-recommends "./quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
     && rm "quarto-${QUARTO_VERSION}-linux-${arch}.deb" \
     && rm -rf /var/lib/apt/lists/*
+
+# Install uv for fast Python package & project management
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
 # Install requirements
 RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/py/main/requirements.txt \
