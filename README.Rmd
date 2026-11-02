@@ -9,11 +9,36 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+imgs = readr::read_csv("image-info.csv", show_col_types = FALSE)
+
+get_ghcr_downloads = function(pkg) {
+  url = paste0("https://github.com/orgs/geocompx/packages/container/package/", pkg)
+  html = tryCatch(paste(readLines(url, warn = FALSE), collapse = " "), error = function(e) "")
+  m = regexec('Total downloads</span>\\s*<h3 title="([0-9]+)">([^<]+)</h3>', html)
+  hit = regmatches(html, m)[[1]]
+  if (length(hit) >= 3) {
+    list(count = as.numeric(hit[2]), label = hit[3])
+  } else {
+    list(count = NA_real_, label = "?")
+  }
+}
+
+dl_info = lapply(imgs$image_name, get_ghcr_downloads)
+imgs$downloads_num = vapply(dl_info, `[[`, numeric(1), "count")
+imgs$Downloads = vapply(dl_info, `[[`, character(1), "label")
+total_downloads = sum(imgs$downloads_num, na.rm = TRUE)
+total_downloads_label = if (total_downloads >= 1000) {
+  paste0(round(total_downloads / 1000, 1), "k")
+} else {
+  as.character(total_downloads)
+}
 ```
 
 # Geocomputation with Docker
 
-[![](https://img.shields.io/docker/pulls/geocompx/docker?style=plastic)](https://github.com/geocompx/docker/blob/master/)
+[![CI/CD](https://github.com/geocompx/docker/actions/workflows/ci.yml/badge.svg)](https://github.com/geocompx/docker/actions/workflows/ci.yml)
+[![GHCR Downloads](https://img.shields.io/badge/GHCR_downloads-`r total_downloads_label`-blue?style=plastic&logo=github)](https://github.com/orgs/geocompx/packages?repo_name=docker)
 
 This repo provides Docker images for geographic research and reproducing code from the books *Geocomputation with R* and *Geocomputation with Python*, building on the [Rocker Project](https://www.rocker-project.org/).
 
@@ -44,17 +69,16 @@ The R-enabled images (`latest`, `minimal`, `osgeo`, `pythonr`) support VS Code D
 The base image is `rocker/geospatial` from [rocker-versioned2](https://github.com/rocker-org/rocker-versioned2). We provide variants with different package sets and library versions:
 
 ```{r, include=FALSE}
-imgs = readr::read_csv("image-info.csv")
 imgs <- imgs[order(imgs$size), ]
-imgs$Image = paste0("[", imgs$image_name, "](https://ghcr.io/geocompx/", imgs$image_name, ":latest)")
+imgs$Image = paste0("[", imgs$image_name, "](https://github.com/geocompx/docker/pkgs/container/", imgs$image_name, ")")
 imgs$Command = paste0("[", imgs$command, "](https://github.com/geocompx/docker/blob/master/", 
   ifelse(imgs$image_name == "latest", "Dockerfile", paste0(imgs$image_name, "/Dockerfile")), ")")
-imgs <- imgs[, c("Image", "Command", "size", "description")]
-names(imgs) = c("Image", "Command", "Size", "Description")
+imgs <- imgs[, c("Image", "Command", "size", "Downloads", "description")]
+names(imgs) = c("Image", "Command", "Size", "Downloads", "Description")
 ```
 
 ```{r, echo=FALSE}
-knitr::kable(imgs)
+knitr::kable(imgs, row.names = FALSE)
 ```
 
 Add `:tagname` after `ghcr.io/geocompx/<image>` for a specific version (see [packages](https://github.com/geocompx/docker/pkgs/container/minimal)).
