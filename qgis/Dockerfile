@@ -2,7 +2,7 @@ FROM rocker/geospatial:dev-osgeo
 # ARG only sets the ENV var during the build session whereas ENV also keeps it in the containers later on
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get -y --with-new-pkgs upgrade
+RUN apt-get -o Acquire::Retries=5 update && apt-get -o Acquire::Retries=5 -y --with-new-pkgs upgrade
 # # how to install LTR, latest or nightly QGIS version, see:
 # # https://qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
 # RUN apt-get -y install gnupg software-properties-common python3-pip
@@ -48,8 +48,10 @@ RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.or
 # if we want qgis ltr, we need to run the following line
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntu-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 
-RUN apt-get update && apt-get -y --with-new-pkgs upgrade
-RUN apt-get install -y --no-install-recommends qgis grass qgis-plugin-grass saga && rm -rf /var/lib/apt/lists/*
+RUN apt-get -o Acquire::Retries=5 update && apt-get -o Acquire::Retries=5 -y --with-new-pkgs upgrade
+RUN for i in 1 2 3; do \
+      apt-get -o Acquire::Retries=5 -o Acquire::https::Pipeline-Depth=0 install -y --no-install-recommends qgis grass qgis-plugin-grass saga && break || sleep 5; \
+    done && rm -rf /var/lib/apt/lists/*
 
 # the rest is nice to have but not really necessary
 # RUN qgis_process in a headless state

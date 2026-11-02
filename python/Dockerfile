@@ -31,11 +31,10 @@ RUN arch="$(dpkg --print-architecture)" \
 # Install uv for fast Python package & project management
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
 
-# Install requirements
+# Install requirements using uv for fast parallel wheel resolution
 RUN wget -q -O /tmp/requirements.txt https://raw.githubusercontent.com/geocompx/py/main/requirements.txt \
-    && python -m pip install --no-cache-dir -r /tmp/requirements.txt \
+    && uv pip install --system --no-cache -r /tmp/requirements.txt seaborn openpyxl statsmodels pyarrow \
     && rm /tmp/requirements.txt
-
 
 # Clean up build tools to reduce image size (optional but recommended)
 RUN apt purge -y build-essential && apt autoremove -y && rm -rf /var/lib/apt/lists/*
