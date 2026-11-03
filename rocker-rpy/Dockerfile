@@ -2,38 +2,35 @@
 FROM ghcr.io/geocompx/minimal
 
 # Install core Python 3 packages and other dependencies.
-# - python3-dev: Headers needed to compile certain Python packages with C extensions.
-# - python3-pip: The package installer for Python 3, installed globally.
-# - swig: Used for wrapping C/C++ libraries for Python.
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-dev \
     python3-pip \
-    swig && \
-    rm -rf /var/lib/apt/lists/*
-
-# Create a symbolic link so the 'python' command defaults to 'python3'
-# The '-f' flag forces the creation of the symbolic link, overwriting any existing file.
-RUN ln -sf /usr/bin/python3 /usr/bin/python
-
-# Create a symbolic link so the 'pip' command defaults to 'pip3'
-# The '-f' flag forces the creation of the symbolic link, overwriting any existing file.
-RUN ln -sf /usr/bin/pip3 /usr/bin/pip
+    swig \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
+    && ln -sf /usr/bin/pip3 /usr/bin/pip \
+    && rm -rf /var/lib/apt/lists/*
 
 # Install reticulate R package to enable R-Python interoperability
-# This step remains the same as it is a separate R installation.
-RUN R -e "install.packages('reticulate', repos='https://cloud.r-project.org/')"
+RUN R -e "install.packages('reticulate', repos='https://cloud.r-project.org/')" \
+    && rm -rf /tmp/*
 
-# Set the environment variable for Quarto to use the system Python 3.
-# The `which python3` command finds the path of the globally installed executable.
-ENV QUARTO_PYTHON=/usr/bin/python
+# Set the environment variables for Quarto, Reticulate, GDAL, and Pyogrio
+ENV QUARTO_PYTHON=/usr/bin/python \
+    RETICULATE_PYTHON=/usr/bin/python \
+    GDAL_NUM_THREADS="ALL_CPUS" \
+    GDAL_CACHEMAX="512" \
+    VSI_CACHE="TRUE" \
+    GDAL_HTTP_MULTIPLEX="YES" \
+    PYOGRIO_USE_ARROW="1"
 
-# Install project requirements globally using the system's pip3.
-# We use `pip3` to ensure we are using the package manager for Python 3.
-# The `--break-system-packages` flag is added to override the security feature.
-# The `--ignore-installed` flag is added to prevent pip from trying to uninstall
-# packages that are managed by the system.
+# Install uv for fast parallel Python wheel resolution
+COPY --from=ghcr.io/astral-sh/uv:latest /uv /uvx /usr/local/bin/
+
+# Install project requirements globally using uv, strip debug symbols, and prune test directories
 RUN wget -q -O /tmp/requirements.txt https://github.com/geocompx/geocompy/raw/refs/heads/main/requirements.txt \
     && sed -i 's/==/>=/g' /tmp/requirements.txt \
-    && pip3 install --no-cache-dir --break-system-packages --ignore-installed -r /tmp/requirements.txt \
+    && uv pip install --system --break-system-packages --reinstall-package pyyaml --no-cache -r /tmp/requirements.txt \
+    && (find /usr/local/lib/python*/dist-packages -name "*.so*" -type f -exec strip --strip-unneeded {} + 2>/dev/null || true) \
+    && (find /usr/local/lib/python*/dist-packages -type d -name "tests" -prune -exec rm -rf {} + 2>/dev/null || true) \
     && rm /tmp/requirements.txt
