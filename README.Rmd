@@ -37,7 +37,7 @@ total_downloads_label = if (total_downloads >= 1000) {
 
 # Geocomputation with Docker
 
-[![CI/CD](https://github.com/geocompx/docker/actions/workflows/ci.yml/badge.svg)](https://github.com/geocompx/docker/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/geocompx/docker/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/geocompx/docker/actions/workflows/ci.yml?query=branch%3Amain)
 [![GHCR Downloads](https://img.shields.io/badge/GHCR_downloads-`r total_downloads_label`-blue?style=plastic&logo=github)](https://github.com/orgs/geocompx/packages?repo_name=docker)
 
 This repo provides Docker images for geographic research and reproducing code from the books *Geocomputation with R* and *Geocomputation with Python*, building on the [Rocker Project](https://www.rocker-project.org/).

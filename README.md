@@ -3,7 +3,7 @@
 
 # Geocomputation with Docker
 
-[![CI/CD](https://github.com/geocompx/docker/actions/workflows/ci.yml/badge.svg)](https://github.com/geocompx/docker/actions/workflows/ci.yml)
+[![CI/CD](https://github.com/geocompx/docker/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/geocompx/docker/actions/workflows/ci.yml?query=branch%3Amain)
 [![GHCR
 Downloads](https://img.shields.io/badge/GHCR_downloads-43.3k-blue?style=plastic&logo=github)](https://github.com/orgs/geocompx/packages?repo_name=docker)
 
