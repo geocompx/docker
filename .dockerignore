@@ -1,0 +1,13 @@
+.git
+.github
+.devcontainer
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+*.html
+*.md
+*.Rmd
+*.Rproj
+scripts/
+dockerfiles/archive/
