@@ -54,6 +54,7 @@ RUN . /etc/os-release && \
     cat <<EOF > /opt/R/current/lib/R/etc/Rprofile.site
 options(
   repos = c(CRAN = "https://p3m.dev/cran/__linux__/${VERSION_CODENAME}/latest"),
+  pkg.sysreqs = FALSE,
   download.file.method = "libcurl",
   HTTPUserAgent = sprintf("R/%s R (%s)", getRversion(), paste(getRversion(), R.version["platform"], R.version["arch"], R.version["os"])),
   sess.quiet = TRUE
