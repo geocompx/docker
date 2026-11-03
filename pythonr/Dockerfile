@@ -72,6 +72,7 @@ RUN curl --proto '=https' --tlsv1.2 -LsSf https://github.com/eitsupi/arf/release
 RUN export MAKEFLAGS="-j$(nproc)" && \
     R -e "install.packages('pak')" && \
     Rscript -e "options(pkg.sysreqs = FALSE, repos = c(geocompx = 'https://geocompx.r-universe.dev', mlrorg = 'https://mlr-org.r-universe.dev', getOption('repos'))); pak::pak(c('sf', 'geocompkg', 'languageserver', 'httpgd', 'jgd', 'rstudioapi', 'processx', 'ps', 'later', 'jsonlite', 'svglite', 'reticulate'), dependencies = TRUE)" && \
+    Rscript -e "js <- jsonlite::fromJSON('https://api.github.com/repos/REditorSupport/vscode-R/releases/latest'); u <- js[['assets']][['browser_download_url']][grepl('\\.vsix$', js[['assets']][['browser_download_url']])][1]; tf <- tempfile(fileext = '.vsix'); td <- tempfile(); download.file(u, tf, mode = 'wb', quiet = TRUE); f <- unzip(tf, list = TRUE)[['Name']]; unzip(tf, files = f[startsWith(f, 'extension/dist/resources/sess/')], exdir = td); install.packages(file.path(td, 'extension/dist/resources/sess'), repos = NULL, type = 'source', quiet = TRUE); unlink(c(tf, td), recursive = TRUE)" && \
     ! (LD_LIBRARY_PATH="/opt/R/current/lib/R/lib:${LD_LIBRARY_PATH}" ldd /opt/R/current/lib/R/library/*/libs/*.so 2>/dev/null | grep "not found") && \
     (strip --strip-unneeded /opt/R/current/lib/R/library/*/libs/*.so 2>/dev/null || true) && \
     rm -rf /opt/R/current/lib/R/library/*/doc \

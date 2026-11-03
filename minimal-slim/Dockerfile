@@ -25,6 +25,7 @@ RUN apt-get update \
 ARG NCPUS=-1
 RUN install2.r --error --skipmissing --skipinstalled -n "${NCPUS}" \
         sf terra spData units dplyr methods languageserver httpgd jgd rstudioapi processx ps later jsonlite svglite \
+    && Rscript -e "js <- jsonlite::fromJSON('https://api.github.com/repos/REditorSupport/vscode-R/releases/latest'); u <- js[['assets']][['browser_download_url']][grepl('\\.vsix$', js[['assets']][['browser_download_url']])][1]; tf <- tempfile(fileext = '.vsix'); td <- tempfile(); download.file(u, tf, mode = 'wb', quiet = TRUE); f <- unzip(tf, list = TRUE)[['Name']]; unzip(tf, files = f[startsWith(f, 'extension/dist/resources/sess/')], exdir = td); install.packages(file.path(td, 'extension/dist/resources/sess'), repos = NULL, type = 'source', quiet = TRUE); unlink(c(tf, td), recursive = TRUE)" \
     && (find /usr/local/lib/R/site-library/*/libs -name '*.so' -exec strip --strip-unneeded {} + 2>/dev/null || true) \
     && rm -rf /usr/local/lib/R/site-library/*/doc /tmp/downloaded_packages
 

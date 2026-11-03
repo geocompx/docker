@@ -18,6 +18,7 @@ RUN apt-get update \
 # Install essential geocompkg Imports + VS Code R extension (vscode-R v3+) session/plot/LSP dependencies
 # Strip debug symbols from compiled R package shared objects and clean pkgcache in the same layer
 RUN R -e "if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak', repos = 'https://cloud.r-project.org/'); pak::pak(c('sf','terra','spData','units','dplyr','languageserver','httpgd','jgd','rstudioapi','processx','ps','later','jsonlite','svglite','methods'), upgrade = FALSE)" \
+    && Rscript -e "js <- jsonlite::fromJSON('https://api.github.com/repos/REditorSupport/vscode-R/releases/latest'); u <- js[['assets']][['browser_download_url']][grepl('\\.vsix$', js[['assets']][['browser_download_url']])][1]; tf <- tempfile(fileext = '.vsix'); td <- tempfile(); download.file(u, tf, mode = 'wb', quiet = TRUE); f <- unzip(tf, list = TRUE)[['Name']]; unzip(tf, files = f[startsWith(f, 'extension/dist/resources/sess/')], exdir = td); install.packages(file.path(td, 'extension/dist/resources/sess'), repos = NULL, type = 'source', quiet = TRUE); unlink(c(tf, td), recursive = TRUE)" \
     && (strip --strip-unneeded /usr/local/lib/R/site-library/*/libs/*.so 2>/dev/null || true) \
     && rm -rf /usr/local/lib/R/site-library/*/doc /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*
 
