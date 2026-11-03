@@ -5,11 +5,9 @@ on:
     - cron: '0 0 * * 0' # Runs at 00:00 on Sunday every week
   push:
     branches:
-      - 'master'
       - 'main'
   pull_request:
     branches:
-      - 'master'
       - 'main'
   workflow_dispatch: # Allows manual triggering
 

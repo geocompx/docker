@@ -71,7 +71,7 @@ The base image is `rocker/geospatial` from [rocker-versioned2](https://github.co
 ```{r, include=FALSE}
 imgs <- imgs[order(imgs$size), ]
 imgs$Image = paste0("[", imgs$image_name, "](https://github.com/geocompx/docker/pkgs/container/", imgs$image_name, ")")
-imgs$Command = paste0("[", imgs$command, "](https://github.com/geocompx/docker/blob/master/", 
+imgs$Command = paste0("[", imgs$command, "](https://github.com/geocompx/docker/blob/main/", 
   ifelse(imgs$image_name == "latest", "Dockerfile", paste0(imgs$image_name, "/Dockerfile")), ")")
 imgs <- imgs[, c("Image", "Command", "size", "Downloads", "description")]
 names(imgs) = c("Image", "Command", "Size", "Downloads", "Description")
