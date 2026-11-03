@@ -2,7 +2,6 @@ FROM rocker/geospatial:dev-osgeo
 # ARG only sets the ENV var during the build session whereas ENV also keeps it in the containers later on
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get -o Acquire::Retries=5 update && apt-get -o Acquire::Retries=5 -y --with-new-pkgs upgrade
 # # how to install LTR, latest or nightly QGIS version, see:
 # # https://qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu
 # RUN apt-get -y install gnupg software-properties-common python3-pip
@@ -48,8 +47,10 @@ RUN wget -qO /etc/apt/keyrings/qgis-archive-keyring.gpg https://download.qgis.or
 # if we want qgis ltr, we need to run the following line
 RUN sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/qgis-archive-keyring.gpg] https://qgis.org/ubuntu-ltr `lsb_release -c -s` main" > /etc/apt/sources.list.d/qgis.list'
 
-RUN apt-get -o Acquire::Retries=5 update && apt-get -o Acquire::Retries=5 -y --with-new-pkgs upgrade
-RUN for i in 1 2 3; do \
+RUN rm -f /etc/apt/sources.list.d/*arrow* && \
+    apt-get -o Acquire::Retries=5 update && \
+    apt-get -o Acquire::Retries=5 -y --with-new-pkgs --fix-missing upgrade && \
+    for i in 1 2 3; do \
       apt-get -o Acquire::Retries=5 -o Acquire::https::Pipeline-Depth=0 install -y --no-install-recommends qgis grass qgis-plugin-grass saga && break || sleep 5; \
     done && rm -rf /var/lib/apt/lists/*
 
@@ -67,6 +68,9 @@ USER root
 # book's bridge/companion packages (qgisprocess, Rsagacmd, rgrass, tmap, mlr3*,
 # vegan, ...). Without it, the CI/CD that builds geocompr against this image
 # fails on `library(qgisprocess)` etc.
-RUN R -e "options(repos = c(geocompx = 'https://geocompx.r-universe.dev', mlrorg = 'https://mlr-org.r-universe.dev', getOption('repos'))); if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak'); pak::pak('geocompkg', dependencies = TRUE)"
+RUN export MAKEFLAGS="-j$(nproc)" && \
+    R -e "options(repos = c(geocompx = 'https://geocompx.r-universe.dev', mlrorg = 'https://mlr-org.r-universe.dev', getOption('repos'))); if (!requireNamespace('pak', quietly = TRUE)) install.packages('pak'); pak::pak('geocompkg', dependencies = TRUE)" && \
+    (strip --strip-unneeded /usr/local/lib/R/site-library/*/libs/*.so 2>/dev/null || true) && \
+    rm -rf /usr/local/lib/R/site-library/*/doc /tmp/* /root/.cache/R/pkgcache /var/lib/apt/lists/*
 # Set the options() for R users:
 RUN echo 'options(repos = "https://packagemanager.posit.co/cran/latest")' >> /usr/local/lib/R/etc/Rprofile.site
